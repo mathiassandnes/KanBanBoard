@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c599bdb2-bba6-496f-8ded-9c292ffd036b" name="Default Changelist" comment="" />
+    <list default="true" id="c599bdb2-bba6-496f-8ded-9c292ffd036b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/GruppeFem/js/lists.js" beforeDir="false" afterPath="$PROJECT_DIR$/GruppeFem/js/lists.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -27,13 +30,25 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="527">
               <caret line="31" column="14" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
+            <state relative-caret-position="510">
+              <caret line="30" column="14" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GruppeFem/js/Grupper.js">
           <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/GruppeFem/js/lists.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -54,12 +69,22 @@
         <option value="$PROJECT_DIR$/GruppeFem/landing.html" />
         <option value="$PROJECT_DIR$/GruppeFem/js/Grupper.js" />
         <option value="$PROJECT_DIR$/GruppeFem/home.html" />
+        <option value="$PROJECT_DIR$/GruppeFem/home.html" />
+        <option value="$PROJECT_DIR$/GruppeFem/js/grupper.js" />
+        <option value="$PROJECT_DIR$/GruppeFem/js/cards.js" />
+        <option value="$PROJECT_DIR$/GruppeFem/js/lists" />
+        <option value="$PROJECT_DIR$/GruppeFem/js/boards" />
+        <option value="$PROJECT_DIR$/GruppeFem/js/groups.js" />
+        <option value="$PROJECT_DIR$/GruppeFem/js/users.js" />
+        <option value="$PROJECT_DIR$/GruppeFem/js/lists.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="260" />
     <option name="y" value="40" />
+    <option name="x" value="139" />
+    <option name="y" value="47" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -103,6 +128,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/WebstormProjects/untitled1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -129,11 +155,19 @@
       <option name="presentableId" value="Default" />
       <updated>1558690407473</updated>
       <workItem from="1558690408638" duration="1233000" />
+      <changelist id="2b7f54d3-b780-4caa-83ce-4a498c64439e" name="Default Changelist" comment="" />
+      <created>1558688876493</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1558688876493</updated>
+      <workItem from="1558688877631" duration="567000" />
+      <workItem from="1558692937849" duration="1572000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="1350000" />
+    <option name="totallyTimeSpent" value="3329000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
@@ -162,6 +196,13 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/GruppeFem/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="14" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/GruppeFem/landing.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -176,6 +217,42 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="31" column="14" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
+    <entry file="file://$PROJECT_DIR$/GruppeFem/board.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GruppeFem/js/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GruppeFem/js/groups.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GruppeFem/js/boards" />
+    <entry file="file://$PROJECT_DIR$/GruppeFem/js/cards.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="8" lean-forward="true" selection-start-column="8" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GruppeFem/js/lists.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
