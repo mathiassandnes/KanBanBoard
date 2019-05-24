@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2b7f54d3-b780-4caa-83ce-4a498c64439e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/GruppeFem/js/boards" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GruppeFem/js/cards.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GruppeFem/js/groups.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GruppeFem/js/lists" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GruppeFem/js/users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="2b7f54d3-b780-4caa-83ce-4a498c64439e" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -175,12 +168,12 @@
       <option name="presentableId" value="Default" />
       <updated>1558688876493</updated>
       <workItem from="1558688877631" duration="567000" />
-      <workItem from="1558692937849" duration="1278000" />
+      <workItem from="1558692937849" duration="1572000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1845000" />
+    <option name="totallyTimeSpent" value="2139000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
