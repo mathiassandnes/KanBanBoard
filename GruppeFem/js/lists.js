@@ -1,19 +1,19 @@
-var list = {
+list = {
     list1:{
         name: "TODO",
-        cards:[card.card1, card.card2, card.card3]
+        cards:[card.card1]
     },
     list2:{
         name: "In progress",
-        cards:[card.card2, card.card1, card.card3, card.card1]
+        cards:[card.card2]
     },
     list3:{
         name: "Done",
-        cards:[card.card3,card.card1,card.card2,card.card3,card.card1,card.card2]
+        cards:[card.card3]
     },
     list4:{
         name: "Important",
-        cards:[card.card3,card.card2, card.card1]
+        cards:[card.card3]
     },
 
 }
