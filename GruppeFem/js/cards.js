@@ -1,4 +1,4 @@
-card = {
+var card = {
     card1: {
         name: "lage manus",
         description: "dette er en viktig oppgave"
