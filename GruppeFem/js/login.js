@@ -15,12 +15,12 @@ var usersLogIn = [
 
 function checkLogIn() {
 
-    var username = document.getElementById("username").value
-    var password = document.getElementById("password").value
+    var username = document.getElementById(username).value
+    var password = document.getElementById(password).value
 
-    for (i = 0; i > users.length; i++) {
+    for (i = 0; i > usersLogIn.length; i++) {
 
-        if (username == usersLogIn.username && password == usersLogIn.password) {
+        if (password == usersLogIn[username]) {
 
             alert ("Du er logget inn");
 
