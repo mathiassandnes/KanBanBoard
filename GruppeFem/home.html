@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<style>
+
+    #Group{
+        background-color: #dddddd;
+    }
+    td{
+        border-style: solid;
+        border-color: black;
+    }
+</style>
 <body>
 <header style="background-color: magenta">
 
@@ -13,27 +23,18 @@
     <div id="left-area" style="background-color: #0b2e13">
         <button>Ny gruppe</button>
     </div>
-    <div id="boards-area">
-        <div id="Group" class="row" style="border-color: red;">
-            <h3>Grupprnavn</h3>
-            <button id="row1-board1" onclick="window.location.href = 'board.html';">
-                <h5>tavlenavn</h5></a>
-            </button>
-            <button id="row1-board2">
-                <h5>tavlenavn</h5>
-            </button>
-            <button id="row1-board3">
-                <h5>tavlenavn</h5>
-            </button>
-            <button id="row1-board4">
-                <h5>+</h5>
-            </button>
-            <button onclick=""
-        </div>
-        <div class="row" style="border-color: red;">
+    <table id="boards-area"> Gruppenavn
+        <button onclick="leggTilTavle()">+</button>
+        <tr id="Group">
+            <td>tavle 1</td>
+            <td>tavle 2</td>
+        </tr>
+    </table>
+    <table>
+        <div>
             <h3>Grupprnavn</h3>
             <button id="row2-board1">
-                <h5>må på behandling</h5>
+                <h5>tavlenavn</h5>
             </button>
             <button id="row2-board2">
                 <h5>tavlenavn</h5>
@@ -45,7 +46,7 @@
                 <h5>+</h5>
             </button>
         </div>
-    </div>
+    </table>
 </main>
 <footer style="background-color: magenta">
     <a href="">Facebook</a>
@@ -54,6 +55,7 @@
 
 
 </footer>
+<script src="js/boards.js"></script>
 </body>
 </html>
 </body>
