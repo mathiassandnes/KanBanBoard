@@ -1,25 +1,21 @@
-var users = {
-    user1:{
-        name: "Peter",
-        epost: "kek@kek.kek",
-        username: "uberkek",
-
-        password: "kekceptiuyfiygdfkjtfkuon"
+var users = [
+    {
+        name: "Peter1",
+        epost: "kek@kek.kek1",
+        username: "kek1",
+        password: "kek1"
     },
-    user2:{
-        name: "Peter",
-        epost: "kek@kek.kek",
-        username: "uberkek",
-
-        password: "kekceptiuyfiygdfkjtfkuon"
+    {
+        name: "Peter2",
+        epost: "kek@kek.kek2",
+        username: "kek12",
+        password: "kek12"
     },
-    user3:{
-        name: "Peter",
-        epost: "kek@kek.kek",
-        username: "uberkek",
-
-        password: "kekceptiuyfiygdfkjtfkuon"
+    {
+        name: "Peter3",
+        epost: "kek@kek.kek3",
+        username: "kek123",
+        password: "kek123"
     }
-}
+];
 
-users.user1.name;
