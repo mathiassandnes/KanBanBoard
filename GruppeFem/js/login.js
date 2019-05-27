@@ -1,33 +1,31 @@
-var usersLogIn = [
-    {
-        username: "markus",
-        password: "1234"
-    },
-    {
-        username: "test",
-        password: "12345"
-    },
-    {
-        username: "bruker",
-        password: "passord"
-    }
-]
-
 function checkLogIn() {
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
 
-    var username = document.getElementById(username).value
-    var password = document.getElementById(password).value
 
-    for (i = 0; i > usersLogIn.length; i++) {
 
-        if (password == usersLogIn[username]) {
+    for(let i = 0; i < users.length; i++) {
 
-            alert ("Du er logget inn");
+        if(username == users[i].username){
+            if(password == users[i].password){
+                console.log("Success");
+                window.location.replace("home.html");
 
-        } else {
-
-            alert ("Feil");
-
-        }
+            } else {console.log("Wrong Password")}
+        } else {console.log("Wrong Username")}
     }
+
+    return;
+}
+
+
+function registerNewUser(){
+    users.push({
+        name: document.getElementById("full-name").value,
+        email: document.getElementById("email").value,
+        username: document.getElementById("new-username").value,
+        password: document.getElementById("new-password").value
+
+    });
+alert("you have been registrated")
 }
