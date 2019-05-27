@@ -46,6 +46,7 @@ function drawTables(board) {
         let arrayOfCards = arrayOfLists[i].cards;
 
 
+
         listElement.className = "col-1 text-center"
         //legger listen inni liste området
         listsArea.appendChild(listElement);
