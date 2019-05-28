@@ -2,62 +2,62 @@ var card = {
     card1: {
         name: "1",
         description: "dette er en viasdfsaktig oppgave",
-        priority: "",
+        priority: 2,
     },
     card2: {
         name: "2",
         description: "dette er en visafsadfasdfasdfktsfsadfsafsdfig oppgave",
-        priority: "",
+        priority: 1,
     },
     card3: {
         name: "lage rapport",
         description: "dette er en vfaffdsaadsfasiktig oppgave",
-        priority: "",
+        priority: 3,
     },
     card1: {
         name: "lage manus",
         description: "dette er en viasdfsaktig oppgave",
-        priority: "",
+        priority: 0,
     },
     card2: {
         name: "lage side",
         description: "dette er en visafsadfasdfasdfktsfsadfsafsdfig oppgave",
-        priority: "",
+        priority: 0,
     },
     card3: {
         name: "lage rapport",
         description: "dette er en vfaffdsaadsfasiktig oppgave",
-        priority: "",
+        priority: 2,
     },
     card1: {
         name: "lage manus",
         description: "dette er en viasdfsaktig oppgave",
-        priority: "",
+        priority: 3,
     },
     card2: {
         name: "lage side",
         description: "dette er en visafsadfasdfasdfktsfsadfsafsdfig oppgave",
-        priority: "",
+        priority: 1,
     },
     card3: {
         name: "lage rapport",
         description: "dette er en vfaffdsaadsfasiktig oppgave",
-        priority: "",
+        priority: 2,
     },
     card1: {
         name: "lage manus",
         description: "dette er en viasdfsaktig oppgave",
-        priority: "",
+        priority: 3,
     },
     card2: {
         name: "lage side",
         description: "dette er en visafsadfasdfasdfktsfsadfsafsdfig oppgave",
-        priority: "",
+        priority: 2,
     },
     card3: {
         name: "lage rapport",
         description: "dette er en vfaffdsaadsfasiktig oppgave",
-        priority: "",
+        priority: 1,
     },
 }
 

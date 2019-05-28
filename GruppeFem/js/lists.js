@@ -1,4 +1,4 @@
-list = {
+var list = {
     list1:{
         name: "TODO",
         cards:[card.card1,card.card2,card.card3]

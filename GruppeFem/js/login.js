@@ -2,8 +2,6 @@ function checkLogIn() {
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
 
-
-
     for(let i = 0; i < users.length; i++) {
 
         if(username == users[i].username){

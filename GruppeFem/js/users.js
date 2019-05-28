@@ -18,4 +18,3 @@ var users = [
         password: "kek123"
     }
 ];
-
