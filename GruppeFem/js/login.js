@@ -20,12 +20,16 @@ function checkLogIn() {
 
 
 function registerNewUser(){
-    users.push({
-        name: document.getElementById("full-name").value,
-        email: document.getElementById("email").value,
-        username: document.getElementById("new-username").value,
-        password: document.getElementById("new-password").value
 
-    });
-alert("you have been registrated")
+    if (document.getElementById("new-username").value.indexOf('@') > -1) {
+
+        users.push({
+            name: document.getElementById("full-name").value,
+            email: document.getElementById("email").value,
+            username: document.getElementById("new-username").value,
+            password: document.getElementById("new-password").value
+        });
+    }
+console.log(user);
+alert("you have been registrated");
 }
