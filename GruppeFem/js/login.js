@@ -16,24 +16,29 @@ function checkLogIn() {
     return;
 }
 //--------------------------------------USERNAME----------------------------------------------------------
-function registerNewUserNameCheck() {
+function newUserNameDuplicateCheck() {
 
+    for(let i=0;i<users.length;i++){
+        if(users[i].username === document.getElementById("new-username").value){
+            return true;
+        }
+    }
 }
 //---------------------------------------EMAIL------------------------------------------------------------
 
-function registerNewEmailCheck() {
-    //Check if email is valid:
-    let newEmail = document.getElementById("email").value;
+function registerNewEmailTaken() {
 
-    if (newEmail.indexOf('@') > -1 && newEmail.indexOf('.') > -1) {
-        alert("Email taken");
+    if ((document.getElementById("email").value).indexOf('@') > -1 && (document.getElementById("email").value).indexOf('.') > -1) {
         return true;
     }
 }
 
-function newEmailWrong(){
-    if (registerNewEmailCheck() === false){
-        document.getElementById("email").className = "glyphicon glyphicon-warning-sign form-control-feedback";
+function newEmailWarning(){
+    if (registerNewEmailTaken() === false){
+        document.getElementById("email-span").className = "glyphicon glyphicon-warning-sign form-control-feedback";
+        alert("email taken")
+    } else {
+        document.getElementById("email-span").className = "glyphicon glyphicon-ok form-control-feedback";
     }
 }
 //--------------------------------------PASSWORD----------------------------------------------------------
@@ -51,14 +56,37 @@ function newPasswordMatch() {
     }
 }
 
-function differentPasswords(){
+function differentPasswordsWarning(){
     if(newPasswordMatch() === false){
-        document.getElementById("new-password").className =
+        document.getElementById("new-password").className = "glyphicon glyphicon-remove form-control-feedback";
+    }
+}
+function passwordCriteriaOk(){
+    if((document.getElementById("new-password").value).length > 7) {
+        console.log("Good password length");
+
+        if (/\d/.test(newPassword1) === true) {
+            console.log("password have a number");
+
+            if (newPassword1 !== newPassword1.toUpperCase() && newPassword1 !== newPassword1.toLowerCase()) {
+                console.log("password have upper and lower case");
+                document.getElementById("new-password").className = "glyphicon glyphicon-ok form-control-feedback";
+                return true;
+            }
+        }
+    }else{
+        return false;
     }
 }
 //----------------------------------------NAME------------------------------------------------------------
-function registerNewName() {
-
+function newNameHaveChar() {
+    if((document.getElementById("full-name").value).length > 0){
+        document.getElementById("full-name").className = "glyphicon glyphicon-ok form-control-feedback";
+        return true;
+    }else{
+        document.getElementById("full-name").className = "glyphicon glyphicon-warning-sign form-control-feedback";
+        return false;
+    }
 }
 
 function registerNewUser(){
