@@ -27,7 +27,6 @@ function drawTables(board) {
     // clears the screen
     document.getElementById('lists-area').innerHTML="";
 
-
 //henter ut en liste med lister
     let arrayOfLists = arrayOfBoards[board].lists; // her må det finnes ut av hvilket board vi er på
 
@@ -38,54 +37,36 @@ function drawTables(board) {
     for (let i = 0; i < arrayOfLists.length; i++) {
 
         //lager et nytt html element
-        let listElement = createHtmlElementWithText('div', arrayOfLists[i].name)
-        listElement.setAttribute('ondrop', 'drop(event)');
-        listElement.setAttribute('ondragover', 'allowDrop(event)');
-        listElement.style.border = "solid black 2px";
+        let listElement = createHtmlElementWithText('ul', "<legend><b>"+arrayOfLists[i].name+"</b></legend><ol></ol>")
 
         let arrayOfCards = arrayOfLists[i].cards;
 
-
-
-        listElement.className = "col-1 text-center"
+        listElement.id = i;
+        listElement.className = "col-2 text-center bg-info m-1"
         //legger listen inni liste området
         listsArea.appendChild(listElement);
-
 
         // makes the cards for a list
         for (let j = 0; j < arrayOfCards.length; j++) {
             //lager et nytt html element
-            let cardElement = createHtmlElementWithText('button', arrayOfCards[j].name)
+            let cardElement = createHtmlElementWithText('li', arrayOfCards[j].name)
             //adds modal
             cardElement.setAttribute('data-toggle', 'modal');
             cardElement.setAttribute('data-target', '#card-modal');
 
-            //adds dragging
-            cardElement.setAttribute('draggable', 'true');
-            cardElement.setAttribute('ondragstart', 'drag(event)');
-            cardElement.setAttribute('ondrop', '');
-            cardElement.setAttribute('ondragover', '');
+            cardElement.id = cardElement+i+j;
 
-
-
-
-            cardElement.id = card+i+j;
-
+            // activates modal
             cardElement.addEventListener('click', function(){
                 document.getElementById('card-name-input').setAttribute('placeholder', arrayOfCards[j].name);
                 document.getElementById('card-description').innerText = arrayOfCards[j].description;
-
-
-
+                document.getElementById('priority').options.selectedIndex = arrayOfCards[j].priority;
             });
 
-            cardElement.className="col-12 btn btn-success btn-md text-dark";//btn btn-primary";
+            cardElement.className="col-12 btn btn-primary btn-md text-dark m-1 center";//btn btn-primary";
             //legger kortet inn i listen
             listElement.appendChild(cardElement);
 
-            /*************************
-             kortene trenger drag'n'drop
-             **************/
         }
 
         /**
@@ -93,10 +74,17 @@ function drawTables(board) {
          */
         let newCardButton = createHtmlElementWithText('button', 'Nytt kort');
 
+        //adds modal
         newCardButton.setAttribute('data-toggle', 'modal');
-        newCardButton.setAttribute('data-target', '#cardModal');
+        newCardButton.setAttribute('data-target', '#card-modal');
 
-        newCardButton.className="col-12 float-bottom";
+        newCardButton.addEventListener('click', function(){
+            document.getElementById('card-name-input').setAttribute('placeholder', "name of task");
+            document.getElementById('card-description').innerText = "description of task";
+            document.getElementById('priority').options.selectedIndex = 0;
+        });
+
+        newCardButton.className="col-12 m-1 btn-danger";
         listElement.appendChild(newCardButton);
 
     }
@@ -109,8 +97,12 @@ function drawTables(board) {
     newListButton.id = "new-list";
     newListButton.className = "col-1";
 
+
+    //adds modal
     newListButton.setAttribute('data-toggle', 'modal');
-    newListButton.setAttribute('data-target', '#listModal');
+    newListButton.setAttribute('data-target', '#list-modal');
+
+
 
     listsArea.appendChild(newListButton);
 }
@@ -121,8 +113,6 @@ function saveCardChanges() {
 
 drawBoards();
 drawTables(0); //input må være det boardet vi trykket på i "home" siden
-
-
 
 /*****
  * Ting å fikse

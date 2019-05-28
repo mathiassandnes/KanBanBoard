@@ -1,4 +1,4 @@
-board = {
+var board = {
     board1:{
         name: "Webprosjekt",
         lists: [list.list1, list.list2, list.list3],
