@@ -19,7 +19,7 @@ ul.style = "list-style: none; padding: 0;"
 var render_lists = function(lists){
     var li = "";
     for(index in lists){
-        li += "<li>" + lists[index] + "</li>";
+      li += "<li>" + "<button class = btn-primary> " +  lists[index] + "</button>" + "</li>";
     }
     ul.innerHTML = li;
 }
