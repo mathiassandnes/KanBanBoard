@@ -2,52 +2,143 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Placeholder</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
-<header style="background-color: magenta">
+<header class="bg-dark">
 
     <a href="home.html">HOME</a>
 </header>
 <main>
-    <div id="navigation">
-        <div class="row">
-            <div id="tavle1" style="background-color: wheat">
-                <h6>Tavle1</h6>
-            </div>
-            <div id="tavle2" style="background-color: wheat">
-                <h6>Tavle2</h6>
-            </div>
-            <div id="tavle3" style="background-color: wheat">
-                <h6>Tavle3</h6>
-            </div>
-        </div>
-    </div>
-    <div id="lists-area" class="row">
-        <div id="list1">TO DO
-            <div id="list1-card1" class="row">Lage noe</div>
-            <button id="new-card">+</button>
-        </div>
-        <div id="list2">TO DO
-            <div id="list2-card1" class="row">Lage noe</div>
+    <div class="row m-5" id="nav">
 
-            <button id="new-card">+</button>
-        </div>
-        <div id="list3">TO DO
-            <div id="list3-card1" class="row">Lage noe</div>
-            <button id="new-card">+</button>
-        </div>
-        <button id="new-list">new-list</button>
     </div>
+    <ul id="lists-area" class="row col-12 m-5 container bg-success">
 
+    </ul>
     <div> liste med ansatte </div>
 
+    <!-- Card modal -->
+    <div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-labelledby="card-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <div id="cardName" class="form-group">
+                        <input id="card-name-input" type="text" class="form-control" placeholder="New card name">
+                    </div>
+                    <div class="form-group">
+                        <select id="priority" class="form-control">
+                            <option>Low priority👌</option>
+                            <option>Medium priority🤨</option>
+                            <option>High priority😨</option>
+                            <option>Extreme priority😭</option>
+                        </select>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="card-description">Description:</label>
+                        <textarea class="form-control" rows="5" id="card-description"></textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="createNewCard"class="btn btn-primary" onclick="saveCardChanges()">Save changes</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- List Modal -->
+    <div class="modal fade" id="list-modal" tabindex="-1" role="dialog" aria-labelledby="list-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <div id="listName" class="form-group">
+                        <input type="text" class="form-control" placeholder="New list name">
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="createNewList"class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 
-<footer style="background-color: magenta">
+<footer class="bg-dark">
     <a href="">Facebook</a>
     <a href="">Twitter</a>
     <a href="">Vine</a>
 </footer>
+
+
+<!-- Data -->
+<script src="js/users.js"></script>
+<script src="js/cards.js"></script>
+<script src="js/lists.js"></script>
+<script src="js/boards.js"></script>
+<script src="js/groups.js"></script>
+
+
+<!-- Funksjonalitet -->
+<script src="js/board.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- JQuery -->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/d3js/5.9.0/d3.min.js"></script>-->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+<script>
+    //$("#lists-area").html("Hello World")
+    $( function() {
+
+        // Dette må genereres med javascript
+        /*$("#0").sortable({
+            connectWith:"#1,#2",
+        });
+        $("#0").disableSelection();
+        $("#1").sortable({
+            connectWith:"#0,#2",
+        });
+        $("#1").disableSelection();
+        $("#2").sortable({
+            connectWith:"#0,#1",
+        });
+        $("#2").disableSelection();*/
+
+       $("#lists-area").sortable({
+           handle: 'div',
+           items: 'li',
+           toleranceElement: '> div',
+           delay: 100,
+        });
+        $("#lists-area").disableSelection();
+
+
+    } );
+</script>
+
 </body>
 </html>
