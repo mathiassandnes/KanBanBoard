@@ -3,12 +3,14 @@
 
 
 let names = [];
+let members = [];
 
 
 // gjør at names blir et array av alle navn i databasen
 for(let i = 0; i < users.length; i++){
     names.push(users[i].name);
 }
+
 
 //alfabetisk rekkefølge
 names.sort();
@@ -19,7 +21,7 @@ ul.style = "list-style: none; padding: 0;"
 var render_lists = function(lists){
     var li = "";
     for(index in lists){
-      li += "<li>" + "<button class = btn-primary> " +  lists[index] + "</button>" + "</li>";
+      li += "<li>" + '<button onclick="clickInput(\''+ lists[index] +'\')" class = btn-primary> ' +  lists[index] + "</button>" + "</li>";
     }
     ul.innerHTML = li;
 }
@@ -46,7 +48,21 @@ input.addEventListener('keyup', filterUsers);
 
     //trykker man på et navn, legges de til i listen
 
+function clickInput (name) {
+  // 1. legges til i members liste
+  members.push(name);
 
+  // 2. Fjerne fra vanlig liste av brukere.dro
+  /*const index = lists.indexOf(name);
+  lists.splice(index, 1);
+  console.log(lists[index])
+  */ 
+    
+  console.log(members);
+  
+  //3. Laste inn listene på nytt til siden
+
+}
 
 
 
