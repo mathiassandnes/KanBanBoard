@@ -4,6 +4,8 @@
 //her lagres alle elementer på siden
 
 let arrayOfBoards = group.group1.boards;
+let arrayOfLists = arrayOfBoards[0].lists;
+
 
 function drawBoards() {
     for (let i = 0; i < arrayOfBoards.length; i++) {
@@ -30,7 +32,6 @@ function drawTables(board) {
     document.getElementById('lists-area').innerHTML="";
 
 //henter ut en liste med lister
-    let arrayOfLists = arrayOfBoards[board].lists; // her må det finnes ut av hvilket board vi er på
 
 //henter ut en html elementet som listene skal være inni
     let listsArea = document.getElementById('lists-area');
@@ -45,7 +46,7 @@ function drawTables(board) {
         listElementContainer.className = "m-3 bg-info list-element p-1";
 
 
-        let arrayOfCards = arrayOfLists[i].cards;
+        var arrayOfCards = arrayOfLists[i].cards;
 
         listElement.id = i;
 
@@ -54,11 +55,14 @@ function drawTables(board) {
         listElementContainer.appendChild(listElement);
         listElementContainer.appendChild(listElementBody);
 
+        //legger til navnet til listen i en dropdown meny på kort modal
+        document.getElementById('list-name').appendChild(createHtmlElementWithText('option', arrayOfLists[i].name));
+
         // makes the cards for a list
         for (let j = 0; j < arrayOfCards.length; j++) {
             //lager et nytt html element
-            let cardElementContainer = document.createElement('li')
-            let cardElement = createHtmlElementWithText('div', arrayOfCards[j].name)
+            let cardElementContainer = document.createElement('li');
+            let cardElement = createHtmlElementWithText('div', arrayOfCards[j].name);
             cardElementContainer.className="center col-12";
 
             //adds modal
@@ -72,6 +76,7 @@ function drawTables(board) {
                 document.getElementById('card-name-input').setAttribute('placeholder', arrayOfCards[j].name);
                 document.getElementById('card-description').innerText = arrayOfCards[j].description;
                 document.getElementById('priority').options.selectedIndex = arrayOfCards[j].priority;
+                //document.getElementById('list-name').setAttribute('placeholder', arrayOfLists[i].name);
             });
 
             cardElement.className="btn btn-primary text-dark m-1 center col-12";//btn btn-primary";
@@ -94,6 +99,7 @@ function drawTables(board) {
             document.getElementById('card-name-input').setAttribute('placeholder', "name of task");
             document.getElementById('card-description').innerText = "description of task";
             document.getElementById('priority').options.selectedIndex = 0;
+            //document.getElementById('list-name').setAttribute('placeholder', arrayOfLists[i].name);
         });
 
         newCardButton.className="center btn btn-danger col-12 new-card-button";
