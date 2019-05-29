@@ -71,46 +71,41 @@
                     </div>
 
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label for="full-name">Full name:</label>
-                            <input class="form-control" id="full-name"></input>
-                            <span id= "full-name-span"></span>
-                            <small id="name-help" class="form-text text-muted">
-                                Write your full name in the box above.
-                            </small>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input class="form-control" id="email"></input>
-                            <span id= "email-span"></span>
-                            <small id="email-help" class="form-text text-muted">
-                                Enter a valid email address in the box above.
-                            </small>
-                        </div>
-                        <div class="form-group">
-                            <label for="new-username">Username:</label>
-                            <input class="form-control" id="new-username"></input>
-                            <span id= "username-span"></span>
-                            <small id="username-help" class="form-text text-muted">
-                                Write a suitable username in the box above.
-                            </small>
-                        </div>
-                        <div class="form-group">
-                            <label for="new-password">Password:</label>
-                            <input type="password" class="form-control" id="new-password"></input>
-                            <span id= "new-password-span"></span>
-                            <small id="password-help" class="form-text text-muted">
-                                Your password must be at least 8 characters, contain both upper and lowercase letters and at least one number.
-                            </small>
-                        </div>
-                        <div class="form-group">
-                            <label for="new-password-check">Repeat password:</label>
-                            <input type="password" class="form-control" id="new-password-check"></input>
-                            <span id= "new-password-check-span"></span>
-                            <small id="password-check-help" class="form-text text-muted">
-                                Repeat the password you typed inn.
-                            </small>
-                        </div>
+
+                        <div class="container">
+
+
+                            <form>
+                                <div class="form-group">
+                                    <label for="full-name">Full name:</label>
+                                    <input class="form-control" id="full-name"></input>
+                                    <small class="invalid-feedback">Enter your full name.</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input class="form-control" id="email"></input>
+                                    <small class="invalid-feedback">Enter a valid email.</small>
+                                </div>
+
+                                <div class="form-group has-success has-feedback">
+                                    <label for="new-username">Username:</label>
+                                    <input class="form-control" id="new-username"></input>
+                                    <small class="invalid-feedback">Username is taken.</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="new-password">Password:</label>
+                                    <input type="password" class="form-control" id="new-password"></input>
+                                    <small class="invalid-feedback">Password need 8 or more characters upper and lower case and a number</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="new-password-check">Repeat password:</label>
+                                    <input type="password" class="form-control" id="new-password-check"></input>
+                                    <small class="invalid-feedback">Passwords do not match</small>
+                                </div>
+                        </form>
 
                     </div>
                     <div class="modal-footer">
@@ -134,6 +129,7 @@
             <a href="">Facebook</a>
             <a href="">Twitter</a>
             <a href="">Vine</a>
+        </div>
     </div>
     <div class="col-8">
 

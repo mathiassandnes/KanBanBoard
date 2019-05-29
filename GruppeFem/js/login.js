@@ -15,37 +15,82 @@ function checkLogIn() {
 
     return;
 }
-//--------------------------------------USERNAME----------------------------------------------------------
-function newUserNameDuplicateCheck() {
 
+//--------------------------------------USERNAME----------------------------------------------------------
+//var validUsername;
+
+function newUsernameDuplicateCheck() {
+    if (document.getElementById("new-username").value === validUsername){
+        return false;
+    }
     for(let i=0;i<users.length;i++){
         if(users[i].username === document.getElementById("new-username").value){
+
             return true;
+        } else {
+            var validUsername = document.getElementById("new-username").value;
+            return false;
         }
+    }
+}
+
+function newUsernameHaveChar(){
+    if((document.getElementById("new-username").value).length > 0){
+        return true;
+    }else{
+        console.log("No username detected");
+        return false;
+    }
+}
+
+function newUsernameHaveCharFeedback(){
+    if(newUsernameHaveChar()=== false){
+        document.getElementById("new-username").className = "form-control is-invalid";
+    }
+}
+
+function newUsernameFeedback(){
+    if(newUsernameDuplicateCheck() === true){
+        document.getElementById("new-username").className = "form-control is-invalid";
+    } else {
+        document.getElementById("new-username").className = "form-control is-valid";
     }
 }
 //---------------------------------------EMAIL------------------------------------------------------------
 
-function registerNewEmailTaken() {
+function registerNewEmailCriteria() {
 
     if ((document.getElementById("email").value).indexOf('@') > -1 && (document.getElementById("email").value).indexOf('.') > -1) {
         return true;
+    } else{
+        console.log("enter valid email");
     }
 }
 
-function newEmailWarning(){
-    if (registerNewEmailTaken() === false){
-        document.getElementById("email-span").className = "glyphicon glyphicon-warning-sign form-control-feedback";
-        alert("email taken")
+function newEmailHaveChar() {
+    if((document.getElementById("email").value).length > 0){
+        return true;
+    }else{
+        console.log("No email detected");
+        return false;
+    }
+}
+
+function newEmailHaveCharFeedback(){
+    if(newEmailHaveChar() === false){
+        document.getElementById("email").className = "form-control is-invalid";
+    }
+}
+
+function newEmailFeedback(){
+    if (registerNewEmailCriteria() === true){
+        document.getElementById("email").className = "form-control is-valid";
     } else {
-        document.getElementById("email-span").className = "glyphicon glyphicon-ok form-control-feedback";
+        document.getElementById("email").className = "form-control is-invalid";
     }
 }
+
 //--------------------------------------PASSWORD----------------------------------------------------------
-
-function NewPasswordCheck() {
-
-}
 
 function newPasswordMatch() {
     let newPassword1 = document.getElementById("new-password").value;
@@ -56,12 +101,20 @@ function newPasswordMatch() {
     }
 }
 
-function differentPasswordsWarning(){
-    if(newPasswordMatch() === false){
-        document.getElementById("new-password").className = "glyphicon glyphicon-remove form-control-feedback";
+function differentPasswordsFeedback(){
+    if(newPasswordMatch() === true && passwordCriteriaOk() === true){
+        document.getElementById("new-password-check").className = "form-control is-valid";
+
+        console.log("passwords match");
+    } else {
+        document.getElementById("new-password-check").className = "form-control is-invalid";
+        console.log("passwords do not match");
     }
 }
+
 function passwordCriteriaOk(){
+    let newPassword1 = document.getElementById("new-password").value;
+
     if((document.getElementById("new-password").value).length > 7) {
         console.log("Good password length");
 
@@ -70,26 +123,77 @@ function passwordCriteriaOk(){
 
             if (newPassword1 !== newPassword1.toUpperCase() && newPassword1 !== newPassword1.toLowerCase()) {
                 console.log("password have upper and lower case");
-                document.getElementById("new-password").className = "glyphicon glyphicon-ok form-control-feedback";
                 return true;
+            }else{
+                console.log("passwords need upper and lower case");
+                return false;
+
             }
+        }else{
+            console.log("password need a number");
+            return false;
         }
     }else{
+        console.log("passwords needs to be 8 or more characters");
         return false;
+    }
+}
+function passwordCriteriaFeedback(){
+    if(passwordCriteriaOk() === true){
+        document.getElementById("new-password").className = "form-control is-valid";
+    } else {
+        document.getElementById("new-password").className = "form-control is-invalid";
     }
 }
 //----------------------------------------NAME------------------------------------------------------------
 function newNameHaveChar() {
     if((document.getElementById("full-name").value).length > 0){
-        document.getElementById("full-name").className = "glyphicon glyphicon-ok form-control-feedback";
         return true;
+        console.log("Name is good");
     }else{
-        document.getElementById("full-name").className = "glyphicon glyphicon-warning-sign form-control-feedback";
         return false;
+        console.log("No name detected");
     }
 }
 
-function registerNewUser(){
+function newNameFeedback(){
+    if(newNameHaveChar() === true){
+        document.getElementById("full-name").className = "form-control is-valid";
+    } else {
+        document.getElementById("full-name").className = "form-control is-invalid";
+    }
+}
+
+
+//-----------------------------------------------------------------------------------------------------------
+
+function registerNewUser() {
+    if(newNameHaveChar() && newPasswordMatch() && passwordCriteriaOk() && registerNewEmailCriteria() && !newUsernameDuplicateCheck() && newEmailHaveChar() && newUsernameHaveChar()) {
+        users.push({
+            name: document.getElementById("full-name").value,
+            email: document.getElementById("email").value,
+            username: document.getElementById("new-username").value,
+            password: document.getElementById("new-password").value
+        });
+
+        console.log("ny bruker opprettet");
+    }
+    newNameFeedback();
+    newUsernameFeedback();
+    newEmailFeedback();
+    passwordCriteriaFeedback ();
+    differentPasswordsFeedback();
+    newUsernameHaveCharFeedback();
+    newEmailHaveCharFeedback();
+
+
+console.log(users);
+}
+
+
+
+/*
+function registerNewUser() {
 
 //Check if email is valid:
     let newEmail = document.getElementById("email").value;
@@ -158,3 +262,4 @@ function registerNewUser(){
 
 
 }
+*/
