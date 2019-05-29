@@ -9,12 +9,13 @@ function drawBoards() {
     for (let i = 0; i < arrayOfBoards.length; i++) {
         let newTabButtonElement = createHtmlElementWithText('button', arrayOfBoards[i].name);
         newTabButtonElement.setAttribute("onclick", "drawTables("+i+")");
+        newTabButtonElement.className="btn-primary m-1"
         document.getElementById('nav').appendChild(newTabButtonElement);
     }
 }
 
-function createHtmlElementWithText(tag, text){
-    let element = document.createElement(tag);
+function createHtmlElementWithText(tagName, text){
+    let element = document.createElement(tagName);
     element.innerHTML = text;
     return element;
 }
@@ -37,19 +38,27 @@ function drawTables(board) {
     for (let i = 0; i < arrayOfLists.length; i++) {
 
         //lager et nytt html element
-        let listElement = createHtmlElementWithText('ul', "<legend><b>"+arrayOfLists[i].name+"</b></legend><ol></ol>")
+        let listElementContainer = document.createElement('li');
+        let listElement = createHtmlElementWithText('div', arrayOfLists[i].name); // få dette større <legend>
+        let listElementBody = document.createElement('ul');
+        listElementContainer.className = "m-3 bg-info list-element p-1";
+
 
         let arrayOfCards = arrayOfLists[i].cards;
 
         listElement.id = i;
-        listElement.className = "col-2 text-center bg-info m-1"
+        listElement.className = "col-12 text-12 text-center m-1 p-2"
         //legger listen inni liste området
-        listsArea.appendChild(listElement);
+        listElementContainer.appendChild(listElement);
+        listElementContainer.appendChild(listElementBody);
 
         // makes the cards for a list
         for (let j = 0; j < arrayOfCards.length; j++) {
             //lager et nytt html element
-            let cardElement = createHtmlElementWithText('li', arrayOfCards[j].name)
+            let cardElementContainer = document.createElement('li')
+            let cardElement = createHtmlElementWithText('div', arrayOfCards[j].name)
+            cardElementContainer.className="center col-12";
+
             //adds modal
             cardElement.setAttribute('data-toggle', 'modal');
             cardElement.setAttribute('data-target', '#card-modal');
@@ -63,9 +72,10 @@ function drawTables(board) {
                 document.getElementById('priority').options.selectedIndex = arrayOfCards[j].priority;
             });
 
-            cardElement.className="col-12 btn btn-primary btn-md text-dark m-1 center";//btn btn-primary";
+            cardElement.className="btn btn-primary text-dark m-1 center col-12";//btn btn-primary";
             //legger kortet inn i listen
-            listElement.appendChild(cardElement);
+            cardElementContainer.appendChild(cardElement);
+            listElementBody.appendChild(cardElementContainer);
 
         }
 
@@ -84,8 +94,9 @@ function drawTables(board) {
             document.getElementById('priority').options.selectedIndex = 0;
         });
 
-        newCardButton.className="col-12 m-1 btn-danger";
-        listElement.appendChild(newCardButton);
+        newCardButton.className="center btn btn-danger col-12 new-card-button";
+        listElementContainer.appendChild(newCardButton);
+        listsArea.appendChild(listElementContainer);
 
     }
 
@@ -95,7 +106,7 @@ function drawTables(board) {
 
     var newListButton = createHtmlElementWithText('button', 'Ny liste');
     newListButton.id = "new-list";
-    newListButton.className = "col-1";
+    newListButton.className = "col-1 btn btn-primary m-5";
 
 
     //adds modal
@@ -107,20 +118,17 @@ function drawTables(board) {
     listsArea.appendChild(newListButton);
 }
 
-function saveCardChanges() {
-
-}
-
 drawBoards();
 drawTables(0); //input må være det boardet vi trykket på i "home" siden
 
 /*****
  * Ting å fikse
- * cards må lagre prioritet
  * cards må kunne oppdateres
  * cards må kunne lages
  *
- *
+ * BUG****
+ * kort kan slippes der tavlene skal være
+ * tavler kan slippes der kortene skal være
  * */
 
 
