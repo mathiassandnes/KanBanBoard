@@ -121,14 +121,10 @@ function drawTables(board) {
 drawBoards();
 drawTables(0); //input må være det boardet vi trykket på i "home" siden
 
-/*****
+/**
  * Ting å fikse
  * cards må kunne oppdateres
  * cards må kunne lages
- *
- * BUG****
- * kort kan slippes der tavlene skal være
- * tavler kan slippes der kortene skal være
  * */
 
 

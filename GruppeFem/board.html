@@ -22,10 +22,9 @@
                 </li>
             </ul>
         </div>
+    </div>
 </nav>
-
 <main>
-
 
     <nav class="navbar navbar-expand-sm bg-dark" style="height: 30px;">
 
@@ -113,6 +112,7 @@
         <div class="col-8">
 
         </div>
+    </div>
 </footer>
 
 
@@ -138,33 +138,48 @@
 
 
 <script>
-    //$("#lists-area").html("Hello World")
-    $( function() {
-
-        // Dette må genereres med javascript
-        /*$("#0").sortable({
-            connectWith:"#1,#2",
-        });
-        $("#0").disableSelection();
-        $("#1").sortable({
-            connectWith:"#0,#2",
-        });
-        $("#1").disableSelection();
-        $("#2").sortable({
-            connectWith:"#0,#1",
-        });
-        $("#2").disableSelection();*/
-
-       $("#lists-area").sortable({
-           handle: 'div',
-           items: 'li',
+   // $( function() {
+       $("ul.container").sortable({
+           cursor: 'pointer',
            toleranceElement: '> div',
-           delay: 100,
-        });
-        $("#lists-area").disableSelection();
+           items: 'li',
+           connectWith: 'ul.container',
+           handle: 'div',
+           placeholder: 'placeholder',
+           containment: '#lists-area',
+           tolerance: 'pointer',
+           revert: true,
+   });
+
+      //  $("ul.container").disableSelection();
 
 
-    } );
+
+    $("ul.container > li > ul").sortable({
+        cursor: 'pointer',
+        toleranceElement : '> div',
+        item: 'li',
+        handle: 'div',
+        connectWith: 'ul.container > li > ul',
+        placeholder: 'placeholder',
+        containment: '#lists-area',
+        tolerance: 'pointer',
+        revert: true,
+        update: function (event, ui) {
+
+        }
+    });
+
+   //$("ul.container > li > ul").disableSelection();
+
+
+    //} );
+
+
+
+
+
+
 </script>
 
 </body>

@@ -8,3 +8,6 @@ ul{
 .new-card-button{
     bottom: 0;
 }
+.placeholder {
+    outline: 1px solid black;
+}
