@@ -53,7 +53,7 @@ function newPasswordMatch() {
 
 function differentPasswords(){
     if(newPasswordMatch() === false){
-        document.getElementById("new-password").className =
+        document.getElementById("new-password").className; //=
     }
 }
 //----------------------------------------NAME------------------------------------------------------------
