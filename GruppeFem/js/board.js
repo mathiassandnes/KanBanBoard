@@ -9,6 +9,7 @@ function drawBoards() {
     for (let i = 0; i < arrayOfBoards.length; i++) {
         let newTabButtonElement = createHtmlElementWithText('button', arrayOfBoards[i].name);
         newTabButtonElement.setAttribute("onclick", "drawTables("+i+")");
+
         newTabButtonElement.className="btn-primary m-1"
         document.getElementById('nav').appendChild(newTabButtonElement);
     }
@@ -47,6 +48,7 @@ function drawTables(board) {
         let arrayOfCards = arrayOfLists[i].cards;
 
         listElement.id = i;
+
         listElement.className = "col-12 text-12 text-center m-1 p-2"
         //legger listen inni liste området
         listElementContainer.appendChild(listElement);
@@ -121,14 +123,10 @@ function drawTables(board) {
 drawBoards();
 drawTables(0); //input må være det boardet vi trykket på i "home" siden
 
-/*****
+/**
  * Ting å fikse
  * cards må kunne oppdateres
  * cards må kunne lages
- *
- * BUG****
- * kort kan slippes der tavlene skal være
- * tavler kan slippes der kortene skal være
  * */
 
 
