@@ -10,23 +10,24 @@
 
 <nav class="navbar bg-dark">
 
-    <ul class="navbar-nav">
+    <ul class="row navbar" style="list-style-type: none;">
         <li class="nav-item">
-            <a href="landing.html" ><i class="fa fa-home fa-fw"></i></a>
+            <a href="landing.html" ><i class="fa fa-home fa-2x"></i></a>
+        </li>
+
+        <li class="nav-item" id="left-area" style="background-color: #0b2e13; margin-left: 50px;">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#new-group-modal">Ny gruppe</button>
         </li>
     </ul>
 
 </nav>
 
 <main class="col-12">
-    <div id="left-area" style="background-color: #0b2e13">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#new-group-modal">Ny gruppe</button>
-    </div>
     <div id="boards-area" class="m-5">
         <div id="Group" class="row" style="border-color: red;">
             <h3>Grupprnavn</h3>
             <button id="row1-board1" onclick="window.location.href = 'board.html';">
-                <h5>tavlenavn</h5></a>
+                <h5>tavlenavn</h5>
             </button>
             <button id="row1-board2">
                 <h5>tavlenavn</h5>
