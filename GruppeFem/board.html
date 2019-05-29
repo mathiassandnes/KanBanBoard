@@ -5,17 +5,28 @@
     <title>Placeholder</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
 <header class="bg-dark">
+    <body class="bg-light">
+    <nav class="navbar navbar-expand-sm bg-dark">
 
-    <a href="home.html">HOME</a>
+        <!-- Links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="home.html" ><i class="fa fa-home fa-fw"></i></a>
+            </li>
+        </ul>
+
+    </nav>
 </header>
 <main>
     <div class="row m-5" id="nav">
 
     </div>
-    <ul id="lists-area" class="row col-12 m-5 container bg-success">
+    <ul id="lists-area" class="row col-12 m-5 container bg-success nested_with_switc">
 
     </ul>
     <div> liste med ansatte </div>
@@ -111,33 +122,48 @@
 
 
 <script>
-    //$("#lists-area").html("Hello World")
-    $( function() {
-
-        // Dette må genereres med javascript
-        /*$("#0").sortable({
-            connectWith:"#1,#2",
-        });
-        $("#0").disableSelection();
-        $("#1").sortable({
-            connectWith:"#0,#2",
-        });
-        $("#1").disableSelection();
-        $("#2").sortable({
-            connectWith:"#0,#1",
-        });
-        $("#2").disableSelection();*/
-
-       $("#lists-area").sortable({
-           handle: 'div',
-           items: 'li',
+   // $( function() {
+       $("ul.container").sortable({
+           cursor: 'pointer',
            toleranceElement: '> div',
-           delay: 100,
-        });
-        $("#lists-area").disableSelection();
+           items: 'li',
+           connectWith: 'ul.container',
+           handle: 'div',
+           placeholder: 'placeholder',
+           containment: '#lists-area',
+           tolerance: 'pointer',
+           revert: true,
+   });
+
+      //  $("ul.container").disableSelection();
 
 
-    } );
+
+    $("ul.container > li > ul").sortable({
+        cursor: 'pointer',
+        toleranceElement : '> div',
+        item: 'li',
+        handle: 'div',
+        connectWith: 'ul.container > li > ul',
+        placeholder: 'placeholder',
+        containment: '#lists-area',
+        tolerance: 'pointer',
+        revert: true,
+        update: function (event, ui) {
+
+        }
+    });
+
+   //$("ul.container > li > ul").disableSelection();
+
+
+    //} );
+
+
+
+
+
+
 </script>
 
 </body>
