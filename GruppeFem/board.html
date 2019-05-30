@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body class="bg-light">
+<body class="onboard-background onboard-text">
 
 <!-- Navigasjonsbar -->
 
@@ -27,19 +27,20 @@
 
 <main>
 
-    <nav class="navbar navbar-expand-sm bg-dark" style="height: 15px;">
-
-
-        <div class="row col-12 bg-dark" id="nav">
-
-        </div>
+    <nav class="navbar bg-dark" >
+        <div class="row col-12 bg-dark" id="nav"></div>
 
     </nav>
 
-    <ul id="lists-area" class="row col-12 m-1 container bg-light">
+    <ul id="lists-area" class="row col-12 m-1 container onboard-background">
 
     </ul>
-    <div> liste med ansatte </div>
+
+    <!-- LISTE MED ANSATTE
+
+    <div class="onboard-background onboard-text"> liste med ansatte </div>
+
+   -->
 
     <!-- Card modal -->
     <div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-labelledby="card-modal-label" aria-hidden="true">
@@ -108,16 +109,19 @@
     </div>
 </main>
 
-<footer class="navbar fixed-bottom bg-dark ">
-    <div class="col-4">
-        <div>
-            <a href="">Facebook</a>
-            <a href="">Twitter</a>
-            <a href="">Vine</a>
+<footer class="navbar fixed-bottom bg-dark">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-5"></div>
+            <div class="col-2 text-center">
+                <a class="onboard-text m-1" href="">Facebook</a>
+                <a class="onboard-text m-1" href="">Twitter</a>
+                <a class="onboard-text m-1" href="">Vine</a>
+            </div>
+            <div class="col-5"></div>
         </div>
-        <div class="col-8">
-
-        </div>
+    </div>
+    <div class="col-8">
     </div>
 </footer>
 

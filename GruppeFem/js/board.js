@@ -50,7 +50,7 @@ function drawTables(board) {
 
 
         listElement.id = i;
-        listElement.className = "col-12 text-12 text-light text-center m-1 p-2"
+        listElement.className = "col-12 text-12 onboard-text text-center m-1 p-2"
         //legger listen inni liste området
         listElementContainer.appendChild(listElement);
         listElementContainer.appendChild(listElementBody);
@@ -124,7 +124,7 @@ function drawTables(board) {
             // activates modal
 
 
-            cardElement.className="btn btn-primary text-dark m-1 center col-12";//btn btn-primary";
+            cardElement.className="btn bg-light text-dark m-1 center col-12";//btn btn-primary";
             //legger kortet inn i listen
             cardElementContainer.appendChild(cardElement);
             listElementBody.appendChild(cardElementContainer);
@@ -155,7 +155,7 @@ function drawTables(board) {
             });
         });
 
-        newCardButton.className="center btn btn-success col-12 new-card-button";
+        newCardButton.className="center btn btn-primary col-12 new-card-button";
         listElementContainer.appendChild(newCardButton);
         listsArea.appendChild(listElementContainer);
 
@@ -167,7 +167,7 @@ function drawTables(board) {
 
     var newListButton = createHtmlElementWithText('button', 'Ny liste');
     newListButton.id = "new-list";
-    newListButton.className = "col-1 btn btn-primary m-5";
+    newListButton.className = "col-1 btn bg-light m-5";
 
 
     //adds modal

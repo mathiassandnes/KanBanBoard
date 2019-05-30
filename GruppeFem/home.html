@@ -5,50 +5,51 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="onboard-background">
 
 <nav class="navbar bg-dark">
 
-    <ul class="row navbar" style="list-style-type: none;">
+    <ul class="row navbar" style="list-style-type: none; height: 35px">
         <li class="nav-item">
             <a href="landing.html" ><i class="fa fa-home fa-2x"></i></a>
         </li>
 
-        <li class="nav-item" id="left-area" style="background-color: #0b2e13; margin-left: 50px;">
+        <li class="nav-item" id="left-area" style="margin-left: 50px;">
             <button class="btn btn-primary" data-toggle="modal" data-target="#new-group-modal">Ny gruppe</button>
         </li>
     </ul>
 
 </nav>
 
-<main class="col-12">
-    <div id="boards-area" class="m-5">
-        <div id="Group" class="row" style="border-color: red;">
-            <h3>Grupprnavn</h3>
+<main class="col-12 onboard-text">
+    <div id="boards-area" class="m-5 ">
+        <div id="Group" class="row m-4" style="border-color: red;">
+            <h3 class="m-2">Gruppenavn</h3>
             <button id="row1-board1" onclick="window.location.href = 'board.html';">
-                <h5>tavlenavn</h5>
+                <h5>Tavlenavn</h5>
             </button>
             <button id="row1-board2">
-                <h5>tavlenavn</h5>
+                <h5>Tavlenavn</h5>
             </button>
             <button id="row1-board3">
-                <h5>tavlenavn</h5>
+                <h5>Tavlenavn</h5>
             </button>
             <button id="row1-board4">
                 <h5>+</h5>
             </button>
         </div>
-        <div class="row" style="border-color: red;">
-            <h3>Grupprnavn</h3>
+        <div class="row m-4" style="border-color: red;">
+            <h3 class="m-2">Gruppenavn</h3>
             <button id="row2-board1">
-                <h5>må på behandling</h5>
+                <h5>Tavlenavn</h5>
             </button>
             <button id="row2-board2">
-                <h5>tavlenavn</h5>
+                <h5>Tavlenavn</h5>
             </button>
             <button id="row2-board3">
-                <h5>tavlenavn</h5>
+                <h5>Tavlenavn</h5>
             </button>
             <button id="row2-board4">
                 <h5>+</h5>
@@ -96,16 +97,20 @@
     </div>
 
 </main>
-<footer class="navbar fixed-bottom bg-dark ">
-    <div class="col-4">
-        <div>
-            <a href="">Facebook</a>
-            <a href="">Twitter</a>
-            <a href="">Vine</a>
-        </div>
-        <div class="col-8">
 
+<footer class="navbar fixed-bottom bg-dark">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-5"></div>
+            <div class="col-2 text-center">
+                <a class="onboard-text m-1" href="">Facebook</a>
+                <a class="onboard-text m-1" href="">Twitter</a>
+                <a class="onboard-text m-1" href="">Vine</a>
+            </div>
+            <div class="col-5"></div>
         </div>
+    </div>
+    <div class="col-8">
     </div>
 </footer>
 
