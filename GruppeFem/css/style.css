@@ -1,0 +1,18 @@
+ul{
+    padding: 0;
+    list-style-type: none;
+}
+.list-element{
+    min-width: 200px;
+}
+.new-card-button{
+    bottom: 0;
+}
+.placeholder {
+    outline: 1px solid black;
+}
+
+.landing-text {
+    color: #FFF1D4;
+
+}

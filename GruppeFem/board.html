@@ -4,20 +4,41 @@
     <meta charset="UTF-8">
     <title>Placeholder</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
-<header class="bg-dark">
+<body class="bg-light">
 
-    <a href="home.html">HOME</a>
-</header>
+<!-- Navigasjonsbar -->
+
+<nav class="navbar bg-dark" style="height: 50px;">
+    <!-- Links -->
+
+    <div>
+        <div class="col-1">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="landing.html" ><i class="fa fa-home fa-2x"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <main>
-    <div class="row" id="nav">
 
-    </div>
-    <div id="lists-area" class="row col-12 m-5 container">
+    <nav class="navbar navbar-expand-sm bg-dark" style="height: 15px;">
 
 
-    </div>
+        <div class="row col-12 bg-dark" id="nav">
+
+        </div>
+
+    </nav>
+
+    <ul id="lists-area" class="row col-12 m-1 container bg-light">
+
+    </ul>
     <div> liste med ansatte </div>
 
     <!-- Card modal -->
@@ -29,12 +50,17 @@
                     <div id="cardName" class="form-group">
                         <input id="card-name-input" type="text" class="form-control" placeholder="New card name">
                     </div>
+
                     <div class="form-group">
                         <select id="priority" class="form-control">
                             <option>Low priority👌</option>
                             <option>Medium priority🤨</option>
                             <option>High priority😨</option>
                             <option>Extreme priority😭</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="list-name" class="form-control">
                         </select>
                     </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -52,7 +78,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" id="createNewCard"class="btn btn-primary" onclick="saveCardChanges()">Save changes</button>
+                    <button type="button" id="create-new-card"class="btn btn-primary">Save changes</button>
                 </div>
 
             </div>
@@ -82,10 +108,17 @@
     </div>
 </main>
 
-<footer class="bg-dark">
-    <a href="">Facebook</a>
-    <a href="">Twitter</a>
-    <a href="">Vine</a>
+<footer class="navbar fixed-bottom bg-dark ">
+    <div class="col-4">
+        <div>
+            <a href="">Facebook</a>
+            <a href="">Twitter</a>
+            <a href="">Vine</a>
+        </div>
+        <div class="col-8">
+
+        </div>
+    </div>
 </footer>
 
 
@@ -111,15 +144,52 @@
 
 
 <script>
-    //$("#lists-area").html("Hello World")
-    $( function() {
-        $( "#0" ).sortable({connectWith:"#1,#2"});
-        $( "#0" ).disableSelection();
-        $( "#1" ).sortable({connectWith:"#0,#2"});
-        $( "#1" ).disableSelection();
-        $( "#2" ).sortable({connectWith:"#0,#1"});
-        $( "#2" ).disableSelection();
-    } );
+   // $( function() {
+       $("ul.container").sortable({
+           cursor: 'pointer',
+           toleranceElement: '> div',
+           items: 'li',
+           connectWith: 'ul.container',
+           handle: 'div',
+           placeholder: 'placeholder',
+           containment: '#lists-area',
+           tolerance: 'pointer',
+           revert: true,
+           delay: 100,
+   });
+
+      //  $("ul.container").disableSelection();
+
+
+
+    $("ul.container > li > ul").sortable({
+        cursor: 'pointer',
+        toleranceElement : '> div',
+        item: 'li',
+        handle: 'div',
+        connectWith: 'ul.container > li > ul',
+        placeholder: 'placeholder',
+        containment: '#lists-area',
+        tolerance: 'pointer',
+        revert: true,
+        delay: 100,
+        update: function (event, ui) {
+
+        }
+    });
+
+    $("")
+
+   //$("ul.container > li > ul").disableSelection();
+
+
+    //} );
+
+
+
+
+
+
 </script>
 
 </body>
