@@ -50,13 +50,27 @@ input.addEventListener('keyup', filterUsers);
 
 function clickInput (name) {
   // 1. legges til i members liste
-  members.push(name);
+  
+   members.push(name);
 
+  let membersString = '';
+
+  for (let x = 0 ; x < members.length ; x++) {
+    membersString += members[x] + ' ';
+    
+    
+     
+
+  
+  
+  }
+  
+    document.getElementById("members").innerHTML= membersString;
   // 2. Fjerne fra vanlig liste av brukere.dro
   /*const index = lists.indexOf(name);
   lists.splice(index, 1);
   console.log(lists[index])
-  */ 
+  */
     
   console.log(members);
   
