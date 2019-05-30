@@ -5,22 +5,29 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head>
 <body>
-<header style="background-color: magenta">
 
-    <a href="home.html">HOME</a>
-</header>
-<main>
-    <div id="left-area" class="m-5">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#new-group-modal">Ny gruppe</button>
-    </div>
+<nav class="navbar bg-dark">
+
+    <ul class="row navbar" style="list-style-type: none;">
+        <li class="nav-item">
+            <a href="landing.html" ><i class="fa fa-home fa-2x"></i></a>
+        </li>
+
+        <li class="nav-item" id="left-area" style="background-color: #0b2e13; margin-left: 50px;">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#new-group-modal">Ny gruppe</button>
+        </li>
+    </ul>
+
+</nav>
+
+<main class="col-12">
     <div id="boards-area" class="m-5">
         <div id="Group" class="row" style="border-color: red;">
             <h3>Grupprnavn</h3>
             <button id="row1-board1" onclick="window.location.href = 'board.html';">
-                <h5>tavlenavn</h5></a>
+                <h5>tavlenavn</h5>
             </button>
             <button id="row1-board2">
                 <h5>tavlenavn</h5>
@@ -89,12 +96,17 @@
     </div>
 
 </main>
-<footer style="background-color: magenta">
-    <a href="">Facebook</a>
-    <a href="">Twitter</a>
-    <a href="">Vine</a>
+<footer class="navbar fixed-bottom bg-dark ">
+    <div class="col-4">
+        <div>
+            <a href="">Facebook</a>
+            <a href="">Twitter</a>
+            <a href="">Vine</a>
+        </div>
+        <div class="col-8">
 
-
+        </div>
+    </div>
 </footer>
 
 <!-- Data -->
@@ -113,7 +125,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
-</body>
-</html>
 </body>
 </html>
