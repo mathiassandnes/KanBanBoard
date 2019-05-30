@@ -15,9 +15,9 @@ function checkLogIn() {
 
     return;
 }
-
 //--------------------------------------USERNAME----------------------------------------------------------
-//var validUsername;
+var validUsername;
+
 
 function newUsernameDuplicateCheck() {
     if (document.getElementById("new-username").value === validUsername){
@@ -25,13 +25,11 @@ function newUsernameDuplicateCheck() {
     }
     for(let i=0;i<users.length;i++){
         if(users[i].username === document.getElementById("new-username").value){
-
             return true;
-        } else {
-            var validUsername = document.getElementById("new-username").value;
-            return false;
         }
     }
+    validUsername = document.getElementById("new-username").value;
+    return false;
 }
 
 function newUsernameHaveChar(){
@@ -46,6 +44,9 @@ function newUsernameHaveChar(){
 function newUsernameHaveCharFeedback(){
     if(newUsernameHaveChar()=== false){
         document.getElementById("new-username").className = "form-control is-invalid";
+        document.getElementById("new-username-taken-feedback").innerHTML = "Enter a username";
+    } else {
+        return true;
     }
 }
 
@@ -55,12 +56,31 @@ function newUsernameFeedback(){
     } else {
         document.getElementById("new-username").className = "form-control is-valid";
     }
+
+    if(newUsernameHaveChar() === true && newUsernameDuplicateCheck() === true){
+        document.getElementById("new-username-taken-feedback").innerHTML = "Username taken";
+    }
+
 }
 //---------------------------------------EMAIL------------------------------------------------------------
+var validEmail;
+
+function newEmailDuplicate() {
+    if (document.getElementById("email").value === validEmail){
+        return false;
+    }
+    for(let i=0;i<users.length;i++){
+        if(users[i].email === document.getElementById("email").value){
+            return true;
+        }
+    }
+    validEmail = document.getElementById("email").value;
+    return false;
+}
 
 function registerNewEmailCriteria() {
 
-    if ((document.getElementById("email").value).indexOf('@') > -1 && (document.getElementById("email").value).indexOf('.') > -1) {
+    if ((document.getElementById("email").value).indexOf('@') > -1 && (document.getElementById("email").value).indexOf('.') > -1){
         return true;
     } else{
         console.log("enter valid email");
@@ -68,7 +88,7 @@ function registerNewEmailCriteria() {
 }
 
 function newEmailHaveChar() {
-    if((document.getElementById("email").value).length > 0){
+    if ((document.getElementById("email").value).length > 0){
         return true;
     }else{
         console.log("No email detected");
@@ -87,8 +107,16 @@ function newEmailFeedback(){
         document.getElementById("email").className = "form-control is-valid";
     } else {
         document.getElementById("email").className = "form-control is-invalid";
+        document.getElementById("new-email-feedback-text").innerHTML = "Enter a valid email";
+    }
+
+    if(newEmailDuplicate()=== true && registerNewEmailCriteria() === true){
+        document.getElementById("email").className = "form-control is-invalid";
+        document.getElementById("new-email-feedback-text").innerHTML = "Email already in use";
     }
 }
+
+
 
 //--------------------------------------PASSWORD----------------------------------------------------------
 
@@ -98,10 +126,19 @@ function newPasswordMatch() {
 
     if (newPassword1 === newPassword2) {
         return true;
+    } else {
+        return false;
     }
 }
 
 function differentPasswordsFeedback(){
+
+    if(newPasswordMatch() === false && passwordCriteriaOk() === true){
+        document.getElementById("duplicate-password-text").innerHTML = "Passwords do not match";
+    } else if(newPasswordMatch() === true || passwordCriteriaOk() === false){
+        document.getElementById("duplicate-password-text").innerHTML = "";
+    }
+
     if(newPasswordMatch() === true && passwordCriteriaOk() === true){
         document.getElementById("new-password-check").className = "form-control is-valid";
 
@@ -110,6 +147,7 @@ function differentPasswordsFeedback(){
         document.getElementById("new-password-check").className = "form-control is-invalid";
         console.log("passwords do not match");
     }
+
 }
 
 function passwordCriteriaOk(){
@@ -166,17 +204,19 @@ function newNameFeedback(){
 
 
 //-----------------------------------------------------------------------------------------------------------
-
+function registrerNewUserCriteria() {
+    if (newNameHaveChar() && newPasswordMatch() && passwordCriteriaOk() && registerNewEmailCriteria() && !newEmailDuplicate() && !newUsernameDuplicateCheck() && newEmailHaveChar() && newUsernameHaveChar()){
+            return true;
+        }
+}
 function registerNewUser() {
-    if(newNameHaveChar() && newPasswordMatch() && passwordCriteriaOk() && registerNewEmailCriteria() && !newUsernameDuplicateCheck() && newEmailHaveChar() && newUsernameHaveChar()) {
+    if(registrerNewUserCriteria()) {
         users.push({
             name: document.getElementById("full-name").value,
             email: document.getElementById("email").value,
             username: document.getElementById("new-username").value,
             password: document.getElementById("new-password").value
         });
-
-        console.log("ny bruker opprettet");
     }
     newNameFeedback();
     newUsernameFeedback();
@@ -186,80 +226,10 @@ function registerNewUser() {
     newUsernameHaveCharFeedback();
     newEmailHaveCharFeedback();
 
+    if(registrerNewUserCriteria()) {
+        validEmail = "";
+        validUsername = "";
+    }
 
 console.log(users);
 }
-
-
-
-/*
-function registerNewUser() {
-
-//Check if email is valid:
-    let newEmail = document.getElementById("email").value;
-
-    if (newEmail.indexOf('@') > -1 && newEmail.indexOf('.') > -1) {
-        var newEmailCheck = true;
-    }else {
-        console.log("Invalid email");
-    }
-
-//Check if password is valid:
-    let newPassword1 = document.getElementById("new-password").value;
-    let newPassword2 = document.getElementById("new-password-check").value;
-
-    if (newPassword1 === newPassword2){
-        console.log("passwords match");
-
-            if(newPassword1.length > 7){
-                    console.log("Good password length");
-
-                    if(/\d/.test(newPassword1) === true){
-                        console.log("password have a number");
-
-                        if(newPassword1 !== newPassword1.toUpperCase() && newPassword1 !== newPassword1.toLowerCase()){
-                            console.log("password have upper and lower case");
-                            var newPasswordCheck = true;
-
-                        }else{
-                            console.log("password does not have upper and lower case");
-                        }
-                    }else{
-                        console.log("password needs a number");
-                    }
-            }else {
-                console.log("Password must be at least 8 characters");
-            }
-    }else{
-        console.log("Passwords do not match");
-    }
-
-//Check if username is taken:
-    let newUsername = document.getElementById("new-username").value;
-    var newUsernameCheck = true;
-
-    for(let i=0;i<users.length;i++){
-        if(users[i].username === newUsername){
-            console.log("username taken");
-            newUsernameCheck = false;
-        }
-    }
-
-    if (newEmailCheck === true && newPasswordCheck === true && newUsernameCheck === true) {
-
-        users.push({
-            name: document.getElementById("full-name").value,
-            email: document.getElementById("email").value,
-            username: document.getElementById("new-username").value,
-            password: document.getElementById("new-password").value
-        });
-
-        console.log("you have been registrated");
-    }
-
-
-    console.log(users);
-
-
-}
-*/
