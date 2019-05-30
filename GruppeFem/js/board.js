@@ -114,7 +114,7 @@ function drawTables(board) {
 
             });
 
-            cardElement.className="btn btn-primary text-dark m-1 center col-12";//btn btn-primary";
+            cardElement.className="btn bg-light text-dark m-1 center col-12";//btn btn-primary";
             //legger kortet inn i listen
             cardElementContainer.appendChild(cardElement);
             listElementBody.appendChild(cardElementContainer);
@@ -145,7 +145,7 @@ function drawTables(board) {
             });
         });
 
-        newCardButton.className="center btn btn-success col-12 new-card-button";
+        newCardButton.className="center btn btn-primary col-12 new-card-button";
         listElementContainer.appendChild(newCardButton);
         listsArea.appendChild(listElementContainer);
 
@@ -157,7 +157,7 @@ function drawTables(board) {
 
     var newListButton = createHtmlElementWithText('button', 'Ny liste');
     newListButton.id = "new-list";
-    newListButton.className = "col-1 btn btn-primary m-5";
+    newListButton.className = "col-1 btn bg-light m-5";
 
 
     //adds modal
