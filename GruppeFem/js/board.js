@@ -61,7 +61,7 @@ function drawTables(board) {
         listElementContainer.onclick = function(e) {
             //clears modal
             let cardNameInModal = document.getElementById('card-name-input') ;
-            let cardDescriptionInModal = document.getElementById('card-description');
+            var cardDescriptionInModal = document.getElementById('card-description');
 
             //clears modal
             cardNameInModal.value = "";
@@ -73,14 +73,14 @@ function drawTables(board) {
                     var currentCard = card[x];
 
                     cardNameInModal.value = currentCard.name;
-                    cardDescriptionInModal.innerHTML = currentCard.description;
+                    cardDescriptionInModal.value = currentCard.description;
                     document.getElementById('priority').options.selectedIndex = currentCard.priority;
                     document.getElementById('list-name').options.selectedIndex = i;
                 }
             }
 
             document.getElementById('save-card-changes').onclick = function(){
-                let cardDescriptionInModal = document.getElementById('card-description');
+                //let updatedCardDescriptionInModal = document.getElementById('card-description');
                 let drawnCard = e.target;
 
 
@@ -89,13 +89,14 @@ function drawTables(board) {
                     currentCard.name = cardNameInModal.value;
                 }
 
-                console.log(cardDescriptionInModal.innerHTML);
-                console.log(currentCard.description);
-                if (cardDescriptionInModal.innerHTML != currentCard.description){
-                    console.log(currentCard.description)
-                    currentCard.description = cardDescriptionInModal.innerHTML;
+                if (cardDescriptionInModal.value != currentCard.description){
+                    console.log(currentCard.description);
+                    console.log(cardDescriptionInModal.value);
+                    currentCard.description = cardDescriptionInModal.value;
                     console.log(currentCard.description)
                 }
+
+                console.log(document.getElementById('priority').options.selectedIndex);
 
                 //    currentCard.description = descriptionInput;
                 //priority
