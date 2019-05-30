@@ -5,6 +5,7 @@
     <title>Webprosjekt</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body style="background-color: #E72552">
 <nav class="navbar navbar-expand-sm bg-dark">
@@ -20,11 +21,9 @@
 
 <main class="container-fluid" style="background-color: #E72552">
     <div class="row">
-
         <div class="col-1" style="background-color: #E72552">
-
         </div>
-        <div class="col-4 text-center p-5" style="margin-top: 200px; background-color: #E72552; color: #FFF1D4" id="description-area">
+        <div class="col-4 text-center p-5 landing-text" style="margin-top: 200px; background-color: #E72552;" id="description-area">
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel mollis ligula, nec posuere sem. Etiam porta dapibus tortor quis molestie. Nullam urna tellus, cursus eu auctor nec, ullamcorper in nulla. Sed vel vulputate dolor.
                 Integer venenatis, felis nec posuere pellentesque, nulla nisl blandit lacus, et mattis eros lectus quis nibh. Nam a urna quis diam porta dapibus. Morbi rutrum vitae arcu nec laoreet. Phasellus quis ante blandit, congue odio feugiat, congue magna.
@@ -33,13 +32,10 @@
 
                 Cras efficitur velit quis augue mattis laoreet. Proin sed magna vel metus porttitor tincidunt. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis ultricies ligula eget maximus
             </p>
-
         </div>
         <div class="col-1" style="background-color: #E72552">
-
         </div>
         <div class="col-4 text-center pt-5 " style="margin-top: 200px; background-color: #E72552" id="login-area">
-
             <div>
                 <img src="logo.png" style="height: 100px;">
             </div>
@@ -49,17 +45,14 @@
                     <input type="password" class="form-control m-1" name="username" placeholder="Passord" id="password">
                 </form>
                 <div style="margin-top: 20px">
-                    <button id="login-button" type="submit" class="btn btn-primary" onclick="checkLogIn()">Logg inn</button>
+                    <button id="login-button" type="submit" class="btn btn-dark" onclick="checkLogIn()">Logg inn</button>
                     <button id="register-button" class="btn btn-secondary" data-toggle="modal" data-target="#registerModal">Register</button>
 
                 </div>
             </div>
-
         <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
-
             <div class="modal-dialog modal-sm" role="document">
                 <div class="modal-content">
-
                     <div class="modal-header">
                         <h5>
                             Register new user
@@ -68,7 +61,6 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="full-name">Full name:</label>
@@ -90,18 +82,15 @@
                             <label for="new-password-check">Repeat password:</label>
                             <input type="password" class="form-control" id="new-password-check"></input>
                         </div>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" id="createNewList"class="btn btn-primary" onclick="registerNewUser()">Save changes</button>
                     </div>
-
                 </div>
             </div>
         </div>
         <div class="col-2" style="background-color: #E72552">
-
         </div>
         </div>
 </main>
@@ -109,12 +98,12 @@
 <footer class="navbar fixed-bottom bg-dark">
     <div class="col-4">
         <div>
-            <a href="">Facebook</a>
-            <a href="">Twitter</a>
-            <a href="">Vine</a>
+            <a class="landing-text" href="">Facebook</a>
+            <a class="landing-text" href="">Twitter</a>
+            <a class="landing-text" href="">Vine</a>
+        </div>
     </div>
     <div class="col-8">
-
     </div>
 </footer>
 
