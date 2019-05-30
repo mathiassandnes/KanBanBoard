@@ -12,7 +12,15 @@ ul{
     outline: 1px solid black;
 }
 
-.landing-text {
+.onboard-text {
     color: #FFF1D4;
 
+}
+
+.onboard-background {
+    background: #E72552;
+}
+
+.onboard-board {
+    background-color: #93827F;
 }

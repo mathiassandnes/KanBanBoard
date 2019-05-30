@@ -54,7 +54,7 @@ function drawTables(board) {
 
 
         listElement.id = i;
-        listElement.className = "col-12 text-12 text-light text-center m-1 p-2"
+        listElement.className = "col-12 text-12 onboard-text text-center m-1 p-2"
         //legger listen inni liste området
         listElementContainer.appendChild(listElement);
         listElementContainer.appendChild(listElementBody);
