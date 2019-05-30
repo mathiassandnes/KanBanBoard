@@ -1,3 +1,4 @@
+//---------------------------------------->>Login<<---------------------------------------------
 function checkLogIn() {
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
@@ -6,16 +7,28 @@ function checkLogIn() {
 
         if(username == users[i].username){
             if(password == users[i].password){
-                console.log("Success");
+                document.getElementById("username").className = "form-control m-1 is-valid";
+                document.getElementById("password").className = "form-control m-1 is-valid";
                 window.location.replace("home.html");
-
-            } else {console.log("Wrong Password")}
-        } else {console.log("Wrong Username")}
+                return;
+            }
+        } 
     }
-
+    
+    loginFailedSnack();
+    document.getElementById("username").className = "form-control m-1 is-invalid";
+    document.getElementById("password").className = "form-control m-1 is-invalid";
     return;
 }
-//--------------------------------------USERNAME----------------------------------------------------------
+//--------------------------------->>Enter keyEvent for login<<---------------------------------
+window.addEventListener("keydown", loginWithEnter, false);
+
+function loginWithEnter(key){
+    if(key.keyCode == 13){
+        checkLogIn();
+       }
+}
+//------------------------------------>>USERNAME<<----------------------------------------------
 var validUsername;
 
 
@@ -62,7 +75,7 @@ function newUsernameFeedback(){
     }
 
 }
-//---------------------------------------EMAIL------------------------------------------------------------
+//----------------------------------------->>EMAIL<<--------------------------------------------
 var validEmail;
 
 function newEmailDuplicate() {
@@ -118,7 +131,7 @@ function newEmailFeedback(){
 
 
 
-//--------------------------------------PASSWORD----------------------------------------------------------
+//-------------------------------------->>PASSWORD<<--------------------------------------------
 
 function newPasswordMatch() {
     let newPassword1 = document.getElementById("new-password").value;
@@ -183,7 +196,7 @@ function passwordCriteriaFeedback(){
         document.getElementById("new-password").className = "form-control is-invalid";
     }
 }
-//----------------------------------------NAME------------------------------------------------------------
+//---------------------------------------->>NAME<<----------------------------------------------
 function newNameHaveChar() {
     if((document.getElementById("full-name").value).length > 0){
         return true;
@@ -201,15 +214,21 @@ function newNameFeedback(){
         document.getElementById("full-name").className = "form-control is-invalid";
     }
 }
-
-
-//-----------------------------------------SNACKBAR--------------------------------------------------------
+//------------------------------->>Login SNACKBAR<<---------------------------------------------
+function loginFailedSnack() {
+    var x = document.getElementById("loginFailedSnackbar");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+//----------------------------->>Registration SNACKBAR<<----------------------------------------
 function registrationCompleteSnack() {
     var x = document.getElementById("registrationSnackbar");
     x.className = "show";
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
-//------------------------------------------------------------------------------------------------------------
+
+//--------------------------------------->>Create user<<----------------------------------------
+
 function registerNewUserCriteria() {
     if (newNameHaveChar() && newPasswordMatch() && passwordCriteriaOk() && registerNewEmailCriteria() && !newEmailDuplicate() && !newUsernameDuplicateCheck() && newEmailHaveChar() && newUsernameHaveChar()){
             return true;
