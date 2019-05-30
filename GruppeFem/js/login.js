@@ -203,20 +203,27 @@ function newNameFeedback(){
 }
 
 
-//-----------------------------------------------------------------------------------------------------------
-function registrerNewUserCriteria() {
+//-----------------------------------------SNACKBAR--------------------------------------------------------
+function registrationCompleteSnack() {
+    var x = document.getElementById("registrationSnackbar");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+//------------------------------------------------------------------------------------------------------------
+function registerNewUserCriteria() {
     if (newNameHaveChar() && newPasswordMatch() && passwordCriteriaOk() && registerNewEmailCriteria() && !newEmailDuplicate() && !newUsernameDuplicateCheck() && newEmailHaveChar() && newUsernameHaveChar()){
             return true;
         }
 }
 function registerNewUser() {
-    if(registrerNewUserCriteria()) {
+    if(registerNewUserCriteria()) {
         users.push({
             name: document.getElementById("full-name").value,
             email: document.getElementById("email").value,
             username: document.getElementById("new-username").value,
             password: document.getElementById("new-password").value
         });
+        registrationCompleteSnack();
     }
     newNameFeedback();
     newUsernameFeedback();
@@ -226,7 +233,7 @@ function registerNewUser() {
     newUsernameHaveCharFeedback();
     newEmailHaveCharFeedback();
 
-    if(registrerNewUserCriteria()) {
+    if(registerNewUserCriteria()) {
         validEmail = "";
         validUsername = "";
     }
