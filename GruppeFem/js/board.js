@@ -26,6 +26,11 @@ function createHtmlElementWithText(tagName, text){
 /**
  * Genererer alle listene, med kort og knapper
  */
+
+function drawList(parent){
+
+}
+
 function drawTables(board) {
 
     // clears the screen
@@ -48,7 +53,7 @@ function drawTables(board) {
 
         var arrayOfCards = arrayOfLists[i].cards;
 
-        listElement.id = i;
+        listElement.id = arrayOfLists[i].name;
 
         listElement.className = "col-12 text-12 text-center m-1 p-2"
         //legger listen inni liste området
@@ -69,14 +74,45 @@ function drawTables(board) {
             cardElement.setAttribute('data-toggle', 'modal');
             cardElement.setAttribute('data-target', '#card-modal');
 
-            cardElement.id = cardElement+i+j;
+            cardElement.id = i+j;
+
 
             // activates modal
-            cardElement.addEventListener('click', function(){
+            cardElement.addEventListener('click', function() {
+
+
+                //clears modal
+                document.getElementById('card-name-input').value = "";
+                document.getElementById('card-description').innerText = "";
+
+                //gives correct values depending on card
                 document.getElementById('card-name-input').setAttribute('placeholder', arrayOfCards[j].name);
                 document.getElementById('card-description').innerText = arrayOfCards[j].description;
                 document.getElementById('priority').options.selectedIndex = arrayOfCards[j].priority;
-                //document.getElementById('list-name').setAttribute('placeholder', arrayOfLists[i].name);
+                document.getElementById('list-name').options.selectedIndex = i;
+
+                //saves changes
+                document.getElementById('create-new-card').addEventListener('click', function () {
+                    let currentCard = arrayOfLists[i].cards[j];
+
+                    let nameInput = document.getElementById('card-name-input').value;
+                    let descriptionInput = document.getElementById('card-description').innerText;
+                    let drawnCard = document.getElementById(i+j);
+
+
+                    if (nameInput != ""){
+                        drawnCard.innerHTML = nameInput;
+                        currentCard.name = nameInput;
+                    }
+
+                    currentCard.description = descriptionInput;
+
+                    //priority
+                    //list-name
+                });
+
+                //saves changes
+
             });
 
             cardElement.className="btn btn-primary text-dark m-1 center col-12";//btn btn-primary";
@@ -99,7 +135,15 @@ function drawTables(board) {
             document.getElementById('card-name-input').setAttribute('placeholder', "name of task");
             document.getElementById('card-description').innerText = "description of task";
             document.getElementById('priority').options.selectedIndex = 0;
-            //document.getElementById('list-name').setAttribute('placeholder', arrayOfLists[i].name);
+
+
+
+
+            document.getElementById('create-new-card').addEventListener('click', function () {
+                /**
+                 * HER LAGER MAN NYTT KORT
+                 */
+            });
         });
 
         newCardButton.className="center btn btn-danger col-12 new-card-button";
@@ -134,5 +178,11 @@ drawTables(0); //input må være det boardet vi trykket på i "home" siden
  * cards må kunne oppdateres
  * cards må kunne lages
  * */
+
+/**
+ * Bugs
+ * Alle list-name i modal blir feil
+ * Man kan ikke droppe kort i tomme kolonner
+ */
 
 
