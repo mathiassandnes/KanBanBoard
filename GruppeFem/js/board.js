@@ -26,10 +26,6 @@ function createHtmlElementWithText(tagName, text){
  * Genererer alle listene, med kort og knapper
  */
 
-function drawList(parent){
-
-}
-
 function drawTables(board) {
 
     // clears the screen
@@ -62,8 +58,58 @@ function drawTables(board) {
         //legger til navnet til listen i en dropdown meny på kort modal
         document.getElementById('list-name').appendChild(createHtmlElementWithText('option', arrayOfLists[i].name));
 
+        listElementContainer.onclick = function(e) {
+            //clears modal
+            let cardNameInModal = document.getElementById('card-name-input') ;
+            let cardDescriptionInModal = document.getElementById('card-description');
+
+            //clears modal
+            cardNameInModal.value = "";
+            cardDescriptionInModal.innerText = "";
+
+            // finds the correct card in backend and draws the modal with its values
+            for(let x = 0; x < card.length; x++){
+                if(e.target.innerHTML === card[x].name){
+                    var currentCard = card[x];
+
+                    cardNameInModal.value = currentCard.name;
+                    cardDescriptionInModal.innerHTML = currentCard.description;
+                    document.getElementById('priority').options.selectedIndex = currentCard.priority;
+                    document.getElementById('list-name').options.selectedIndex = i;
+                }
+            }
+
+            document.getElementById('save-card-changes').onclick = function(){
+                let cardDescriptionInModal = document.getElementById('card-description');
+                let drawnCard = e.target;
+
+
+                if (cardNameInModal != ""){
+                    drawnCard.innerHTML = cardNameInModal.value;
+                    currentCard.name = cardNameInModal.value;
+                }
+
+                console.log(cardDescriptionInModal.innerHTML);
+                console.log(currentCard.description);
+                if (cardDescriptionInModal.innerHTML != currentCard.description){
+                    console.log(currentCard.description)
+                    currentCard.description = cardDescriptionInModal.innerHTML;
+                    console.log(currentCard.description)
+                }
+
+                //    currentCard.description = descriptionInput;
+                //priority
+                //list-name
+            };
+        };
+
+
+
         // makes the cards for a list
         for (let j = 0; j < arrayOfCards.length; j++) {
+
+
+
             //lager et nytt html element
             let cardElementContainer = document.createElement('li');
             let cardElement = createHtmlElementWithText('div', arrayOfCards[j].name);
@@ -73,46 +119,10 @@ function drawTables(board) {
             cardElement.setAttribute('data-toggle', 'modal');
             cardElement.setAttribute('data-target', '#card-modal');
 
-            cardElement.id = i+j;
-
+            cardElement.id = ""+i+j;
 
             // activates modal
-            cardElement.addEventListener('click', function() {
 
-
-                //clears modal
-                document.getElementById('card-name-input').value = "";
-                document.getElementById('card-description').innerText = "";
-
-                //gives correct values depending on card
-                document.getElementById('card-name-input').setAttribute('placeholder', arrayOfCards[j].name);
-                document.getElementById('card-description').innerText = arrayOfCards[j].description;
-                document.getElementById('priority').options.selectedIndex = arrayOfCards[j].priority;
-                document.getElementById('list-name').options.selectedIndex = i;
-
-                //saves changes
-                document.getElementById('create-new-card').addEventListener('click', function () {
-                    let currentCard = arrayOfLists[i].cards[j];
-
-                    let nameInput = document.getElementById('card-name-input').value;
-                    let descriptionInput = document.getElementById('card-description').innerText;
-                    let drawnCard = document.getElementById(i+j);
-
-
-                    if (nameInput != ""){
-                        drawnCard.innerHTML = nameInput;
-                        currentCard.name = nameInput;
-                    }
-
-                    currentCard.description = descriptionInput;
-
-                    //priority
-                    //list-name
-                });
-
-                //saves changes
-
-            });
 
             cardElement.className="btn btn-primary text-dark m-1 center col-12";//btn btn-primary";
             //legger kortet inn i listen

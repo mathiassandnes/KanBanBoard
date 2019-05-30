@@ -1,68 +1,65 @@
-var card = {
-    card1: {
+var card = [
+    {
         name: "1",
-        description: "dette er en viasdfsaktig oppgave",
+        description: "card 1 description",
         priority: 2,
-        list: list.list1,
     },
-    card2: {
+    {
         name: "2",
-        description: "dette er en visafsadfasdfasdfktsfsadfsafsdfig oppgave",
+        description: "card 2 description",
         priority: 1,
-        list: list.list1,
     },
-    card3: {
-        name: "lage rapport",
-        description: "dette er en vfaffdsaadsfasiktig oppgave",
+    {
+        name: "3",
+        description: "card 3 description",
         priority: 3,
-        list: list.list1,
     },
-    card4: {
-        name: "lage manus",
-        description: "dette er en viasdfsaktig oppgave",
+    {
+        name: "4",
+        description: "card 4 description",
         priority: 0,
     },
-    card5: {
-        name: "lage side",
-        description: "dette er en visafsadfasdfasdfktsfsadfsafsdfig oppgave",
+    {
+        name: "5",
+        description: "card 5 description",
         priority: 0,
     },
-    card6: {
-        name: "lage rapport",
-        description: "dette er en vfaffdsaadsfasiktig oppgave",
+    {
+        name: "6",
+        description: "card 6 description",
         priority: 2,
     },
-    card7: {
-        name: "lage manus",
-        description: "dette er en viasdfsaktig oppgave",
+    {
+        name: "7",
+        description: "card 7 description",
         priority: 3,
     },
-    card8: {
-        name: "lage side",
-        description: "dette er en visafsadfasdfasdfktsfsadfsafsdfig oppgave",
+    {
+        name: "8",
+        description: "card 8 description",
         priority: 1,
     },
-    card9: {
-        name: "lage rapport",
-        description: "dette er en vfaffdsaadsfasiktig oppgave",
+    {
+        name: "9",
+        description: "card 9 description",
         priority: 2,
     },
-    card10: {
+    {
         name: "lage manus",
-        description: "dette er en viasdfsaktig oppgave",
+        description: "card "+this.name+" description",
         priority: 3,
     },
-    card11: {
+    {
         name: "lage side",
-        description: "dette er en visafsadfasdfasdfktsfsadfsafsdfig oppgave",
+        description: "card "+this.name+" description",
         priority: 2,
     },
-    card12: {
+    {
         name: "lage rapport",
-        description: "dette er en vfaffdsaadsfasiktig oppgave",
+        description: "card "+this.name+" description",
         priority: 1,
-    },
-}
+    }
+]
 
 
 
