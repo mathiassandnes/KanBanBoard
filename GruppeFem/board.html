@@ -50,12 +50,17 @@
                     <div id="cardName" class="form-group">
                         <input id="card-name-input" type="text" class="form-control" placeholder="New card name">
                     </div>
+
                     <div class="form-group">
                         <select id="priority" class="form-control">
                             <option>Low priority👌</option>
                             <option>Medium priority🤨</option>
                             <option>High priority😨</option>
                             <option>Extreme priority😭</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="list-name" class="form-control">
                         </select>
                     </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -73,7 +78,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" id="createNewCard"class="btn btn-primary" onclick="saveCardChanges()">Save changes</button>
+                    <button type="button" id="create-new-card"class="btn btn-primary">Save changes</button>
                 </div>
 
             </div>
@@ -127,6 +132,7 @@
 
 <!-- Funksjonalitet -->
 <script src="js/board.js"></script>
+<script src="js/addingCards.js"></script>
 
 <!-- Bootstrap -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
