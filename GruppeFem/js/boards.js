@@ -1,25 +1,25 @@
-var board = {
-    board1:{
+var board = [
+    {
         name: "Webprosjekt",
-        lists: [list.list1, list.list2, list.list3],
+        lists: [list[0], list[1], list[2]],
         member: [],
     },
-    board2:{
+    {
         name: "Prosjekt",
-        lists: [list.list3, list.list2, list.list1],
+        lists: [list[1], list[2], list[3]],
         member: [],
     },
-    board3:{
+    {
         name: "Jobb",
-        lists: [list.list2, list.list1, list.list3],
+        lists: [list[2], list[3], list[4]],
         member: [],
     },
-    board4:{
+    {
         name: "Privat",
-        lists: [list.list2, list.list1, list.list3],
+        lists: [list[3], list[4], list[5]],
         member: [],
     }
-};
+];
 
 
 //lists.append(list.list4);
