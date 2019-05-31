@@ -12,7 +12,7 @@ ul{
     outline: 1px solid black;
 }
 
-.landing-text {
+.onboard-text {
     color: #FFF1D4;
 }
 
@@ -102,4 +102,12 @@ ul{
 @keyframes fadeout {
     from {bottom: 25%; opacity: 1;}
     to {bottom: 0; opacity: 0;}
+}
+
+.onboard-background {
+    background: #E72552;
+}
+
+.onboard-board {
+    background-color: #93827F;
 }
