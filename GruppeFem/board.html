@@ -11,34 +11,36 @@
 
 <!-- Navigasjonsbar -->
 
-<div class="navbar bg-dark" style="height: 40px;">
-    <!-- Links -->
-    <div class="row col-12">
-        <div class="col-1">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="home.html" ><i class="fa fa-home fa-2x"></i></a>
-                </li>
-            </ul>
-        </div>
-        <div class=" col-11" id="nav">
-
+<header>
+    <div class="navbar bg-dark" style="height: 40px;">
+        <!-- Links -->
+        <div class="row col-12">
+            <div class="col-1">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="home.html" ><i class="fa fa-home fa-2x"></i></a>
+                    </li>
+                </ul>
+            </div>
+                <div class=" col-11" id="nav">
+            </div>
         </div>
     </div>
-</div>
+</header>
 
 <main>
 
 
-    <ul id="lists-area" class="row col-12 m-1 bg-success container onboard-background">
-
-    </ul>
+    <div id="content-area" class="row col">
+        <ul id="lists-area" class="row col-12 m-1 container onboard-background"></ul>
+    </div>
 
     <!-- LISTE MED ANSATTE
 
     <div class="onboard-background onboard-text"> liste med ansatte </div>
 
    -->
+
 
     <!-- Card modal -->
     <div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-labelledby="card-modal-label" aria-hidden="true">
@@ -90,8 +92,8 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <div id="listName" class="form-group">
-                        <input type="text" class="form-control" placeholder="New list name">
+                    <div class="form-group">
+                        <input id="list-name-list-modal" type="text" class="form-control" placeholder="New list name">
                     </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -100,7 +102,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" id="createNewList" class="btn btn-primary" >Save changes</button>
+                    <button type="button" id="create-new-list" class="btn btn-primary" data-dismiss="modal">Save changes</button>
                 </div>
             </div>
         </div>
