@@ -119,6 +119,10 @@ function removeChangeInput(){
 
 
 function lagExtraTavle(){
+
+    if(document.getElementById("bruker-Input").value == ""){
+        alert("vennligst skriv inn et navn");
+    } else {
     let hiddenHead = document.getElementById("hiddenModal").innerHTML;
     let thisValue = document.getElementById(hiddenHead);
     let groupIndex = thisValue.getAttribute("numb");
@@ -130,6 +134,7 @@ function lagExtraTavle(){
         lists: [],
         member: [],
     };
+
     nyTavleInput.value = "";
     group[groupIndex].boards.push(newtavle);
     alert(group[groupIndex].boards.length);
@@ -147,7 +152,7 @@ function lagExtraTavle(){
     alert(tavleIndex);
     let arrayOfTables = arrayOfBoards[tavleIndex].name;
     tavle.innerHTML = arrayOfBoards[tavleIndex].name;
-
+    }
 }
 
 function sendId(id){
