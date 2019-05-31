@@ -18,8 +18,8 @@ names.sort();
 ul = document.getElementById("search-result");
 ul.style = "list-style: none; padding: 0;"
 
-    var li = "";
 var render_lists = function (lists) {
+  var li = "";
   for (index in lists) {
     li += "<li>" + '<button onclick="addClickInput(\'' + lists[index] + '\')" class = btn-primary> ' + lists[index] + "</button>" + "</li>";
 
