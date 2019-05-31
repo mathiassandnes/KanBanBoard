@@ -12,7 +12,6 @@ for(let i = 0; i < users.length; i++){
   
 }
 
-
 //alfabetisk rekkefølge
 names.sort();
 
@@ -24,7 +23,7 @@ var render_lists = function(lists){
     for(index in lists){
       li += "<li>" + '<button onclick="addClickInput(\''+ lists[index] +'\')" class = btn-primary> ' +  lists[index] + "</button>" + "</li>";
 
-
+  
     }
     ul.innerHTML = li;
 }
