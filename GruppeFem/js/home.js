@@ -1,4 +1,3 @@
-alert(group.length);
 function changeTavle(id){
     let modal = document.getElementById("link-Tavle");
     let tavleName = document.getElementById(id);
@@ -137,7 +136,6 @@ function lagExtraTavle(){
 
     nyTavleInput.value = "";
     group[groupIndex].boards.push(newtavle);
-    alert(group[groupIndex].boards.length);
     let tavle = document.createElement("td");
     let tavleList = document.getElementById("tr" + groupIndex);
 
@@ -148,8 +146,6 @@ function lagExtraTavle(){
     tavle.setAttribute("onclick","changeTavle(this.id)");
     tavleList.appendChild(tavle);
     let arrayOfBoards = group[groupIndex].boards;
-    alert(groupIndex);
-    alert(tavleIndex);
     let arrayOfTables = arrayOfBoards[tavleIndex].name;
     tavle.innerHTML = arrayOfBoards[tavleIndex].name;
     }
@@ -158,22 +154,16 @@ function lagExtraTavle(){
 function sendId(id){
     let hiddenHead = document.getElementById("hiddenModal");
     hiddenHead.innerHTML = id;
-    alert(hiddenHead.innerHTML);
 }
 
 function removeTable(){
     let hiddenHead = document.getElementById("tavle-Head").innerHTML;
     let boardIndex = document.getElementById(hiddenHead);
     let groupIndexFinder = hiddenHead.slice(0,hiddenHead.length - 1);
-    alert(hiddenHead);//tavle00
-    alert(groupIndexFinder);//tavle0
     let bIndex = boardIndex.getAttribute("numb");
-    alert(bIndex);//0
     let groupFound = document.getElementById(groupIndexFinder);
     let gIndex = groupFound.getAttribute("numb");
-    alert(gIndex);//0
     group[gIndex].boards.splice(bIndex,1);
-    alert(group[gIndex].boards.length);
     boardIndex.parentNode.removeChild(boardIndex);
     return false;
 
