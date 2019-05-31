@@ -1,7 +1,6 @@
 var board = [
     {
         name: "Webprosjekt",
-        lists: [list.list3, list.list2, list.list1],
         lists: [list[0], list[1], list[2]],
         member: [],
     },
@@ -19,9 +18,7 @@ var board = [
         name: "Privat",
         lists: [list[3], list[4], list[5]],
         member: [],
-    }
-};
-];
+    }];
 
 
 //lists.append(list.list4);

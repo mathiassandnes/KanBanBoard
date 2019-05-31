@@ -7,9 +7,7 @@ function leggTilTavle(){
     x.onClick = addGroup();
 }
 
-let arrayOfGruppe = Object.keys(group);
 alert(group.length);
-
 function changeTavle(id){
     let modal = document.getElementById("link-Tavle");
     let tavleName = document.getElementById(id);
@@ -19,12 +17,13 @@ function changeTavle(id){
 }
 
 function lagGruppe(){
-    for(let i=0; i < arrayOfGruppe.length; i++){
+    for(let i=0; i < group.length; i++){
         let gruppelist = document.createElement("table");
         let groupBody = document.getElementById("gruppe-Body");
         gruppelist.setAttribute("id","table"+i);
         let addButton = document.createElement("button");
         addButton.setAttribute("class", "btn btn-info btn-sm");
+
         addButton.innerHTML = "Legg til tavle";
        // gruppelist.innerHTML = group.value;
         gruppelist.innerHTML = group[i].name;
@@ -32,7 +31,9 @@ function lagGruppe(){
         gruppelist.appendChild(addButton);
         addButton.setAttribute("data-toggle","modal");
         addButton.setAttribute("data-target","#myModal");
-
+        addButton.setAttribute("numb",i);
+        addButton.setAttribute("id","button"+i);
+        addButton.setAttribute("onclick","sendId(this.id)");
         gruppelist.setAttribute("class","column");
         let tavleList = document.createElement("tr");
         tavleList.setAttribute("id","tr"+i);
@@ -58,7 +59,9 @@ function lagGruppe(){
                 //alert(k);
                 let num = k + 1;
                 let bor = Object.keys(board);
-                tavle.innerHTML = "tavle" + k;
+                let arrayOfBoards = group[i].boards;
+                let arrayOfTables = arrayOfBoards[k].name;
+                tavle.innerHTML = arrayOfTables;
                 tavle.setAttribute("class","btn btn-info btn-lg");
                 tavle.setAttribute("data-toggle","modal");
                 tavle.setAttribute("data-target","#myTavleModal");
@@ -103,16 +106,17 @@ function lagTavle(){
 lagGruppe();
 
 function removeInput(){
-    let input = document.getElementById("bruker-Input")
+    let input = document.getElementById("bruker-Input");
     input.value = "";
 }
 
 function renameTavle() {
     let thisTavle = document.getElementById("tavle-Head");
-    let hiddenID = thisTavle.innerHTML
+    let hiddenID = thisTavle.innerHTML;
     let newName = document.getElementById("change-Input");
     let thisTavleOut = document.getElementById(hiddenID);
     thisTavleOut.innerHTML = newName.value;
+    newName.value = "";
 }
 
 function removeChangeInput(){
@@ -122,9 +126,41 @@ function removeChangeInput(){
 
 
 function lagExtraTavle(){
-    let thisGroup = document.getElementById();
-    let list = document.getElementById();
-    let newTavle = document.createElement("tr")
+    let hiddenHead = document.getElementById("hiddenModal").innerHTML;
+    let thisValue = document.getElementById(hiddenHead);
+    let groupIndex = thisValue.getAttribute("numb");
+    let nyTavleInput = document.getElementById("bruker-Input");
+    let tavleIndex = group[groupIndex].boards.length;
+    let newtavle =
+    {
+        name:nyTavleInput.value,
+        lists: [],
+        member: [],
+    };
+    nyTavleInput.value = "";
+    group[groupIndex].boards.push(newtavle);
+    alert(group[groupIndex].boards.length);
+    let tavle = document.createElement("td");
+    let tavleList = document.getElementById("tr" + groupIndex);
+
+    tavle.setAttribute("class", "btn btn-info btn-lg");
+    tavle.setAttribute("data-toggle","modal");
+    tavle.setAttribute("data-target","#myTavleModal");
+    tavle.setAttribute("id", "tavle" + groupIndex + tavleIndex);
+    tavle.setAttribute("onclick","changeTavle(this.id)");
+    tavleList.appendChild(tavle);
+    let arrayOfBoards = group[groupIndex].boards;
+    alert(groupIndex);
+    alert(tavleIndex);
+    let arrayOfTables = arrayOfBoards[tavleIndex].name;
+    tavle.innerHTML = arrayOfBoards[tavleIndex].name;
+
+}
+
+function sendId(id){
+    let hiddenHead = document.getElementById("hiddenModal");
+    hiddenHead.innerHTML = id;
+    alert(hiddenHead.innerHTML);
 }
 /*
 lagTavler();
