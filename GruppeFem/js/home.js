@@ -14,32 +14,23 @@ function lagGruppe(){
         gruppelist.setAttribute("numb",i);
         let addButton = document.createElement("button");
         addButton.setAttribute("class", "btn btn-info btn-sm");
-
         addButton.innerHTML = "Legg til tavle";
-       // gruppelist.innerHTML = group.value;
         gruppelist.innerHTML = group[i].name;
         groupBody.appendChild(gruppelist);
         gruppelist.appendChild(addButton);
+
         addButton.setAttribute("data-toggle","modal");
         addButton.setAttribute("data-target","#myModal");
         addButton.setAttribute("numb",i);
         addButton.setAttribute("id","button"+i);
         addButton.setAttribute("onclick","sendId(this.id)");
         gruppelist.setAttribute("class","column");
+
         let tavleList = document.createElement("tr");
         tavleList.setAttribute("id","tr"+i);
         let gruppeliste = document.getElementById("tavle" + i);
         gruppeliste.appendChild(tavleList);
-        /*
-        var j = 0;
-        function lagTavler(){
-            for (j = 0; j < 3;j++){
 
-                gruppelist.appendChild(tavleList);
-                return j;
-
-            }
-        }*/
         function lagTavle(board) {
             let arrayOfTavler = group[i].boards;
             for(let k = 0; k < arrayOfTavler.length;k++){
@@ -70,31 +61,6 @@ function lagGruppe(){
     }
 }
 
-/*
-function lagTavler(){
-    for(let j = 0; j < 4;j++){
-        alert("j = "+j);
-        let tavleList = document.createElement("table");
-        let gruppelist = document.getElementById("table"+j);
-        gruppelist.appendChild(tavleList);
-        /*
-        let arrayOfTavler = arrayOfGruppe[j].boards;
-        for(let k = 0; k < group.group1.boards[k].lists.length; k++){
-            alert("k = " + k);
-        }*//*
-    }
-}
-/*
-function lagTavle(){
-    for (let l = 0; l < 4;l++){
-        alert("l = "+l);
-        let tavle = document.createElement("tr");
-        let tavleList = document.getElementById("table"+l);
-        tavleList.appendChild(tavle);
-    }
-} */
-
-
 lagGruppe();
 
 function removeInput(){
@@ -116,9 +82,7 @@ function removeChangeInput(){
     input.value = "";
 }
 
-
 function lagExtraTavle(){
-
     if(document.getElementById("bruker-Input").value == ""){
         alert("vennligst skriv inn et navn");
     } else {
@@ -133,12 +97,10 @@ function lagExtraTavle(){
         lists: [],
         member: [],
     };
-
     nyTavleInput.value = "";
     group[groupIndex].boards.push(newtavle);
     let tavle = document.createElement("td");
     let tavleList = document.getElementById("tr" + groupIndex);
-
     tavle.setAttribute("class", "btn btn-info btn-lg");
     tavle.setAttribute("data-toggle","modal");
     tavle.setAttribute("data-target","#myTavleModal");
@@ -166,22 +128,5 @@ function removeTable(){
     group[gIndex].boards.splice(bIndex,1);
     boardIndex.parentNode.removeChild(boardIndex);
     return false;
-
-}
-/*
-lagTavler();
-lagTavle();
-
-//alert(group.group1.boards.length);
-/*
-function lagTavler(){
-
-    for(let i = 0; i<)
 }
 
-lagGruppe()
-function addGroup()
-{
-    var popup = document.getElementById("myPopup");
-    popup.classList.toggle("show");
-} */
