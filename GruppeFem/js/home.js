@@ -1,12 +1,3 @@
-
-function leggTilTavle(){
-    var row = document.getElementById("Group");
-    var x = row.insertCell(-1);
-    var y = document.getElementsByTagName("td").length;
-    x.innerHTML = "tavle  " + y;
-    x.onClick = addGroup();
-}
-
 alert(group.length);
 function changeTavle(id){
     let modal = document.getElementById("link-Tavle");
@@ -20,7 +11,8 @@ function lagGruppe(){
     for(let i=0; i < group.length; i++){
         let gruppelist = document.createElement("table");
         let groupBody = document.getElementById("gruppe-Body");
-        gruppelist.setAttribute("id","table"+i);
+        gruppelist.setAttribute("id","tavle"+i);
+        gruppelist.setAttribute("numb",i);
         let addButton = document.createElement("button");
         addButton.setAttribute("class", "btn btn-info btn-sm");
 
@@ -37,7 +29,7 @@ function lagGruppe(){
         gruppelist.setAttribute("class","column");
         let tavleList = document.createElement("tr");
         tavleList.setAttribute("id","tr"+i);
-        let gruppeliste = document.getElementById("table" + i);
+        let gruppeliste = document.getElementById("tavle" + i);
         gruppeliste.appendChild(tavleList);
         /*
         var j = 0;
@@ -67,6 +59,7 @@ function lagGruppe(){
                 tavle.setAttribute("data-target","#myTavleModal");
                 tavle.setAttribute("id","tavle"+i+k);
                 tavle.setAttribute("onclick","changeTavle(this.id)");
+                tavle.setAttribute("numb", k);
             }
         }
 
@@ -161,6 +154,24 @@ function sendId(id){
     let hiddenHead = document.getElementById("hiddenModal");
     hiddenHead.innerHTML = id;
     alert(hiddenHead.innerHTML);
+}
+
+function removeTable(){
+    let hiddenHead = document.getElementById("tavle-Head").innerHTML;
+    let boardIndex = document.getElementById(hiddenHead);
+    let groupIndexFinder = hiddenHead.slice(0,hiddenHead.length - 1);
+    alert(hiddenHead);//tavle00
+    alert(groupIndexFinder);//tavle0
+    let bIndex = boardIndex.getAttribute("numb");
+    alert(bIndex);//0
+    let groupFound = document.getElementById(groupIndexFinder);
+    let gIndex = groupFound.getAttribute("numb");
+    alert(gIndex);//0
+    group[gIndex].boards.splice(bIndex,1);
+    alert(group[gIndex].boards.length);
+    boardIndex.parentNode.removeChild(boardIndex);
+    return false;
+
 }
 /*
 lagTavler();
