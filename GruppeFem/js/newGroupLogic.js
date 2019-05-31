@@ -90,11 +90,6 @@ function removeClickInput(id) {
   removeButton.parentNode.removeChild(removeButton);
   members.splice(id, 1);
 
-  // 2. Fjerne fra vanlig liste av brukere.dro
-  /*const index = lists.indexOf(name);
-  lists.splice(index, 1);
-  console.log(lists[index])
-  */
 
 
 }
