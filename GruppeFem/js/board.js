@@ -68,7 +68,7 @@ function drawTables(board) {
         let listElement = createHtmlElementWithText('div', arrayOfLists[i].name); // få dette større <legend>
         let listElementBody = document.createElement('ul');
 
-        listElementContainer.className = "m-3 bg-dark rounded list-element p-1";
+        listElementContainer.className = "m-3 bg-dark rounded list-element p-1 col-1";
         listElementBody.className = "bg-info";
 
 
@@ -122,16 +122,14 @@ function drawTables(board) {
             document.getElementById('save-card-changes').onclick = function(){
 
                 if(isNewCard){
-                    let container = document.createElement('li');
-                    let newCard = createHtmlElementWithText('div', cardNameInModal.value)
-                    container.appendChild(newCard);
-                    listElementBody.appendChild(container);
+
 
                     currentCard = {
                         name: cardNameInModal.value,
                         description: cardDescriptionInModal.value,
                         priority: priorityInModal.options.selectedIndex
                     };
+                    drawCard(currentCard.name, listElementBody);
 
                     arrayOfLists[i].cards.push(currentCard);
                     console.log(currentCard);
@@ -154,7 +152,7 @@ function drawTables(board) {
                     currentCard.priority = priorityInModal.options.selectedIndex;
                 }
 
-                drawCard(currentCard.name, listElementContainer)
+
 
             };
         };
@@ -162,7 +160,7 @@ function drawTables(board) {
         // makes the cards for a list
         for (let j = 0; j < arrayOfCards.length; j++) {
 
-            drawCard(arrayOfCards[j].name, listElementContainer)
+            drawCard(arrayOfCards[j].name, listElementBody)
         }
 
         /**
@@ -175,6 +173,7 @@ function drawTables(board) {
 
         newCardButton.className="center btn btn-primary col-12 new-card-button";
         listElementContainer.appendChild(newCardButton);
+
         listsArea.appendChild(listElementContainer);
 
     }

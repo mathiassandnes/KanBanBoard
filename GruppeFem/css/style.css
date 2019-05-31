@@ -5,6 +5,9 @@ ul{
 .list-element{
     min-width: 200px;
 }
+#lists-area *{
+    font-size: 20px;
+}
 .new-card-button{
     bottom: 0;
 }
