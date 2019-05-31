@@ -3,7 +3,7 @@
  */
 //her lagres alle elementer på siden
 
-let arrayOfBoards = group.group1.boards;
+let arrayOfBoards = group[0].boards;
 let arrayOfLists = arrayOfBoards[0].lists;
 
 
@@ -23,10 +23,34 @@ function createHtmlElementWithText(tagName, text){
     return element;
 }
 
+
+function addModal(element, modalName){
+    element.setAttribute('data-toggle', 'modal');
+    element.setAttribute('data-target', '#'+modalName);
+}
+
+function drawCard(name, container){
+    let cardElementContainer = document.createElement('li');
+    let cardElement = createHtmlElementWithText('div', name);
+    //legger kortet inn i listen
+    cardElementContainer.appendChild(cardElement);
+    container.appendChild(cardElementContainer);
+
+    //classes for cards
+    cardElementContainer.className="center col-12";
+    cardElement.className="btn bg-light text-dark m-1 center col-12";
+
+    //adds modal
+    addModal(cardElement, 'card-modal')
+
+    //give unique ID
+    cardElement.id = name;
+}
+
+
 /**
  * Genererer alle listene, med kort og knapper
  */
-
 function drawTables(board) {
 
     // clears the screen
@@ -44,7 +68,9 @@ function drawTables(board) {
         let listElementContainer = document.createElement('li');
         let listElement = createHtmlElementWithText('div', arrayOfLists[i].name); // få dette større <legend>
         let listElementBody = document.createElement('ul');
+
         listElementContainer.className = "m-3 bg-dark rounded list-element p-1";
+        listElementBody.className = "bg-info";
 
 
         var arrayOfCards = arrayOfLists[i].cards;
@@ -59,77 +85,85 @@ function drawTables(board) {
         //legger til navnet til listen i en dropdown meny på kort modal
         document.getElementById('list-name').appendChild(createHtmlElementWithText('option', arrayOfLists[i].name));
 
-        listElementContainer.onclick = function(e) {
-            //clears modal
-            let cardNameInModal = document.getElementById('card-name-input') ;
-            let cardDescriptionInModal = document.getElementById('card-description');
 
-            //clears modal
-            cardNameInModal.value = "";
-            cardDescriptionInModal.innerText = "";
+        //adds card manipulation
+
+
+        listElementContainer.onclick = function(e) {
+            let cardNameInModal = document.getElementById('card-name-input');
+            let cardDescriptionInModal = document.getElementById('card-description');
+            let priorityInModal = document.getElementById('priority');
+            let listNameInModal = document.getElementById('list-name');
+
+            var isNewCard = true;
+            var currentCard;
 
             // finds the correct card in backend and draws the modal with its values
             for(let x = 0; x < card.length; x++){
                 if(e.target.innerHTML === card[x].name){
-                    var currentCard = card[x];
+
+                    console.log('This card "Exists"')
+                    currentCard = card[x];
 
                     cardNameInModal.value = currentCard.name;
-                    cardDescriptionInModal.innerHTML = currentCard.description;
-                    document.getElementById('priority').options.selectedIndex = currentCard.priority;
-                    document.getElementById('list-name').options.selectedIndex = i;
+                    cardDescriptionInModal.value = currentCard.description;
+                    priorityInModal.options.selectedIndex = currentCard.priority;
+                    listNameInModal.options.selectedIndex = i;
+                    isNewCard = false;
                 }
             }
+            if(isNewCard) {
+                console.log('This is a "new" card')
+                cardNameInModal.value = "";
+                cardDescriptionInModal.value = "";
+                document.getElementById('priority').options.selectedIndex = 0;
+            }
+
 
             document.getElementById('save-card-changes').onclick = function(){
-                let cardDescriptionInModal = document.getElementById('card-description');
-                let drawnCard = e.target;
 
+                if(isNewCard){
+                    let container = document.createElement('li');
+                    let newCard = createHtmlElementWithText('div', cardNameInModal.value)
+                    container.appendChild(newCard);
+                    listElementBody.appendChild(container);
 
-                if (cardNameInModal != ""){
-                    drawnCard.innerHTML = cardNameInModal.value;
+                    currentCard = {
+                        name: cardNameInModal.value,
+                        description: cardDescriptionInModal.value,
+                        priority: priorityInModal.options.selectedIndex
+                    };
+
+                    arrayOfLists[i].cards.push(currentCard);
+                    console.log(currentCard);
+                    card.push(currentCard);
+                }
+
+                // changes name if updated
+                if (cardNameInModal.value != currentCard.name){
+                    e.target.innerHTML = cardNameInModal.value;
                     currentCard.name = cardNameInModal.value;
                 }
 
-                console.log(cardDescriptionInModal.innerHTML);
-                console.log(currentCard.description);
-                if (cardDescriptionInModal.innerHTML != currentCard.description){
-                    console.log(currentCard.description)
-                    currentCard.description = cardDescriptionInModal.innerHTML;
-                    console.log(currentCard.description)
+                // changes description if updated
+                if (cardDescriptionInModal.value != currentCard.description){
+                    currentCard.description = cardDescriptionInModal.value;
                 }
 
-                //    currentCard.description = descriptionInput;
-                //priority
-                //list-name
+                // changes priority if updated
+                if (priorityInModal.options.selectedIndex != currentCard.priority){
+                    currentCard.priority = priorityInModal.options.selectedIndex;
+                }
+
+                drawCard(currentCard.name, listElementContainer)
+
             };
         };
-
-
 
         // makes the cards for a list
         for (let j = 0; j < arrayOfCards.length; j++) {
 
-
-
-            //lager et nytt html element
-            let cardElementContainer = document.createElement('li');
-            let cardElement = createHtmlElementWithText('div', arrayOfCards[j].name);
-            cardElementContainer.className="center col-12";
-
-            //adds modal
-            cardElement.setAttribute('data-toggle', 'modal');
-            cardElement.setAttribute('data-target', '#card-modal');
-
-            cardElement.id = ""+i+j;
-
-            // activates modal
-
-
-            cardElement.className="btn bg-light text-dark m-1 center col-12";//btn btn-primary";
-            //legger kortet inn i listen
-            cardElementContainer.appendChild(cardElement);
-            listElementBody.appendChild(cardElementContainer);
-
+            drawCard(arrayOfCards[j].name, listElementContainer)
         }
 
         /**
@@ -138,23 +172,7 @@ function drawTables(board) {
         let newCardButton = createHtmlElementWithText('button', 'Nytt kort');
 
         //adds modal
-        newCardButton.setAttribute('data-toggle', 'modal');
-        newCardButton.setAttribute('data-target', '#card-modal');
-
-        newCardButton.addEventListener('click', function(){
-            document.getElementById('card-name-input').setAttribute('placeholder', "name of task");
-            document.getElementById('card-description').innerText = "description of task";
-            document.getElementById('priority').options.selectedIndex = 0;
-
-
-
-
-            document.getElementById('create-new-card').addEventListener('click', function () {
-                /**
-                 * HER LAGER MAN NYTT KORT
-                 */
-            });
-        });
+        addModal(newCardButton, 'card-modal');
 
         newCardButton.className="center btn btn-primary col-12 new-card-button";
         listElementContainer.appendChild(newCardButton);
@@ -172,8 +190,7 @@ function drawTables(board) {
 
 
     //adds modal
-    newListButton.setAttribute('data-toggle', 'modal');
-    newListButton.setAttribute('data-target', '#list-modal');
+    addModal(newListButton, 'list-modal');
 
 
 
@@ -185,14 +202,14 @@ drawTables(0); //input må være det boardet vi trykket på i "home" siden
 
 /**
  * Ting å fikse
- * cards må kunne oppdateres
- * cards må kunne lages
+ * tabeller må kunne bytte navn
+ * tabeller må kunne lages
  * */
 
 /**
  * Bugs
- * Alle list-name i modal blir feil
  * Man kan ikke droppe kort i tomme kolonner
+ * nye cards får ikke riktig navn på colonne
  */
 
 
