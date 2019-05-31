@@ -5,50 +5,57 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="onboard-background">
 
-<nav class="navbar bg-dark">
 
-    <ul class="row navbar" style="list-style-type: none;">
-        <li class="nav-item">
-            <a href="landing.html" ><i class="fa fa-home fa-2x"></i></a>
-        </li>
-
-        <li class="nav-item" id="left-area" style="background-color: #0b2e13; margin-left: 50px;">
+<div class="navbar bg-dark" style="height: 55px;">
+    <!-- Links -->
+    <div class="row col-12">
+        <div class="col-1">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="landing.html" ><i class="fa fa-home fa-2x"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-11">
             <button class="btn btn-primary" data-toggle="modal" data-target="#new-group-modal">Ny gruppe</button>
-        </li>
-    </ul>
+        </div>
+    </div>
+</div>
 
-</nav>
+
+
 
 <main class="col-12">
-    <div id="boards-area" class="m-5">
-        <div id="Group" class="row" style="border-color: red;">
-            <h3>Grupprnavn</h3>
+    <div id="boards-area" class="m-5  onboard-text">
+        <div id="Group" class="row m-4" style="border-color: red;">
+            <h3 class="m-2">Gruppenavn</h3>
             <button id="row1-board1" onclick="window.location.href = 'board.html';">
-                <h5>tavlenavn</h5>
+                <h5>Tavlenavn</h5>
             </button>
             <button id="row1-board2">
-                <h5>tavlenavn</h5>
+                <h5>Tavlenavn</h5>
             </button>
             <button id="row1-board3">
-                <h5>tavlenavn</h5>
+                <h5>Tavlenavn</h5>
             </button>
             <button id="row1-board4">
                 <h5>+</h5>
             </button>
         </div>
-        <div class="row" style="border-color: red;">
-            <h3>Grupprnavn</h3>
+        <div class="row m-4" style="border-color: red;">
+            <h3 class="m-2">Gruppenavn</h3>
             <button id="row2-board1">
-                <h5>må på behandling</h5>
+                <h5>Tavlenavn</h5>
             </button>
             <button id="row2-board2">
-                <h5>tavlenavn</h5>
+                <h5>Tavlenavn</h5>
             </button>
             <button id="row2-board3">
-                <h5>tavlenavn</h5>
+                <h5>Tavlenavn</h5>
             </button>
             <button id="row2-board4">
                 <h5>+</h5>
@@ -59,24 +66,24 @@
 
     <div class="modal fade" id="new-group-modal" tabindex="-1" role="dialog" aria-labelledby="new-group-modal-label" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
+            <div class="modal-content ">
 
-                <div class="modal-header">
+                <div class="  modal-header">
                     <div id="group-name" class="form-group">
-                        <input type="text" class="form-control" placeholder="New group name">
+                        <input type="text" class="form-control " placeholder="New group name">
                     </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
-                <div class="modal-body">
-                    <div id="new-group-modal-body" class="form-group col-12 row" >
+                <div class="modal-body ">
+                    <div id="new-group-modal-body" class=" form-group col-12 row" >
                         <label for="group-description">Description:</label>
-                        <textarea class="col-12" rows="2" id="group-description"></textarea>
+                        <textarea class="  rounded col-12" rows="2" id="group-description"></textarea>
                         <label for="members">Members:</label>
-                        <textarea class="col-12" rows="1" id="members"></textarea>
-                        <input id="user-search-input" type="text" class="form-control col-12" placeholder="Søk på folk du vil ha i gruppen:">
+                        <textarea class=" rounded col-12" rows="1" id="members"></textarea>
+                        <input id="user-search-input" type="text" class="  form-control col-12" placeholder="Søk på folk du vil ha i gruppen:">
 
                         <ul id="search-result" class="col-6"></ul>
 
@@ -96,16 +103,20 @@
     </div>
 
 </main>
-<footer class="navbar fixed-bottom bg-dark ">
-    <div class="col-4">
-        <div>
-            <a href="">Facebook</a>
-            <a href="">Twitter</a>
-            <a href="">Vine</a>
-        </div>
-        <div class="col-8">
 
+<footer class="navbar fixed-bottom bg-dark">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-5"></div>
+            <div class="col-2 text-center">
+                <a class="onboard-text m-1" href="">Facebook</a>
+                <a class="onboard-text m-1" href="">Twitter</a>
+                <a class="onboard-text m-1" href="">Vine</a>
+            </div>
+            <div class="col-5"></div>
         </div>
+    </div>
+    <div class="col-8">
     </div>
 </footer>
 

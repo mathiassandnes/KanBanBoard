@@ -1,7 +1,7 @@
-var group = {
-    group1:{
-        boards: [board.board1, board.board2, board.board3, board.board4],
+var group = [
+    {
+        boards: [board[0], board[1], board[2], board[3]],
 
-    },
-}
+    }
+];
 
