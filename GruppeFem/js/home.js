@@ -115,6 +115,12 @@ function renameTavle() {
     thisTavleOut.innerHTML = newName.value;
 }
 
+function removeChangeInput(){
+    let input = document.getElementById("change-Input");
+    input.value = "";
+}
+
+
 function lagExtraTavle(){
     let thisGroup = document.getElementById();
     let list = document.getElementById();
