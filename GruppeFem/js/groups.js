@@ -12,4 +12,10 @@ var group = [{
         name: "privat",
         boards: [board.board1, board.board2],
     }]
+var group = [
+    {
+        boards: [board[0], board[1], board[2], board[3]],
+
+    }
+];
 

@@ -5,20 +5,42 @@
     <title>Placeholder</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
-<header class="bg-dark">
+<body class="onboard-background onboard-text">
 
-    <a href="home.html">HOME</a>
-</header>
-<main>
-    <div class="row m-5" id="nav">
+<!-- Navigasjonsbar -->
 
+<nav class="navbar bg-dark" style="height: 50px;">
+    <!-- Links -->
+
+    <div>
+        <div class="col-1">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="home.html" ><i class="fa fa-home fa-2x"></i></a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <ul id="lists-area" class="row col-12 m-5 container bg-success">
+</nav>
+
+<main>
+
+    <nav class="navbar bg-dark" >
+        <div class="row col-12 bg-dark" id="nav"></div>
+
+    </nav>
+
+    <ul id="lists-area" class="row col-12 m-1 bg-success container onboard-background">
 
     </ul>
-    <div> liste med ansatte </div>
+
+    <!-- LISTE MED ANSATTE
+
+    <div class="onboard-background onboard-text"> liste med ansatte </div>
+
+   -->
 
     <!-- Card modal -->
     <div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-labelledby="card-modal-label" aria-hidden="true">
@@ -29,12 +51,17 @@
                     <div id="cardName" class="form-group">
                         <input id="card-name-input" type="text" class="form-control" placeholder="New card name">
                     </div>
+
                     <div class="form-group">
                         <select id="priority" class="form-control">
                             <option>Low priority👌</option>
                             <option>Medium priority🤨</option>
                             <option>High priority😨</option>
                             <option>Extreme priority😭</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="list-name" class="form-control">
                         </select>
                     </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -45,14 +72,14 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="card-description">Description:</label>
-                        <textarea class="form-control" rows="5" id="card-description"></textarea>
+                        <!--<label for="card-description">Description:</label>-->
+                        <textarea class="form-control" rows="5" id="card-description" placeholder="Description of task"></textarea>
                     </div>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" id="createNewCard"class="btn btn-primary" onclick="saveCardChanges()">Save changes</button>
+                    <button type="button" id="save-card-changes" class="btn btn-primary" data-dismiss="modal">Save changes</button>
                 </div>
 
             </div>
@@ -75,17 +102,27 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" id="createNewList"class="btn btn-primary">Save changes</button>
+                    <button type="button" id="createNewList" class="btn btn-primary" >Save changes</button>
                 </div>
             </div>
         </div>
     </div>
 </main>
 
-<footer class="bg-dark">
-    <a href="">Facebook</a>
-    <a href="">Twitter</a>
-    <a href="">Vine</a>
+<footer class="navbar fixed-bottom bg-dark">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-5"></div>
+            <div class="col-2 text-center">
+                <a class="onboard-text m-1" href="">Facebook</a>
+                <a class="onboard-text m-1" href="">Twitter</a>
+                <a class="onboard-text m-1" href="">Vine</a>
+            </div>
+            <div class="col-5"></div>
+        </div>
+    </div>
+    <div class="col-8">
+    </div>
 </footer>
 
 
@@ -111,33 +148,52 @@
 
 
 <script>
-    //$("#lists-area").html("Hello World")
-    $( function() {
-
-        // Dette må genereres med javascript
-        /*$("#0").sortable({
-            connectWith:"#1,#2",
-        });
-        $("#0").disableSelection();
-        $("#1").sortable({
-            connectWith:"#0,#2",
-        });
-        $("#1").disableSelection();
-        $("#2").sortable({
-            connectWith:"#0,#1",
-        });
-        $("#2").disableSelection();*/
-
-       $("#lists-area").sortable({
-           handle: 'div',
-           items: 'li',
+   // $( function() {
+       $("ul.container").sortable({
+           cursor: 'pointer',
            toleranceElement: '> div',
+           items: 'li',
+           connectWith: 'ul.container',
+           handle: 'div',
+           placeholder: 'placeholder',
+           containment: '#lists-area',
+           tolerance: 'pointer',
+           revert: true,
            delay: 100,
-        });
-        $("#lists-area").disableSelection();
+   });
+
+      //  $("ul.container").disableSelection();
 
 
-    } );
+
+    $("ul.container > li > ul").sortable({
+        cursor: 'pointer',
+        toleranceElement : '> div',
+        item: 'li',
+        handle: 'div',
+        connectWith: 'ul.container > li > ul',
+        placeholder: 'placeholder',
+        containment: '#lists-area',
+        tolerance: 'pointer',
+        revert: true,
+        delay: 100,
+        update: function (event, ui) {
+
+        }
+    });
+
+    $("")
+
+   //$("ul.container > li > ul").disableSelection();
+
+
+    //} );
+
+
+
+
+
+
 </script>
 
 </body>
