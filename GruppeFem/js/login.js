@@ -1,3 +1,7 @@
+//------------------------------->>UserArray to localstorage<<----------------------------------
+/*function saveCurrentUserObject(i){
+                localStorage.setItem('currentUserObject', JSON.stringify(users[i]));   
+}*/
 //---------------------------------------->>Login<<---------------------------------------------
 function checkLogIn() {
     let username = document.getElementById("username").value;
@@ -14,7 +18,7 @@ function checkLogIn() {
                 
                 return;
             }
-        } 
+        }
     }
     
     loginFailedSnack();
