@@ -107,13 +107,9 @@ function renameTavle() {
 
             }
         }
-        alert(thisIndex);
         let arrayOfBoards = group[groupIndex].boards;
-        alert(group[groupIndex].boards[thisIndex].name);
         arrayOfBoards[thisIndex].name = newName.value;
-        alert(arrayOfBoards[thisIndex].name);
         thisTavleOut.innerHTML = newName.value;
-        alert(group[groupIndex].boards[thisIndex].name);
     }
     thisTavleOut.setAttribute("id", newName.value + groupIndex +thisIndex);
     newName.value = "";
@@ -133,7 +129,6 @@ function lagExtraTavle(){
     let nyTavleInput = document.getElementById("bruker-Input");
     for (let j = 0; j < group[groupIndex].boards.length; j++){
         if (group[groupIndex].boards[j].name === nyTavleInput.value){
-            alert("oof");
             sameName = true;
         }
     }
