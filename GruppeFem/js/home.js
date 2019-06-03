@@ -100,15 +100,22 @@ function renameTavle() {
     if(nameExists === true) {
         alert("Det er allerede en tavle med dette navnet. Vennligst velg et annet navn.");
     } else {
-        for(let o = 0; o <group[groupIndex].boards.length; i++){
-            thisTavleOut.innerHTML 
+        for(let o = 0; o <group[groupIndex].boards.length; o++){
+            if(thisTavleOut.innerHTML === group[groupIndex].boards[o].name){
+                var thisIndex = o;
+            }  else{
+
+            }
         }
+        alert(thisIndex);
         let arrayOfBoards = group[groupIndex].boards;
+        alert(group[groupIndex].boards[thisIndex].name);
         arrayOfBoards[thisIndex].name = newName.value;
         alert(arrayOfBoards[thisIndex].name);
         thisTavleOut.innerHTML = newName.value;
-        newName.value = "";
+        alert(group[groupIndex].boards[thisIndex].name);
     }
+    thisTavleOut.setAttribute("id", newName.value + groupIndex +thisIndex);
     newName.value = "";
 }
 
