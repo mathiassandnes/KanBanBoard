@@ -1,7 +1,7 @@
 function changeTavle(id){
     let modal = document.getElementById("link-Tavle");
     let tavleName = document.getElementById(id);
-    modal.innerHTML = tavleName.innerHTML;
+    modal.innerHTML = "gå til " + tavleName.innerHTML;
     let hiddenHead = document.getElementById("tavle-Head");
     hiddenHead.innerHTML = id;
 }
@@ -10,7 +10,7 @@ function lagGruppe(){
     for(let i=0; i < group.length; i++){
         let gruppelist = document.createElement("table");
         let groupBody = document.getElementById("gruppe-Body");
-        gruppelist.setAttribute("id","tavle"+i);
+        gruppelist.setAttribute("id",group[i].name + i);
         gruppelist.setAttribute("numb",i);
         let addButton = document.createElement("button");
         addButton.setAttribute("class", "btn btn-info btn-sm");
@@ -28,26 +28,23 @@ function lagGruppe(){
 
         let tavleList = document.createElement("tr");
         tavleList.setAttribute("id","tr"+i);
-        let gruppeliste = document.getElementById("tavle" + i);
+        tavleList.setAttribute("numb", i);
+        let gruppeliste = document.getElementById(group[i].name + i);
         gruppeliste.appendChild(tavleList);
 
-        function lagTavle(board) {
+        function lagTavle() {
             let arrayOfTavler = group[i].boards;
             for(let k = 0; k < arrayOfTavler.length;k++){
                 let tavle = document.createElement("td");
                 let tavleList = document.getElementById("tr"+i);
                 tavleList.appendChild(tavle);
-                let nameOfTavle = group[i].boards[k].board+k;
-                //alert(k);
-                let num = k + 1;
-                let bor = Object.keys(board);
                 let arrayOfBoards = group[i].boards;
                 let arrayOfTables = arrayOfBoards[k].name;
                 tavle.innerHTML = arrayOfTables;
                 tavle.setAttribute("class","btn btn-info btn-lg");
                 tavle.setAttribute("data-toggle","modal");
                 tavle.setAttribute("data-target","#myTavleModal");
-                tavle.setAttribute("id","tavle"+i+k);
+                tavle.setAttribute("id",arrayOfTables + i + k);
                 tavle.setAttribute("onclick","changeTavle(this.id)");
                 tavle.setAttribute("numb", k);
             }
@@ -59,6 +56,15 @@ function lagGruppe(){
 
 
     }
+}
+
+function findObjectByName(array, key, value) {
+    for (var i = 0; i < array.length; i++) {
+        if (array[i][key] === value) {
+            return array[i];
+        }
+    }
+    return null;
 }
 
 lagGruppe();
@@ -73,7 +79,36 @@ function renameTavle() {
     let hiddenID = thisTavle.innerHTML;
     let newName = document.getElementById("change-Input");
     let thisTavleOut = document.getElementById(hiddenID);
-    thisTavleOut.innerHTML = newName.value;
+    let trTag = thisTavleOut.parentElement;
+    let groupIndex = trTag.getAttribute("numb");
+    let arrayOfGroup = group[groupIndex];
+    let nameExists = false;
+    for(let l = 0; l <group[groupIndex].boards.length;l++) {
+        if (newName.value === "") {
+            alert("Vennligst oppgi nytt navn.");
+            newName.value = "";
+        } else if (newName.value === arrayOfGroup.boards[l].name) {
+            nameExists = true;
+
+        }
+    }
+
+    function getIndex(name) {
+        return name = thisTavleOut.innerHTML;
+    }
+
+    if(nameExists === true) {
+        alert("Det er allerede en tavle med dette navnet. Vennligst velg et annet navn.");
+    } else {
+        for(let o = 0; o <group[groupIndex].boards.length; i++){
+            thisTavleOut.innerHTML 
+        }
+        let arrayOfBoards = group[groupIndex].boards;
+        arrayOfBoards[thisIndex].name = newName.value;
+        alert(arrayOfBoards[thisIndex].name);
+        thisTavleOut.innerHTML = newName.value;
+        newName.value = "";
+    }
     newName.value = "";
 }
 
@@ -83,13 +118,27 @@ function removeChangeInput(){
 }
 
 function lagExtraTavle(){
-    if(document.getElementById("bruker-Input").value == ""){
-        alert("vennligst skriv inn et navn");
-    } else {
+
     let hiddenHead = document.getElementById("hiddenModal").innerHTML;
     let thisValue = document.getElementById(hiddenHead);
     let groupIndex = thisValue.getAttribute("numb");
+    let sameName = false;
     let nyTavleInput = document.getElementById("bruker-Input");
+    for (let j = 0; j < group[groupIndex].boards.length; j++){
+        if (group[groupIndex].boards[j].name === nyTavleInput.value){
+            alert("oof");
+            sameName = true;
+        }
+    }
+
+    if(nyTavleInput.value === ""){
+        alert("Vennligst skriv inn et navn");
+    } else if(sameName === true) {
+        alert("Dette navnet blir allerede brukt i denne gruppen. Vennligst skriv inn et annet navn.");
+        nyTavleInput.value = "";
+    } else {
+
+
     let tavleIndex = group[groupIndex].boards.length;
     let newtavle =
     {
@@ -97,19 +146,20 @@ function lagExtraTavle(){
         lists: [],
         member: [],
     };
-    nyTavleInput.value = "";
+
     group[groupIndex].boards.push(newtavle);
+    board.push(newtavle);
     let tavle = document.createElement("td");
     let tavleList = document.getElementById("tr" + groupIndex);
     tavle.setAttribute("class", "btn btn-info btn-lg");
     tavle.setAttribute("data-toggle","modal");
     tavle.setAttribute("data-target","#myTavleModal");
-    tavle.setAttribute("id", "tavle" + groupIndex + tavleIndex);
+    tavle.setAttribute("id", nyTavleInput.value + groupIndex + tavleIndex);
     tavle.setAttribute("onclick","changeTavle(this.id)");
     tavleList.appendChild(tavle);
     let arrayOfBoards = group[groupIndex].boards;
-    let arrayOfTables = arrayOfBoards[tavleIndex].name;
     tavle.innerHTML = arrayOfBoards[tavleIndex].name;
+    nyTavleInput.value = "";
     }
 }
 
@@ -121,11 +171,13 @@ function sendId(id){
 function removeTable(){
     let hiddenHead = document.getElementById("tavle-Head").innerHTML;
     let boardIndex = document.getElementById(hiddenHead);
-    let groupIndexFinder = hiddenHead.slice(0,hiddenHead.length - 1);
+    let groupIndexFinder = boardIndex.parentElement.id;
+    let tr = document.getElementById(groupIndexFinder);
     let bIndex = boardIndex.getAttribute("numb");
-    let groupFound = document.getElementById(groupIndexFinder);
+    let groupFound = document.getElementById(tr.parentElement.id);
     let gIndex = groupFound.getAttribute("numb");
     group[gIndex].boards.splice(bIndex,1);
+    board.splice(bIndex, 1);
     boardIndex.parentNode.removeChild(boardIndex);
     return false;
 }
