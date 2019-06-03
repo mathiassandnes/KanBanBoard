@@ -9,6 +9,13 @@
 </head>
 <body class="onboard-background">
 <div class="navbar bg-dark" style="height: 55px;">
+    
+    <!-- Current user display -->
+    
+    <div style="position: absolute; right: 5%; top: 5px">
+                <h5 id="currentUser"></h5>
+    </div>
+    
     <!-- Links -->
     <div class="row col-12">
         <div class="col-1">
@@ -20,7 +27,14 @@
         </div>
         <div class="col-11">
             <button class="btn btn-primary" data-toggle="modal" data-target="#new-group-modal">Ny gruppe</button>
+            
+            <div style="position: absolute; right: 5%; top: 5px">
+                <h5 id="currentUser"></h5>
+            </div>
         </div>
+        
+        
+    
     </div>
 </div>
 
@@ -125,6 +139,7 @@
 <script src="js/lists.js"></script>
 <script src="js/boards.js"></script>
 <script src="js/groups.js"></script>
+<script src="localstorage/userData.js"></script>
 
 <!-- Funksjonalitet -->
 <script src="js/newGroupLogic.js"></script>
