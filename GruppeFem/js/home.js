@@ -42,7 +42,7 @@ function lagGruppe(){
                 let arrayOfBoards = group[i].boards;
                 let arrayOfTables = arrayOfBoards[k].name;
                 tavle.innerHTML = arrayOfTables;
-                tavle.setAttribute("class","btn btn-info btn-lg");
+                tavle.setAttribute("class","btn bg-light text-dark m-1 center btn-info btn-lg");
                 tavle.setAttribute("data-toggle","modal");
                 tavle.setAttribute("data-target","#myTavleModal");
                 tavle.setAttribute("id",arrayOfTables + i + k);
@@ -137,7 +137,7 @@ function lagExtraTavle(){
     board.push(newtavle);
     let tavle = document.createElement("td");
     let tavleList = document.getElementById("tr" + groupIndex);
-    tavle.setAttribute("class", "btn btn-info btn-lg");
+    tavle.setAttribute("class", "btn bg-light text-dark m-1 center btn-info btn-lg");
     tavle.setAttribute("data-toggle","modal");
     tavle.setAttribute("data-target","#myTavleModal");
     tavle.setAttribute("id", nyTavleInput.value + groupIndex + tavleIndex);
