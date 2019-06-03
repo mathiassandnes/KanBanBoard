@@ -2,6 +2,7 @@
 function changeTavle(id){
     let modal = document.getElementById("link-Tavle");
     let tavleName = document.getElementById(id);
+    modal.setAttribute("onclick","window.location.href='board.html'");
     modal.innerHTML = "gå til " + tavleName.innerHTML;
     let hiddenHead = document.getElementById("tavle-Head");
     hiddenHead.innerHTML = id;
@@ -15,9 +16,9 @@ function lagGruppe(){
         gruppelist.setAttribute("numb",i);
         //Lager knappen for å legge til flere tavler.
         let addButton = document.createElement("button");
-        addButton.setAttribute("class", "btn btn-info btn-sm");
+        addButton.setAttribute("class", "btn btn-primary btn-sm");
         addButton.innerHTML = "Legg til tavle";
-        gruppelist.innerHTML = group[i].name;
+        gruppelist.innerHTML = "<legend>"+group[i].name+"</legend>";
         groupBody.appendChild(gruppelist);
         gruppelist.appendChild(addButton);
         addButton.setAttribute("data-toggle","modal");
@@ -36,13 +37,13 @@ function lagGruppe(){
         function lagTavle() {
             let arrayOfTavler = group[i].boards;
             for(let k = 0; k < arrayOfTavler.length;k++){
-                let tavle = document.createElement("td");
+                let tavle = document.createElement("div");
                 let tavleList = document.getElementById("tr"+i);
                 tavleList.appendChild(tavle);
                 let arrayOfBoards = group[i].boards;
                 let arrayOfTables = arrayOfBoards[k].name;
                 tavle.innerHTML = arrayOfTables;
-                tavle.setAttribute("class","btn bg-light text-dark m-1 center btn-info btn-lg");
+                tavle.setAttribute("class","btn btn-dark m-3 onboard-text center");
                 tavle.setAttribute("data-toggle","modal");
                 tavle.setAttribute("data-target","#myTavleModal");
                 tavle.setAttribute("id",arrayOfTables + i + k);
@@ -135,9 +136,9 @@ function lagExtraTavle(){
 
     group[groupIndex].boards.push(newtavle);
     board.push(newtavle);
-    let tavle = document.createElement("td");
+    let tavle = document.createElement("div");
     let tavleList = document.getElementById("tr" + groupIndex);
-    tavle.setAttribute("class", "btn bg-light text-dark m-1 center btn-info btn-lg");
+    tavle.setAttribute("class", "btn onboard-text m-3 center btn-dark");
     tavle.setAttribute("data-toggle","modal");
     tavle.setAttribute("data-target","#myTavleModal");
     tavle.setAttribute("id", nyTavleInput.value + groupIndex + tavleIndex);

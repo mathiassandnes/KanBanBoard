@@ -10,7 +10,8 @@ var list = [
     {
         name: "Done",
         cards: [/*card[6], card[7], card[8]*/],
-    }/*,
+    }
+/*,
     {
         name: "Kek",
         cards: [card[9], card[10], card[11]],
@@ -39,4 +40,4 @@ var list = [
 
 
 
-]
+];
