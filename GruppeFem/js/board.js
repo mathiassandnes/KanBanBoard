@@ -3,31 +3,33 @@
  */
 //her lagres alle elementer på siden
 
-let arrayOfBoards = group[0].boards;
-let arrayOfLists = arrayOfBoards[0].lists;
+var arrayOfBoards = group[0].boards;
 
-
+//tegner tabs
 function drawBoards() {
     for (let i = 0; i < arrayOfBoards.length; i++) {
         let newTabButtonElement = createHtmlElementWithText('button', arrayOfBoards[i].name);
         newTabButtonElement.setAttribute("onclick", "drawTables("+i+")");
-        newTabButtonElement.className="btn-light rounded m-1"
+        newTabButtonElement.className="btn rounded m-1"
+        newTabButtonElement.style="background-color: #E72552; color: #FFF1D4;"
         document.getElementById('nav').appendChild(newTabButtonElement);
     }
 }
 
+//gjør det enklere å lage et html elemenet med tekst
 function createHtmlElementWithText(tagName, text){
     let element = document.createElement(tagName);
     element.innerHTML = text;
     return element;
 }
 
-
+//kobler til en modal med setAttribute
 function addModal(element, modalName){
     element.setAttribute('data-toggle', 'modal');
     element.setAttribute('data-target', '#'+modalName);
 }
 
+//tegner et enkelt kort
 function drawCard(name, container){
     let cardElementContainer = document.createElement('li');
     let cardElement = createHtmlElementWithText('div', name);
@@ -46,154 +48,195 @@ function drawCard(name, container){
     cardElement.id = name;
 }
 
+//all funksjonalitet som ligger i modalen på lister
+function listModal(target, i, board){
+    let listNameInModal = document.getElementById('list-name-list-modal');
+    let isNewList = true;
+    let currentList;
+    for(let i = 0; i < list.length; i++){
+        if(list[i].name === target.innerHTML){
+            currentList = list[i];
 
-/**
- * Genererer alle listene, med kort og knapper
- */
-function drawTables(board) {
+            listNameInModal.value = currentList.name;
 
-    // clears the screen
-    document.getElementById('lists-area').innerHTML="";
+            isNewList = false;
+        }
+    }
+    if(isNewList){
+        listNameInModal.value = "";
+    }
 
-//henter ut en liste med lister
-
-//henter ut en html elementet som listene skal være inni
-    let listsArea = document.getElementById('lists-area');
-
-//looper igjennom listen med lister
-    for (let i = 0; i < arrayOfLists.length; i++) {
-
-        //lager et nytt html element
-        let listElementContainer = document.createElement('li');
-        let listElement = createHtmlElementWithText('div', arrayOfLists[i].name); // få dette større <legend>
-        let listElementBody = document.createElement('ul');
-
-        listElementContainer.className = "m-3 bg-dark rounded list-element p-1";
-        listElementBody.className = "bg-info";
-
-
-        var arrayOfCards = arrayOfLists[i].cards;
-
-
-        listElement.id = i;
-        listElement.className = "col-12 text-12 onboard-text text-center m-1 p-2"
-        //legger listen inni liste området
-        listElementContainer.appendChild(listElement);
-        listElementContainer.appendChild(listElementBody);
-
-        //legger til navnet til listen i en dropdown meny på kort modal
-        document.getElementById('list-name').appendChild(createHtmlElementWithText('option', arrayOfLists[i].name));
-
-
-        //adds card manipulation
-
-
-        listElementContainer.onclick = function(e) {
-            let cardNameInModal = document.getElementById('card-name-input');
-            let cardDescriptionInModal = document.getElementById('card-description');
-            let priorityInModal = document.getElementById('priority');
-            let listNameInModal = document.getElementById('list-name');
-
-            var isNewCard = true;
-            var currentCard;
-
-            // finds the correct card in backend and draws the modal with its values
-            for(let x = 0; x < card.length; x++){
-                if(e.target.innerHTML === card[x].name){
-
-                    console.log('This card "Exists"')
-                    currentCard = card[x];
-
-                    cardNameInModal.value = currentCard.name;
-                    cardDescriptionInModal.value = currentCard.description;
-                    priorityInModal.options.selectedIndex = currentCard.priority;
-                    listNameInModal.options.selectedIndex = i;
-                    isNewCard = false;
-                }
-            }
-            if(isNewCard) {
-                console.log('This is a "new" card')
-                cardNameInModal.value = "";
-                cardDescriptionInModal.value = "";
-                document.getElementById('priority').options.selectedIndex = 0;
-            }
-
-
-            document.getElementById('save-card-changes').onclick = function(){
-
-                if(isNewCard){
-                    let container = document.createElement('li');
-                    let newCard = createHtmlElementWithText('div', cardNameInModal.value)
-                    container.appendChild(newCard);
-                    listElementBody.appendChild(container);
-
-                    currentCard = {
-                        name: cardNameInModal.value,
-                        description: cardDescriptionInModal.value,
-                        priority: priorityInModal.options.selectedIndex
-                    };
-
-                    arrayOfLists[i].cards.push(currentCard);
-                    console.log(currentCard);
-                    card.push(currentCard);
-                }
-
-                // changes name if updated
-                if (cardNameInModal.value != currentCard.name){
-                    e.target.innerHTML = cardNameInModal.value;
-                    currentCard.name = cardNameInModal.value;
-                }
-
-                // changes description if updated
-                if (cardDescriptionInModal.value != currentCard.description){
-                    currentCard.description = cardDescriptionInModal.value;
-                }
-
-                // changes priority if updated
-                if (priorityInModal.options.selectedIndex != currentCard.priority){
-                    currentCard.priority = priorityInModal.options.selectedIndex;
-                }
-
-                drawCard(currentCard.name, listElementContainer)
-
+    document.getElementById('create-new-list').onclick = function(){
+        if(isNewList){
+            currentList = {
+                name: listNameInModal.value,
+                cards: []
             };
-        };
 
-        // makes the cards for a list
-        for (let j = 0; j < arrayOfCards.length; j++) {
+            drawList(currentList, i)
 
-            drawCard(arrayOfCards[j].name, listElementContainer)
+            console.log(board);
+            board.lists.push(currentList);
+            list.push(currentList);
+
+        }
+        else{
+            currentList.name = listNameInModal.value;
+            target.innerHTML = listNameInModal.value;
+
+
+
         }
 
-        /**
-         *Nytt kort knapp, trenger funksjonalitet
-         */
-        let newCardButton = createHtmlElementWithText('button', 'Nytt kort');
 
-        //adds modal
-        addModal(newCardButton, 'card-modal');
-
-        newCardButton.className="center btn btn-primary col-12 new-card-button";
-        listElementContainer.appendChild(newCardButton);
-        listsArea.appendChild(listElementContainer);
 
     }
 
-    /**
-     *NY liste knapp, trenger funksjonalitet
-     */
 
-    var newListButton = createHtmlElementWithText('button', 'Ny liste');
+}
+
+function cardModal(e, i, container, list) {
+
+    let cardNameInModal = document.getElementById('card-name-input');
+    let cardDescriptionInModal = document.getElementById('card-description');
+    let priorityInModal = document.getElementById('priority');
+    let listNameInModal = document.getElementById('list-name');
+    var isNewCard = true;
+    var currentCard;
+
+    // finds the correct card in backend and draws the modal with its values
+    for (let x = 0; x < card.length; x++) {
+        if (e.target.innerHTML === card[x].name) {
+
+            currentCard = card[x];
+
+            cardNameInModal.value = currentCard.name;
+            cardDescriptionInModal.value = currentCard.description;
+            priorityInModal.options.selectedIndex = currentCard.priority;
+            listNameInModal.options.selectedIndex = i;// her må vi finne på noe bedre
+            isNewCard = false;
+        }
+    }
+    if (isNewCard) {
+        cardNameInModal.value = "";
+        cardDescriptionInModal.value = "";
+        document.getElementById('priority').options.selectedIndex = 0;
+    }
+
+
+    document.getElementById('save-card-changes').onclick = function () {
+
+        if (isNewCard) {
+            currentCard = {
+                name: cardNameInModal.value,
+                description: cardDescriptionInModal.value,
+                priority: priorityInModal.options.selectedIndex
+            };
+
+            drawCard(currentCard.name, container);
+
+            list.cards.push(currentCard);
+            card.push(currentCard);
+
+        }
+
+        // changes name if updated
+        if (cardNameInModal.value != currentCard.name) {
+            e.target.innerHTML = cardNameInModal.value;
+            currentCard.name = cardNameInModal.value;
+        }
+
+        // changes description if updated
+        if (cardDescriptionInModal.value != currentCard.description) {
+            currentCard.description = cardDescriptionInModal.value;
+        }
+
+        // changes priority if updated
+        if (priorityInModal.options.selectedIndex != currentCard.priority) {
+            currentCard.priority = priorityInModal.options.selectedIndex;
+        }
+    };
+}
+
+function drawList(list, i) {
+    let listElementContainer = document.createElement('li');
+    let listElementBody = document.createElement('ul');
+    let listElement = createHtmlElementWithText('div', list.name); // få dette større <legend>
+
+
+    listElementContainer.className = "m-3 bg-dark rounded list-element p-1 col-1";
+    listElementBody.className = "bg-info";
+    listElement.className = "col-12 text-12 onboard-text text-center m-1 p-2";
+
+    listElementContainer.id = list.name+"container";
+    listElementBody.id = list.name+"body";
+    listElement.id = list.name;
+
+    addModal(listElement, 'list-modal');
+    listElement.onclick = function(e){
+        listModal(e.target, i, arrayOfBoards);
+    };
+
+
+    //legger listen inni liste området
+    listElementContainer.appendChild(listElement);
+    listElementContainer.appendChild(listElementBody);
+    document.getElementById('lists-area').appendChild(listElementContainer);
+
+
+    //legger til navnet til listen i en dropdown meny på kort modal
+    document.getElementById('list-name').appendChild(createHtmlElementWithText('option', list.name));
+
+    listElementContainer.onclick = function (e) {cardModal(e, i, listElementBody, list)};
+
+    let newCardButton = createHtmlElementWithText('button', 'New card');
+
+    addModal(newCardButton, 'card-modal');
+
+    newCardButton.className = "center btn btn-primary col-12 new-card-button";
+    listElementContainer.appendChild(newCardButton);
+
+}
+
+function drawTables(board) {
+
+    let arrayOfLists = arrayOfBoards[board].lists;
+
+    // clears the screen
+    let contentArea = document.getElementById('content-area');
+    contentArea.innerHTML = "";
+
+
+    //henter ut en html elementet som listene skal være inni
+    let listsArea = document.createElement('ul');
+    contentArea.appendChild(listsArea);
+    listsArea.id = 'lists-area';
+    listsArea.className = 'row col-12 m-1 container onboard-background';
+
+    //looper igjennom listen med lister
+    for (let i = 0; i < arrayOfLists.length; i++) {
+        let arrayOfCards = arrayOfLists[i].cards;
+        drawList(arrayOfLists[i], i);
+
+        let listElementContainer = document.getElementById(arrayOfLists[i].name+"container")
+        let listElementBody = document.getElementById(arrayOfLists[i].name+"body")
+
+        for (let j = 0; j < arrayOfCards.length; j++) {
+            drawCard(arrayOfCards[j].name, listElementBody)
+        }
+
+
+
+    }
+    //let newListButtonContaner;
+    let newListButton = createHtmlElementWithText('button', 'New list');
     newListButton.id = "new-list";
     newListButton.className = "col-1 btn bg-light m-5";
-
-
-    //adds modal
     addModal(newListButton, 'list-modal');
+    let i = 0;
+    newListButton.onclick = function(e){listModal(e.target, i, arrayOfBoards[board]);};
 
-
-
-    listsArea.appendChild(newListButton);
+    document.getElementById('content-area').appendChild(newListButton);
 }
 
 drawBoards();
