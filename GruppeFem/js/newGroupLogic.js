@@ -16,7 +16,6 @@ for (let i = 0; i < users.length; i++) {
 names.sort();
 
 ul = document.getElementById("search-result");
-ul.style = "list-style: none; padding: 0;"
 
 var render_lists = function (lists) {
   var li = "";
