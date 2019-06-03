@@ -2,18 +2,18 @@
 
 
 
-let names = [];
+let usernames = [];
 let members = [];
 
 
 // gjør at names blir et array av alle navn i databasen
 for (let i = 0; i < users.length; i++) {
-  names.push(users[i].name);
+  usernames.push(users[i].username);
 
 }
 
 //alfabetisk rekkefølge
-names.sort();
+usernames.sort();
 
 ul = document.getElementById("search-result");
 ul.style = "list-style: none; padding: 0;"
@@ -28,14 +28,14 @@ var render_lists = function (lists) {
   ul.innerHTML = li;
 }
 
-render_lists(names);
+render_lists(usernames);
 
 // lets filters it
 input = document.getElementById('user-search-input');
 
 var filterUsers = function (event) {
   keyword = input.value.toLowerCase();
-  filtered_users = names.filter(function (user) {
+  filtered_users = usernames.filter(function (user) {
     user = user.toLowerCase();
     return user.indexOf(keyword) > -1;
   });
@@ -47,29 +47,20 @@ input.addEventListener('keyup', filterUsers);
 
 
 
-
+1
 //trykker man på et navn, legges de til i listen
 
-function addClickInput(name) {
+function addClickInput(username) {
   // 1. legges til i members liste
 
-  members.push(name);
+  members.push(username);
 
   let membersString = '';
 
   for (let x = 0; x < members.length; x++) {
 
-    membersString += '<button class= btn-primary id = x>' + members[x] + '</button>';
-    membersString += '<button class= btn-primary id = x  onclick= removeClickInput(this.id) >' + "X" + '</button>';
-  
-    
-
-
-
-
-
-
-
+     membersString += '<button class= btn-primary id = btn' + x + ' onclick = removeClickInput(' + x + ') >' + members[x] + '</button>';
+     membersString += '<button class= btn-primary id = xbtn' + x + ' onclick= removeClickInput(' + x + ') >' + "X" + '</button>';
   }
 
   document.getElementById("members").innerHTML = membersString;
@@ -85,22 +76,21 @@ function addClickInput(name) {
 
 
 function removeClickInput(id) {
+//  for (let j = 0; j < members.length; j++) {
+ //   if (document.getElementById(x) === members[j].username)
+//   members.splice(j,1);
+  //  console.log(members);
+ // }
 
-  let removeButton = document.getElementById(id );
+  let removeButton = document.getElementById('btn' + id);
   removeButton.parentNode.removeChild(removeButton);
-  members.splice(id, 1);
+  let removeXButton = document.getElementById('xbtn' + id );
+  removeXButton.parentNode.removeChild(removeXButton);
 
-
+  console.log(members);
+  
 
 }
-
-
-
-
-
-
-
-
 
 
 
