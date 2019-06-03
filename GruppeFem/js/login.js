@@ -13,7 +13,7 @@ function checkLogIn() {
             if(password == users[i].password){
                 document.getElementById("username").className = "form-control m-1 is-valid";
                 document.getElementById("password").className = "form-control m-1 is-valid";
-                localStorage.setItem('currentUser', username);
+                localStorage.setItem('currentUser', users[i].name);
                 window.location.replace("home.html");
                 
                 return;
