@@ -20,7 +20,6 @@ function lagGruppe(){
         gruppelist.innerHTML = group[i].name;
         groupBody.appendChild(gruppelist);
         gruppelist.appendChild(addButton);
-
         addButton.setAttribute("data-toggle","modal");
         addButton.setAttribute("data-target","#myModal");
         addButton.setAttribute("numb",i);
