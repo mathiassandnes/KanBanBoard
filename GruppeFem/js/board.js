@@ -73,6 +73,7 @@ function listModal(target, i){
     }
 
 }
+
 function drawList(list, i) {
     let listElementContainer = document.createElement('li');
     let listElementBody = document.createElement('ul');

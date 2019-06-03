@@ -93,26 +93,3 @@ function removeClickInput () {
     
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
