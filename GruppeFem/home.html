@@ -85,24 +85,44 @@
                 </div>
             </div>
 <body class="onboard-background">
-
-<nav class="navbar bg-dark">
-
-    <ul class="row navbar" style="list-style-type: none; height: 35px">
-        <li class="nav-item">
-            <a href="landing.html" ><i class="fa fa-home fa-2x"></i></a>
-        </li>
-
-        <li class="nav-item" id="left-area" style="margin-left: 50px;">
+<div class="navbar bg-dark" style="height: 55px;">
+    
+    <!-- Current user display -->
+    
+    <div style="position: absolute; right: 5%; top: 5px">
+                <h5 id="currentUser"></h5>
+    </div>
+    
+    <!-- Links -->
+    <div class="row col-12">
+        <div class="col-1">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="home.html" ><i class="fa fa-home fa-2x"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-11">
             <button class="btn btn-primary" data-toggle="modal" data-target="#new-group-modal">Ny gruppe</button>
-        </li>
-    </ul>
+            
+            <div style="position: absolute; right: 5%; top: 5px">
+                <h5 id="currentUser"></h5>
+            </div>
+        </div>
+        
+        
+    
+    </div>
+</div>
 
-</nav>
+
+
 
 <main class="col-12 onboard-text">
 
     <div id="boards-area" class="m-5 ">
+<main class="col-12">
+    <div id="boards-area" class="m-5  onboard-text">
         <div id="Group" class="row m-4" style="border-color: red;">
             <h3 class="m-2">Gruppenavn</h3>
             <button id="row1-board1" onclick="window.location.href = 'board.html';">
@@ -138,24 +158,25 @@
 
     <div class="modal fade" id="new-group-modal" tabindex="-1" role="dialog" aria-labelledby="new-group-modal-label" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
+            <div class="modal-content ">
 
-                <div class="modal-header">
+                <div class="  modal-header">
                     <div id="group-name" class="form-group">
-                        <input type="text" class="form-control" placeholder="New group name">
+                        <input type="text" class="form-control " placeholder="New group name">
                     </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
-                <div class="modal-body">
-                    <div id="new-group-modal-body" class="form-group col-12 row" >
+                <div class="modal-body ">
+                    <div id="new-group-modal-body" class=" form-group col-12 row" >
                         <label for="group-description">Description:</label>
-                        <textarea class="col-12" rows="2" id="group-description"></textarea>
-                        <label for="members">Members:</label>
-                        <textarea class="col-12" rows="1" id="members"></textarea>
-                        <input id="user-search-input" type="text" class="form-control col-12" placeholder="Søk på folk du vil ha i gruppen:">
+                        <textarea class="  rounded col-12" rows="2" id="group-description"></textarea>
+                       <label for="members">Members: </label>
+                       <div class=" rounded col-12" rows="1" id="members" >  </div>
+                      
+                        <input id="user-search-input" type="text" class="  form-control col-12" placeholder="Søk på folk du vil ha i gruppen:">
 
                         <ul id="search-result" class="col-6"></ul>
 
@@ -198,6 +219,7 @@
 <script src="js/lists.js"></script>
 <script src="js/boards.js"></script>
 <script src="js/groups.js"></script>
+<script src="localstorage/userData.js"></script>
 
 <!-- Funksjonalitet -->
 <script src="js/home.js"></script>
