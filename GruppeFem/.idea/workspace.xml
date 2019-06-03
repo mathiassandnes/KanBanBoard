@@ -16,18 +16,16 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/board.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="781">
-              <caret line="90" lean-forward="true" selection-start-line="90" selection-end-line="90" />
+            <state relative-caret-position="901">
+              <caret line="98" selection-start-line="98" selection-end-line="98" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#2490#2497#1" expanded="true" />
-                <element signature="e#3892#3899#1" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/landing.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="184">
@@ -48,6 +46,15 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/localstorage/userData.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="63" lean-forward="true" selection-start-line="1" selection-start-column="63" selection-end-line="1" selection-end-column="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/board.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -60,8 +67,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="543">
-              <caret line="225" column="25" lean-forward="true" selection-start-line="225" selection-start-column="25" selection-end-line="225" selection-end-column="25" />
+            <state relative-caret-position="633">
+              <caret line="231" column="25" selection-start-line="231" selection-start-column="25" selection-end-line="231" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -79,7 +86,7 @@
         <entry file="file://$PROJECT_DIR$/js/users.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="773">
-              <caret line="195" lean-forward="true" selection-start-line="195" selection-end-line="195" />
+              <caret line="195" selection-start-line="195" selection-end-line="195" />
             </state>
           </provider>
         </entry>
@@ -125,10 +132,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2278" />
-    <option name="y" value="-8" />
-    <option name="width" value="1680" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="1" />
+    <option name="y" value="23" />
+    <option name="width" value="1118" />
     <option name="height" value="1027" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -144,6 +151,16 @@
             <path>
               <item name="GruppeFem" type="b2602c69:ProjectViewProjectNode" />
               <item name="GruppeFem" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GruppeFem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GruppeFem" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GruppeFem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GruppeFem" type="462c0819:PsiDirectoryNode" />
+              <item name="localstorage" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -192,10 +209,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35120000" />
+    <option name="totallyTimeSpent" value="35448000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="23" width="1118" height="1027" extended-state="0" />
+    <frame x="1" y="23" width="1118" height="1027" extended-state="1" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989011" visible="true" weight="0.2347032" />
       <window_info id="Structure" order="1" sideWeight="0.50109893" side_tool="true" weight="0.084139265" />
@@ -219,8 +237,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/js/login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="543">
-          <caret line="225" column="25" lean-forward="true" selection-start-line="225" selection-start-column="25" selection-end-line="225" selection-end-column="25" />
+        <state relative-caret-position="633">
+          <caret line="231" column="25" selection-start-line="231" selection-start-column="25" selection-end-line="231" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -267,7 +285,7 @@
     <entry file="file://$PROJECT_DIR$/js/users.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="773">
-          <caret line="195" lean-forward="true" selection-start-line="195" selection-end-line="195" />
+          <caret line="195" selection-start-line="195" selection-end-line="195" />
         </state>
       </provider>
     </entry>
@@ -294,13 +312,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/board.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="781">
-          <caret line="90" lean-forward="true" selection-start-line="90" selection-end-line="90" />
+        <state relative-caret-position="901">
+          <caret line="98" selection-start-line="98" selection-end-line="98" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#2490#2497#1" expanded="true" />
-            <element signature="e#3892#3899#1" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/localstorage/userData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="63" lean-forward="true" selection-start-line="1" selection-start-column="63" selection-end-line="1" selection-end-column="63" />
         </state>
       </provider>
     </entry>
