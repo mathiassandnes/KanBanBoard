@@ -2,7 +2,7 @@
 function changeTavle(id){
     let modal = document.getElementById("link-Tavle");
     let tavleName = document.getElementById(id);
-    modal.innerHTML = "gå til " + tavleName.innerHTML;
+    modal.innerHTML = "Gå til " + tavleName.innerHTML;
     let hiddenHead = document.getElementById("tavle-Head");
     hiddenHead.innerHTML = id;
     modal.setAttribute("onclick","window.location.href='board.html'");
@@ -45,7 +45,7 @@ function lagGruppe(){
                 tavle.innerHTML = arrayOfTables;
                 tavle.setAttribute("class","btn bg-light text-dark m-1 center btn-info btn-lg");
                 tavle.setAttribute("data-toggle","modal");
-                tavle.setAttribute("data-target","#myTavleModal");
+                tavle.setAttribute("data-target","#tavle-Info-Modal");
                 tavle.setAttribute("id",arrayOfTables + i + k);
                 tavle.setAttribute("onclick","changeTavle(this.id)");
                 tavle.setAttribute("numb", k);
@@ -140,7 +140,7 @@ function lagExtraTavle(){
     let tavleList = document.getElementById("tr" + groupIndex);
     tavle.setAttribute("class", "btn bg-light text-dark m-1 center btn-info btn-lg");
     tavle.setAttribute("data-toggle","modal");
-    tavle.setAttribute("data-target","#myTavleModal");
+    tavle.setAttribute("data-target","#tavle-Info-Modal");
     tavle.setAttribute("id", nyTavleInput.value + groupIndex + tavleIndex);
     tavle.setAttribute("onclick","changeTavle(this.id)");
     tavleList.appendChild(tavle);
@@ -154,6 +154,10 @@ function sendId(id){
     let hiddenHead = document.getElementById("hiddenModal");
     hiddenHead.innerHTML = id;
 }
+//
+function askUserRemove() {
+    let hiddenHead = document.getElementById("tavle-Head").innerHTML
+}
 //Funksjon for å fjerne en tavle fra arrayet det lå i og fra HTML siden.
 function removeTable(){
     let hiddenHead = document.getElementById("tavle-Head").innerHTML;
@@ -166,6 +170,7 @@ function removeTable(){
     group[gIndex].boards.splice(bIndex,1);
     board.splice(bIndex, 1);
     boardIndex.parentNode.removeChild(boardIndex);
+
     return false;
 }
 
