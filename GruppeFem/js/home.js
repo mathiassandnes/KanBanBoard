@@ -72,7 +72,9 @@ function removeInput(){
 function renameTavle() {
     let thisTavle = document.getElementById("tavle-Head");
     let hiddenID = thisTavle.innerHTML;
-    let newName = document.getElementById("change-Input");
+    let firstNewName = document.getElementById("change-Input");
+    let newName = firstNewName.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    alert(newName);
     let thisTavleOut = document.getElementById(hiddenID);
     let trTag = thisTavleOut.parentElement;
     let groupIndex = trTag.getAttribute("numb");
@@ -80,10 +82,10 @@ function renameTavle() {
     let nameExists = false;
     //Her sjekkes det både om navnet allerede eksistere og om det ikke er noe i input feltet.
     for(let l = 0; l <group[groupIndex].boards.length;l++) {
-        if (newName.value === "") {
+        if (firstNewName.value === "") {
             alert("Vennligst oppgi nytt navn.");
-            newName.value = "";
-        } else if (newName.value === arrayOfGroup.boards[l].name) {
+            firstNewName.value = "";
+        } else if (firstNewName.value === arrayOfGroup.boards[l].name) {
             nameExists = true;
 
         }
@@ -100,11 +102,12 @@ function renameTavle() {
             }
         }
         let arrayOfBoards = group[groupIndex].boards;
-        arrayOfBoards[thisIndex].name = newName.value;
-        thisTavleOut.innerHTML = newName.value;
+        arrayOfBoards[thisIndex].name = firstNewName.value;
+        alert(arrayOfBoards[thisIndex].name);
+        thisTavleOut.innerHTML = firstNewName.value;
     }
-    thisTavleOut.setAttribute("id", newName.value + groupIndex +thisIndex);
-    newName.value = "";
+    thisTavleOut.setAttribute("id", firstNewName.value + groupIndex +thisIndex);
+    firstNewName.value = "";
 }
 
 // Fjerner tekst fra input når man lukker modal
@@ -119,26 +122,27 @@ function lagExtraTavle(){
     let thisValue = document.getElementById(hiddenHead);
     let groupIndex = thisValue.getAttribute("numb");
     let sameName = false;
-    let nyTavleInput = document.getElementById("bruker-Input");
+    let firstNyTavleInput = document.getElementById("bruker-Input");
+    let nyTavleInput = firstNyTavleInput.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
     //En loop som sjekker om navnet allerede eksisterer.
     for (let j = 0; j < group[groupIndex].boards.length; j++){
-        if (group[groupIndex].boards[j].name === nyTavleInput.value){
+        if (group[groupIndex].boards[j].name === firstNyTavleInput){
             sameName = true;
         }
     }
     //Her sjekker man det er noe i input feltet, og så sjekker den om navnet eksisterte og så stopper funksjonen.
-    if(nyTavleInput.value === ""){
+    if(firstNyTavleInput.value === ""){
         alert("Vennligst skriv inn et navn");
     } else if(sameName === true) {
         alert("Dette navnet blir allerede brukt i denne gruppen. Vennligst skriv inn et annet navn.");
-        nyTavleInput.value = "";
+        firstNyTavleInput.value = "";
     } else {
 
     //Ny tavle objectet lages og legges til i riktige arrays.
     let tavleIndex = group[groupIndex].boards.length;
     let newtavle =
     {
-        name:nyTavleInput.value,
+        name:nyTavleInput,
         lists: [],
         member: [],
     };
