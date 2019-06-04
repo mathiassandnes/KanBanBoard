@@ -1,7 +1,3 @@
-//------------------------------->>UserArray to localstorage<<----------------------------------
-/*function saveCurrentUserObject(i){
-                localStorage.setItem('currentUserObject', JSON.stringify(users[i]));   
-}*/
 //---------------------------------------->>Login<<---------------------------------------------
 function checkLogIn() {
     let username = document.getElementById("username").value;
@@ -33,6 +29,10 @@ function loginWithEnter(key){
     if(key.keyCode == 13){
         checkLogIn();
        }
+}
+//---------------------------->>Disable keyEvent for registration modal<<-----------------------
+function disableLoginWithEnter() {
+    window.removeEventListener("keydown", loginWithEnter, false);
 }
 //------------------------------------>>USERNAME<<----------------------------------------------
 var validUsername;
