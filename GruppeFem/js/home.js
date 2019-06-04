@@ -2,6 +2,8 @@
 function changeTavle(id){
     let modal = document.getElementById("link-Tavle");
     let tavleName = document.getElementById(id);
+    let inputFelt = document.getElementById("change-Input");
+    inputFelt.setAttribute("placeholder", tavleName.innerHTML);
     modal.innerHTML = "Gå til " + tavleName.innerHTML;
     modal.setAttribute("onclick","window.location.href='board.html'");
     let hiddenHead = document.getElementById("tavle-Head");
@@ -17,7 +19,7 @@ function lagGruppe(){
         gruppelist.setAttribute("numb",i);
         //Lager knappen for å legge til flere tavler.
         let addButton = document.createElement("button");
-        addButton.setAttribute("class", "btn btn-primary btn-sm");
+        addButton.setAttribute("class", "btn btn-primary m-3 btn-sm");
         addButton.innerHTML = "Legg til tavle";
         gruppelist.innerHTML = "<legend>"+group[i].name+"</legend>";
         groupBody.appendChild(gruppelist);
