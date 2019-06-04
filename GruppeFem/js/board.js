@@ -5,8 +5,8 @@ function drawBoards() {
     for (let i = 0; i < arrayOfBoards.length; i++) {
         let newTabButtonElement = createHtmlElementWithText('button', arrayOfBoards[i].name);
         newTabButtonElement.setAttribute("onclick", "drawTables("+i+")");
-        newTabButtonElement.className="btn rounded m-1"
-        newTabButtonElement.style="background-color: #E72552; color: #FFF1D4;"
+        newTabButtonElement.className="btn rounded m-1";
+        newTabButtonElement.style="background-color: #E72552; color: #FFF1D4;";
         document.getElementById('nav').appendChild(newTabButtonElement);
     }
 }
