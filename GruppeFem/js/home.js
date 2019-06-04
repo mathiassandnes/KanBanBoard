@@ -73,6 +73,7 @@ function renameTavle() {
     let groupIndex = trTag.getAttribute("numb");
     let arrayOfGroup = group[groupIndex];
     let nameExists = false;
+    //Her sjekkes det både om navnet allerede eksistere og om det ikke er noe i input feltet.
     for(let l = 0; l <group[groupIndex].boards.length;l++) {
         if (newName.value === "") {
             alert("Vennligst oppgi nytt navn.");
@@ -82,7 +83,7 @@ function renameTavle() {
 
         }
     }
-
+    //Hvis navnet eksisterer stopper funksjonen, hvis ikke så forandres navnet både HTML elementet og objectet i arrayet.
     if(nameExists === true) {
         alert("Det er allerede en tavle med dette navnet. Vennligst velg et annet navn.");
     } else {
@@ -105,19 +106,20 @@ function removeChangeInput(){
     let input = document.getElementById("change-Input");
     input.value = "";
 }
-
+//Funksjonen for å lage nye tavler fra HTML siden.
 function lagExtraTavle(){
     let hiddenHead = document.getElementById("hiddenModal").innerHTML;
     let thisValue = document.getElementById(hiddenHead);
     let groupIndex = thisValue.getAttribute("numb");
     let sameName = false;
     let nyTavleInput = document.getElementById("bruker-Input");
+    //En loop som sjekker om navnet allerede eksisterer.
     for (let j = 0; j < group[groupIndex].boards.length; j++){
         if (group[groupIndex].boards[j].name === nyTavleInput.value){
             sameName = true;
         }
     }
-
+    //Her sjekker man det er noe i input feltet, og så sjekker den om navnet eksisterte og så stopper funksjonen.
     if(nyTavleInput.value === ""){
         alert("Vennligst skriv inn et navn");
     } else if(sameName === true) {
@@ -125,7 +127,7 @@ function lagExtraTavle(){
         nyTavleInput.value = "";
     } else {
 
-
+    //Ny tavle objectet lages og legges til i riktige arrays.
     let tavleIndex = group[groupIndex].boards.length;
     let newtavle =
     {
@@ -133,9 +135,9 @@ function lagExtraTavle(){
         lists: [],
         member: [],
     };
-
     group[groupIndex].boards.push(newtavle);
     board.push(newtavle);
+    //HTML tavlen får riktige attributter
     let tavle = document.createElement("div");
     let tavleList = document.getElementById("tr" + groupIndex);
     tavle.setAttribute("class", "btn onboard-text m-3 center btn-dark");
