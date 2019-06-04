@@ -154,27 +154,46 @@ function sendId(id){
     let hiddenHead = document.getElementById("hiddenModal");
     hiddenHead.innerHTML = id;
 }
-//
+//Forandrer modal og spør bruker om de er sikkere på om de vil slette tavlen.
 function askUserRemove() {
     let hiddenHead = document.getElementById("tavle-Head").innerHTML;
     let godtaButton = document.getElementById("accept-Input");
+    let closeButton = document.getElementById("close-Modal-Button");
     let slettButton = document.getElementById("delete-Tavle");
     let linkButton = document.getElementById("link-Tavle");
     let inputField = document.getElementById("change-Input");
     let modalBody = document.getElementById("tavle-Info-Modal-Body");
     let textBody = document.createElement("div");
+    textBody.setAttribute("id","getThisBody");
     modalBody.appendChild(textBody);
     textBody.innerHTML = "Er du sikker på at du vil slette tavlen?";
+    closeButton.innerHTML = "nei, jeg vil ikke slette.";
+    closeButton.setAttribute("onclick","resetAskUser()");
     godtaButton.innerHTML = "Ja, Slett tavlen";
-    slettButton.setAttribute("hidden", true);
-    linkButton.setAttribute("hidden", true);
-    inputField.setAttribute("hidden", true);
-
-
-
-
-
+    godtaButton.setAttribute("onclick","removeTable()");
+    slettButton.setAttribute("hidden",true);
+    linkButton.setAttribute("hidden",true);
+    inputField.setAttribute("hidden",true);
 }
+//Reseter det som askUserRemove gjorde med modalen.
+function resetAskUser() {
+    let godtaButton = document.getElementById("accept-Input");
+    let closeButton = document.getElementById("close-Modal-Button");
+    let slettButton = document.getElementById("delete-Tavle");
+    let linkButton = document.getElementById("link-Tavle");
+    let inputField = document.getElementById("change-Input");
+    let modalBody = document.getElementById("tavle-Info-Modal-Body");
+    let textBody = document.getElementById("getThisBody");
+    textBody.parentNode.removeChild(textBody);
+    closeButton.innerHTML = "Close";
+    godtaButton.innerHTML = "Godta";
+    closeButton.setAttribute("onclick","");
+    godtaButton.setAttribute("onclick","");
+    slettButton.removeAttribute("hidden");
+    linkButton.removeAttribute("hidden");
+    inputField.removeAttribute("hidden");
+}
+
 //Funksjon for å fjerne en tavle fra arrayet det lå i og fra HTML siden.
 function removeTable(){
     let hiddenHead = document.getElementById("tavle-Head").innerHTML;
@@ -187,7 +206,7 @@ function removeTable(){
     group[gIndex].boards.splice(bIndex,1);
     board.splice(bIndex, 1);
     boardIndex.parentNode.removeChild(boardIndex);
-
+    resetAskUser();
     return false;
 }
 

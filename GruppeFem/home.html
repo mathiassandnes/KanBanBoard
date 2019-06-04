@@ -63,11 +63,11 @@
                     </div>
                     <div class="modal-body" id="tavle-Info-Modal-Body">
                         <button type="button" id="link-Tavle" class="btn btn-primary" onclick=""></button>
-                        <button type="button" id="delete-Tavle" class="btn btn-primary" onclick="removeTable()" data-dismiss="modal">Slett tavle</button>
+                        <button type="button" id="delete-Tavle" class="btn btn-primary" onclick="askUserRemove()">Slett tavle</button>
 
                     </div>
                     <div class="modal-footer" id="tavle-Info-Modal-Footer">
-                        <button type="button" onclick="removeChangeInput()" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" onclick="removeChangeInput()" id="close-Modal-Button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button onclick="renameTavle()" id="accept-Input" class="btn btn-primary" data-dismiss="modal">Godta</button>
                     </div>
                 </div>
