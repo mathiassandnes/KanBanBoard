@@ -7,6 +7,7 @@ function changeTavle(id){
     let hiddenHead = document.getElementById("tavle-Head");
     hiddenHead.innerHTML = id;
 }
+
 //Lager Gruppe elementer og gir dem attributter.
 function lagGruppe(){
     for(let i=0; i < group.length; i++){
@@ -63,6 +64,7 @@ function removeInput(){
     let input = document.getElementById("bruker-Input");
     input.value = "";
 }
+
 // Funksjonen for å forandre navnet til tavler både elementet i HTML og navnet i arrayet.
 function renameTavle() {
     let thisTavle = document.getElementById("tavle-Head");
@@ -101,11 +103,13 @@ function renameTavle() {
     thisTavleOut.setAttribute("id", newName.value + groupIndex +thisIndex);
     newName.value = "";
 }
+
 // Fjerner tekst fra input når man lukker modal
 function removeChangeInput(){
     let input = document.getElementById("change-Input");
     input.value = "";
 }
+
 //Funksjonen for å lage nye tavler fra HTML siden.
 function lagExtraTavle(){
     let hiddenHead = document.getElementById("hiddenModal").innerHTML;
@@ -151,11 +155,13 @@ function lagExtraTavle(){
     nyTavleInput.value = "";
     }
 }
+
 //Funksjon for å sende id inn til modal slik at man lett kan finne knappen man trykket på.
 function sendId(id){
     let hiddenHead = document.getElementById("hiddenModal");
     hiddenHead.innerHTML = id;
 }
+
 //Forandrer modal og spør bruker om de er sikkere på om de vil slette tavlen.
 function askUserRemove() {
     let hiddenHead = document.getElementById("tavle-Head").innerHTML;
@@ -178,6 +184,7 @@ function askUserRemove() {
     linkButton.setAttribute("hidden",true);
     inputField.setAttribute("hidden",true);
 }
+
 //Reseter det som askUserRemove gjorde med modalen.
 function resetAskUser() {
     let godtaButton = document.getElementById("accept-Input");
