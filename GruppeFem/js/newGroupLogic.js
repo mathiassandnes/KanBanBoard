@@ -1,17 +1,11 @@
 
-
-
-
 let usernames = [];
 let members = [];
-
 
 // gjør at names blir et array av alle navn i databasen
 for (let i = 0; i < users.length; i++) {
   usernames.push(users[i].username);
-
 }
-
 //alfabetisk rekkefølge
 usernames.sort();
 
@@ -22,12 +16,9 @@ var render_lists = function (lists) {
   var li = "";
   for (index in lists) {
     li += "<li>" + '<button onclick="addClickInput(\'' + lists[index] + '\')" class = btn-primary> ' + lists[index] + "</button>" + "</li>";
-
-
   }
   ul.innerHTML = li;
 }
-
 render_lists(usernames);
 
 // lets filters it
@@ -45,9 +36,6 @@ var filterUsers = function (event) {
 
 input.addEventListener('keyup', filterUsers);
 
-
-
-1
 //trykker man på et navn, legges de til i listen
 
 function addClickInput(username) {
@@ -62,47 +50,17 @@ function addClickInput(username) {
      membersString += '<button class= btn-primary id = btn' + x + ' onclick = removeClickInput(' + x + ') >' + members[x] + '</button>';
      membersString += '<button class= btn-primary id = xbtn' + x + ' onclick= removeClickInput(' + x + ') >' + "X" + '</button>';
   }
+     document.getElementById("members").innerHTML = membersString;
 
-  document.getElementById("members").innerHTML = membersString;
-
-
-
-  console.log(members);
-
-
-  //3. Laste inn listene på nytt til siden
-
-}
-
-
+     //3. Laste inn listene på nytt til siden
+    }
 function removeClickInput(id) {
-//  for (let j = 0; j < members.length; j++) {
- //   if (document.getElementById(x) === members[j].username)
-//   members.splice(j,1);
-  //  console.log(members);
- // }
-
+  
+  members.pop(id)
   let removeButton = document.getElementById('btn' + id);
   removeButton.parentNode.removeChild(removeButton);
   let removeXButton = document.getElementById('xbtn' + id );
   removeXButton.parentNode.removeChild(removeXButton);
-
   console.log(members);
-  
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
