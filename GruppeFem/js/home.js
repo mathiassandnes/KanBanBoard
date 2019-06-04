@@ -167,7 +167,8 @@ function askUserRemove() {
     textBody.setAttribute("id","getThisBody");
     modalBody.appendChild(textBody);
     textBody.innerHTML = "Er du sikker på at du vil slette tavlen?";
-    closeButton.innerHTML = "nei, jeg vil ikke slette.";
+    closeButton.innerHTML = "Nei, jeg vil ikke slette.";
+    closeButton.setAttribute("class","btn btn-primary");
     closeButton.setAttribute("onclick","resetAskUser()");
     godtaButton.innerHTML = "Ja, Slett tavlen";
     godtaButton.setAttribute("onclick","removeTable()");
@@ -186,6 +187,7 @@ function resetAskUser() {
     let textBody = document.getElementById("getThisBody");
     textBody.parentNode.removeChild(textBody);
     closeButton.innerHTML = "Close";
+    closeButton.setAttribute("class","btn btn-default");
     godtaButton.innerHTML = "Godta";
     closeButton.setAttribute("onclick","");
     godtaButton.setAttribute("onclick","");
