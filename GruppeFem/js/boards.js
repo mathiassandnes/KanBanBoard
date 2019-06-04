@@ -26,5 +26,4 @@ var board = [
 //lists.append(list.list4);
 
 //console.log(board.board1.lists[0].cards[0].name);
-    }*/
-];
+

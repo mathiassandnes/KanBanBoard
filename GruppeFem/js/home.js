@@ -4,10 +4,8 @@ function changeTavle(id){
     let tavleName = document.getElementById(id);
     modal.innerHTML = "Gå til " + tavleName.innerHTML;
     modal.setAttribute("onclick","window.location.href='board.html'");
-    modal.innerHTML = "gå til " + tavleName.innerHTML;
     let hiddenHead = document.getElementById("tavle-Head");
     hiddenHead.innerHTML = id;
-    modal.setAttribute("onclick","window.location.href='board.html'");
 }
 //Lager Gruppe elementer og gir dem attributter.
 function lagGruppe(){
