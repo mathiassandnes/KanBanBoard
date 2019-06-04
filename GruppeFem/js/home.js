@@ -156,7 +156,24 @@ function sendId(id){
 }
 //
 function askUserRemove() {
-    let hiddenHead = document.getElementById("tavle-Head").innerHTML
+    let hiddenHead = document.getElementById("tavle-Head").innerHTML;
+    let godtaButton = document.getElementById("accept-Input");
+    let slettButton = document.getElementById("delete-Tavle");
+    let linkButton = document.getElementById("link-Tavle");
+    let inputField = document.getElementById("change-Input");
+    let modalBody = document.getElementById("tavle-Info-Modal-Body");
+    let textBody = document.createElement("div");
+    modalBody.appendChild(textBody);
+    textBody.innerHTML = "Er du sikker på at du vil slette tavlen?";
+    godtaButton.innerHTML = "Ja, Slett tavlen";
+    slettButton.setAttribute("hidden", true);
+    linkButton.setAttribute("hidden", true);
+    inputField.setAttribute("hidden", true);
+
+
+
+
+
 }
 //Funksjon for å fjerne en tavle fra arrayet det lå i og fra HTML siden.
 function removeTable(){
