@@ -200,7 +200,7 @@ function resetAskUser() {
     textBody.parentNode.removeChild(textBody);
     closeButton.innerHTML = "Close";
     closeButton.setAttribute("class","btn btn-default");
-    godtaButton.innerHTML = "Godta";
+    godtaButton.innerHTML = "Forandre navn";
     closeButton.setAttribute("onclick","");
     godtaButton.setAttribute("onclick","");
     slettButton.removeAttribute("hidden");
