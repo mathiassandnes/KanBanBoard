@@ -74,7 +74,6 @@ function renameTavle() {
     let hiddenID = thisTavle.innerHTML;
     let firstNewName = document.getElementById("change-Input");
     let newName = firstNewName.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    alert(newName);
     let thisTavleOut = document.getElementById(hiddenID);
     let trTag = thisTavleOut.parentElement;
     let groupIndex = trTag.getAttribute("numb");
@@ -102,9 +101,8 @@ function renameTavle() {
             }
         }
         let arrayOfBoards = group[groupIndex].boards;
-        arrayOfBoards[thisIndex].name = firstNewName.value;
-        alert(arrayOfBoards[thisIndex].name);
-        thisTavleOut.innerHTML = firstNewName.value;
+        arrayOfBoards[thisIndex].name = newName;
+        thisTavleOut.innerHTML = newName;
     }
     thisTavleOut.setAttribute("id", firstNewName.value + groupIndex +thisIndex);
     firstNewName.value = "";
