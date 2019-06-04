@@ -56,6 +56,7 @@ function lagGruppe(){
         lagTavle(board);
     }
 }
+
 //Kjører hele funksjonen for elementene på siden.
 lagGruppe();
 
