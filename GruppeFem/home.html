@@ -19,7 +19,7 @@
             </ul>
         </div>
         <div class="col-11">
-            <button class="btn btn-primary" data-toggle="modal" data-target="#new-group-modal">Ny gruppe</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#new-group-modal">New group</button>
         </div>
     </div>
 </div>
@@ -92,10 +92,12 @@
                     </div>
 
                 </div>
+                <div id="group-saved-snackbar" class="fa-fw">Group saved</div>
+                
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" id="create-new-group"class="btn btn-primary">Save changes</button>
+                    <button type="button" id="create-new-group" onclick="setMembersNotNull()" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 
-let names = [];
-let members = [];
+var names = [];
+var members = [];
 
 
 // gjør at names blir et array av alle navn i databasen
@@ -50,8 +50,7 @@ function addClickInput(name) {
     if(members[x] !== null){
       membersString += '<button class= btn-primary id = btn' + x + ' onclick = removeClickInput(' + x + ') >' + members[x] + '</button>';
       membersString += '<button class= btn-primary id = xbtn' + x + ' onclick= removeClickInput(' + x + ') >' + "X" + '</button>';
-    }
-      console.log(members);
+        }
     }
      document.getElementById("members").innerHTML = membersString;
 
@@ -63,13 +62,22 @@ function removeClickInput(id)  {
   removeButton.parentNode.removeChild(removeButton);
   let removeXButton = document.getElementById('xbtn' + id );
   removeXButton.parentNode.removeChild(removeXButton);
-  console.log(members);
 }   
 
-function filterNotNull(name){ 
-  return name !== null;
+function checkNotNull(name){ 
+  return null != name;
 }
 
-function membersNotNull(){
-  
+function setMembersNotNull(){
+    members = members.filter(checkNotNull);
+    groupSavedSnack();
+    console.log(members);
+}
+
+
+//----------------------------Group saved snack ------------------------------------------
+function groupSavedSnack() {
+    var x = document.getElementById("group-saved-snackbar");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
