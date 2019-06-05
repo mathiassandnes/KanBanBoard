@@ -1,7 +1,7 @@
 var board = [
     {
         name: "My first board",
-        lists: [list[0], list[1], list[2]],
+        lists: [list[0], list[1], list[2]]
 
     },
     {

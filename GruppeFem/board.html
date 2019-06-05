@@ -76,7 +76,6 @@
                     <div class="form-group">
                         <label style="color: black;" for="responsible-user">Task given to:</label>
                         <select id="responsible-user" class="form-control">
-                            <option selected="selected"> Not assaigned </option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -133,16 +132,7 @@
 </footer>
 
 
-<!-- Data -->
-<script src="js/users.js"></script>
-<script src="js/cards.js"></script>
-<script src="js/lists.js"></script>
-<script src="js/boards.js"></script>
-<script src="js/groups.js"></script>
-<script src="localstorage/userData.js"></script>
 
-<!-- Funksjonalitet -->
-<script src="js/board.js"></script>
 
 <!-- Bootstrap -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -152,40 +142,56 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+<!-- Data -->
+<script src="js/users.js"></script>
+<script src="js/cards.js"></script>
+<script src="js/lists.js"></script>
+<script src="js/boards.js"></script>
+<script src="js/groups.js"></script>
+<script src="localstorage/userData.js"></script>
 
+<!-- drag and drop |     BEWARE, JQUERY AHEAD!!!     -->
 <script>
-    $("ul.container").sortable({
-        cursor: 'pointer',
-        toleranceElement: '> div',
-        items: 'li',
-        handle: 'div',
-        connectWith: 'ul.container',
-        placeholder: 'placeholder-list',
-        containment: '#lists-area',
-        tolerance: 'pointer',
-        revert: true,
-        delay: 100,
-        dropOnEmpty: true,
 
-    });
+    function activateDragAndDrop() {
+        $("ul.container").sortable({
+            cursor: 'pointer',
+            toleranceElement: '> div',
+            items: 'li',
+            handle: 'div',
+            connectWith: 'ul.container',
+            placeholder: 'placeholder-list',
+            containment: '#lists-area',
+            tolerance: 'pointer',
+            revert: true,
+            delay: 100,
+            dropOnEmpty: true,
+        });
 
 
-
-    $("ul.container > li > ul").sortable({
-        cursor: 'pointer',
-        toleranceElement : '> div',
-        item: 'li',
-        handle: 'div',
-        connectWith: 'ul.container > li > ul',
-        placeholder: 'placeholder-card',
-        containment: '#lists-area',
-        tolerance: 'pointer',
-        revert: true,
-        delay: 100,
-        dropOnEmpty: true,
-    });
+        $("ul.container > li > ul").sortable({
+            cursor: 'pointer',
+            toleranceElement: '> div',
+            item: 'li',
+            handle: 'div',
+            connectWith: 'ul.container > li > ul',
+            placeholder: 'placeholder-card',
+            containment: '#lists-area',
+            tolerance: 'pointer',
+            revert: true,
+            delay: 100,
+            dropOnEmpty: true,
+        });
+    }
 
 </script>
+
+<!-- Funksjonalitet -->
+<script src="js/board.js"></script>
+
+
+
+
 
 </body>
 </html>

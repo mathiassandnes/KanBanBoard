@@ -11,11 +11,11 @@ var list = [
         name: "Done",
         cards: [/*card[6], card[7], card[8]*/],
     }
-/*,
+,
     {
         name: "Kek",
-        cards: [card[9], card[10], card[11]],
-    },
+        cards: [/*card[9], card[10], card[11]*/],
+    }/*,
     {
         name: "Foo",
         cards: [card[3], card[6], card[9]],

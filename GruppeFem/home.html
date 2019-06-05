@@ -18,7 +18,6 @@
             <h5 style="color:white;" id="currentUser"></h5>
         </div>
 
-        <!-- Links -->
         <div class="row col-12">
             <div class="col-1">
                 <ul class="navbar-nav">
@@ -28,12 +27,12 @@
                 </ul>
             </div>
             <div class="col-11">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#new-group-modal">Ny gruppe</button>
+                <button id="new-group-button" class="btn btn-primary" data-toggle="modal" data-target="#new-group-modal" >New group</button>
             </div>
         </div>
     </div>
 </header>
-<main>
+<main class="col-12 onboard-text">
     <div id="container" class="container m-5">
         <div id="gruppe-Body" class="table"></div>
         <div>
@@ -42,21 +41,24 @@
                     <div class="modal-content">
                         <div class="modal-header" id="hiddenModal" hidden>
                             <h4 class="modal-title">Legg til ny tavle</h4>
+    </div>
 
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Navngi tavle </p>
-                            <input maxlength=50 type="text" id="bruker-Input" placeholder="Tavle navn" autofocus>
-                            <button onclick="lagExtraTavle(this.id)" class="btn btn-primary" data-dismiss="modal">Legg til</button>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="removeInput()">Close</button>
-                        </div>
-                    </div>
+    <!-- New Board Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" id="hiddenModal" hidden>
+                    <h4 class="modal-title">Legg til ny tavle</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <input maxlength=50 id="bruker-Input" placeholder="Board name" autofocus>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="removeInput()">Close</button>
+                    <button onclick="lagExtraTavle(this.id)" class="btn btn-primary" data-dismiss="modal">Save changes</button>
                 </div>
             </div>
-
         </div>
         <div class="modal fade" id="tavle-Info-Modal" role="dialog">
             <div class="modal-dialog">
@@ -75,61 +77,60 @@
                         <button type="button" onclick="removeChangeInput()" id="close-Modal-Button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="button" id="link-Tavle" class="btn btn-primary" onclick="" data-dismiss="modal"></button>
                     </div>
+    </div>
+
+    <!-- Board Modal -->
+    <div class="modal fade" id="tavle-Info-Modal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="tavle-Head" hidden></h4>
+                    <input maxlength=50 type="text" id="change-Input" placeholder="Name of board">
+                    <button type="button" class="close" data-dismiss="modal" onclick="resetAskUser()">&times;</button>
+                </div>
+                <div class="modal-body" id="tavle-Info-Modal-Body">
+                    <button type="button" id="link-Tavle" class="btn btn-primary" onclick=""></button>
+                    <button type="button" id="delete-Tavle" class="btn btn-primary" onclick="askUserRemove()">Slett tavle</button>
+                </div>
+                <div class="modal-footer" id="tavle-Info-Modal-Footer">
+                    <button type="button" onclick="removeChangeInput()" id="close-Modal-Button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button onclick="renameTavle()" id="accept-Input" class="btn btn-primary" data-dismiss="modal">Save changes</button>
                 </div>
             </div>
         </div>
+    </div>
 
 <main class="col-12 onboard-text">
 
+    <!-- New Group Modal -->
     <div class="modal fade" id="new-group-modal" tabindex="-1" role="dialog" aria-labelledby="new-group-modal-label" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content ">
-
                 <div class="  modal-header">
                     <div id="group-name" class="form-group">
-                        <input type="text" class="form-control " placeholder="New group name">
+                        <input type="text" id="group-name-group-modal" class="form-control " placeholder="New group name">
                     </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-
                 <div class="modal-body ">
                     <div id="new-group-modal-body" class=" form-group col-12 row" >
-                        <label for="group-description">Description:</label>
-                        <textarea class="  rounded col-12" rows="2" id="group-description"></textarea>
+                        <label for="group-description-group-modal">Description:</label>
+                        <textarea class="rounded col-12" rows="2" id="group-description-group-modal"></textarea>
                        <label for="members">Members: </label>
-                       <div class=" rounded col-12" rows="1" id="members" >  </div>
+                       <div class=" rounded col-12" rows="1" id="members" ></div>
                       
                         <input id="user-search-input" type="text" class="  form-control col-12" placeholder="Søk på folk du vil ha i gruppen:">
 
                         <ul id="search-result" class="col-6"></ul>
-
-                        <!--<button type="button" id="search"class="btn btn-primary"> SØK <i class="fa fa-search"></i></button>-->
-
-
                     </div>
-
                 </div>
-
+                <div id="group-saved-snackbar" class="fa-fw">Group saved</div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" id="create-new-group"class="btn btn-primary">Save changes</button>
+                    <button type="button" id="create-new-group" onclick="createGroup()" data-dismiss="modal" class="btn btn-primary">Save changes</button>
                 </div>
-            </div>
-<div class="navbar bg-dark" style="height: 55px;">
-
-    <!-- Links -->
-    <div class="row col-12">
-        <div class="col-1">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="home.html" ><i class="fa fa-home fa-2x"></i></a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-11">
-            <button class="btn btn-primary" data-toggle="modal" data-target="#new-group-modal">Ny gruppe</button>
             </div>
         </div>
     </div>
@@ -152,7 +153,6 @@
 </footer>
 
 
-<script src="js/boards.js"></script>
 <!-- Data -->
 <script src="js/users.js"></script>
 <script src="js/cards.js"></script>
@@ -162,8 +162,9 @@
 <script src="localstorage/userData.js"></script>
 
 <!-- Funksjonalitet -->
-<script src="js/home.js"></script>
-<script src="js/newGroupLogic.js"></script>
+        <script src="js/newGroupLogic.js"></script>
+
+        <script src="js/home.js"></script>
 
 <!-- Bootstrap -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
