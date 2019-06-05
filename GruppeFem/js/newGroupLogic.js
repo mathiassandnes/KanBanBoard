@@ -70,6 +70,7 @@ function setMembersNotNull(){
     members = members.filter(checkNotNull);
     groupSavedSnack();
     console.log(members);
+
 }
 
 
