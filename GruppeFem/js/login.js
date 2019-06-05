@@ -1,3 +1,7 @@
+//------------------------------->>UserArray to localstorage<<----------------------------------
+/*function saveCurrentUserObject(i){
+                localStorage.setItem('currentUserObject', JSON.stringify(users[i]));   
+}*/
 //---------------------------------------->>Login<<---------------------------------------------
 function checkLogIn() {
     let username = document.getElementById("username").value;
@@ -9,10 +13,12 @@ function checkLogIn() {
             if(password == users[i].password){
                 document.getElementById("username").className = "form-control m-1 is-valid";
                 document.getElementById("password").className = "form-control m-1 is-valid";
+                localStorage.setItem('currentUser', users[i].name);
                 window.location.replace("home.html");
+                
                 return;
             }
-        } 
+        }
     }
     
     loginFailedSnack();

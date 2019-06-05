@@ -11,15 +11,18 @@ ul{
 .new-card-button{
     bottom: 0;
 }
-.placeholder {
-    outline: 1px solid black;
+.placeholder-card {
+     height: 1.5em; line-height: 1.2em;
+ }
+.placeholder-list {
+    width: 11em; line-width: 10em;
 }
 
 .onboard-text {
     color: #FFF1D4;
 }
 
-/* ------------------------ Register complete snackbar -----------------------------*/
+/*------------------------ Register complete snackbar -----------------------------*/
 
 #registrationSnackbar {
     visibility: hidden;

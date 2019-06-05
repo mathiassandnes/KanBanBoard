@@ -11,7 +11,6 @@ for (let i = 0; i < users.length; i++) {
 names.sort();
 
 ul = document.getElementById("search-result");
-ul.style = "list-style: none; padding: 0;"
 
 var render_lists = function (lists) {
   var li = "";
@@ -63,7 +62,6 @@ function removeClickInput(id)  {
   let removeXButton = document.getElementById('xbtn' + id );
   removeXButton.parentNode.removeChild(removeXButton);
 }   
-
 function checkNotNull(name){ 
   return null != name;
 }
@@ -81,3 +79,4 @@ function groupSavedSnack() {
     x.className = "show";
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
+
