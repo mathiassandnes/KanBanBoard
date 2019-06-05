@@ -142,28 +142,24 @@ function renameTavle() {
     let nameExists = false;
     //Her sjekkes det både om navnet allerede eksistere og om det ikke er noe i input feltet.
     for(let l = 0; l <group[groupIndex].boards.length;l++) {
-        if (firstNewName.value === "") {
-            alert("Vennligst oppgi nytt navn.");
-            firstNewName.value = "";
-        } else if (firstNewName.value === arrayOfGroup.boards[l].name) {
+        if (firstNewName.value === arrayOfGroup.boards[l].name) {
             nameExists = true;
-
         }
     }
     //Hvis navnet eksisterer stopper funksjonen, hvis ikke så forandres navnet både HTML elementet og objectet i arrayet.
-    if(nameExists === true) {
+    if (firstNewName.value === "") {
+        alert("Vennligst oppgi nytt navn.");
+        firstNewName.value = "";
+    }else if(nameExists === true) {
         alert("Det er allerede en tavle med dette navnet. Vennligst velg et annet navn.");
     } else {
         for(let o = 0; o <group[groupIndex].boards.length; o++){
-            if(thisTavleOut.innerHTML === group[groupIndex].boards[o].name){
                 var thisIndex = o;
-            }  else{
-
-            }
+                let arrayOfBoards = group[groupIndex].boards;
+                arrayOfBoards[thisIndex].name = newName;
+                thisTavleOut.innerHTML = newName;
         }
-        let arrayOfBoards = group[groupIndex].boards;
-        arrayOfBoards[thisIndex].name = newName;
-        thisTavleOut.innerHTML = newName;
+
     }
     thisTavleOut.setAttribute("id", newName + groupIndex +thisIndex);
     firstNewName.value = "";
@@ -193,16 +189,15 @@ function askUserRemove() {
     let modalBody = document.getElementById("tavle-Info-Modal-Body");
     let textBody = document.createElement("div");
     textBody.setAttribute("id","getThisBody");
-    textBody.setAttribute("exists", "true");
     modalBody.appendChild(textBody);
     textBody.innerHTML = "Er du sikker på at du vil slette tavlen?";
     closeButton.innerHTML = "Nei, jeg vil ikke slette.";
     closeButton.setAttribute("class","btn btn-primary");
     closeButton.setAttribute("onclick","resetAskUser()");
-    godtaButton.innerHTML = "Ja, Slett tavlen";
-    godtaButton.setAttribute("onclick","removeTable()");
+    linkButton.innerHTML = "Ja, Slett tavlen";
+    linkButton.setAttribute("onclick","removeTable()");
     slettButton.setAttribute("hidden",true);
-    linkButton.setAttribute("hidden",true);
+    godtaButton.setAttribute("hidden",true);
     inputField.setAttribute("hidden",true);
 }
 
@@ -217,11 +212,11 @@ function resetAskUser() {
     textBody.parentNode.removeChild(textBody);
     closeButton.innerHTML = "Close";
     closeButton.setAttribute("class","btn btn-default");
-    godtaButton.innerHTML = "Forandre navn";
+    linkButton.innerHTML = "Forandre navn";
     closeButton.setAttribute("onclick","removeChangeInput()");
-    godtaButton.setAttribute("onclick","renameTavle()");
+    linkButton.setAttribute("onclick","renameTavle()");
     slettButton.removeAttribute("hidden");
-    linkButton.removeAttribute("hidden");
+    godtaButton.removeAttribute("hidden");
     inputField.removeAttribute("hidden");
     askIsActive = false;
 }
