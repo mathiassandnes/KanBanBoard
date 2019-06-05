@@ -73,7 +73,7 @@ function renameTavle() {
     let thisTavle = document.getElementById("tavle-Head");
     let hiddenID = thisTavle.innerHTML;
     let firstNewName = document.getElementById("change-Input");
-    //Input forandres slik at HTML injections.
+    //Input forandres slik at HTML injections ikke kan skje.
     let newName = firstNewName.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
     let thisTavleOut = document.getElementById(hiddenID);
     let trTag = thisTavleOut.parentElement;
@@ -122,7 +122,7 @@ function lagExtraTavle(){
     let groupIndex = thisValue.getAttribute("numb");
     let sameName = false;
     let firstNyTavleInput = document.getElementById("bruker-Input");
-    //Input forandres slik at HTML injections.
+    //Input forandres slik at HTML injections ikke kan skje.
     let nyTavleInput = firstNyTavleInput.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
     //En loop som sjekker om navnet allerede eksisterer.
     for (let j = 0; j < group[groupIndex].boards.length; j++){
