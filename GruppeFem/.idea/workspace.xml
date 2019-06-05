@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="321732cd-cf3b-4a24-bd6f-ab6dc43b6c49" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/js/newGroupLogic.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/newGroupLogic.js" afterDir="false" />
-    </list>
+    <list default="true" id="321732cd-cf3b-4a24-bd6f-ab6dc43b6c49" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
