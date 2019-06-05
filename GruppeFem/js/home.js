@@ -10,6 +10,18 @@ function changeTavle(id){
     hiddenHead.innerHTML = id;
 }
 
+function createHtmlElementWithText(tagName, text){
+    let element = document.createElement(tagName);
+    element.innerHTML = text;
+    return element;
+}
+
+//kobler til en modal med setAttribute
+function addModal(element, modalName){
+    element.setAttribute('data-toggle', 'modal');
+    element.setAttribute('data-target', '#'+modalName);
+}
+
 //Lager Gruppe elementer og gir dem attributter.
 function lagGruppe(){
     for(let i=0; i < group.length; i++){
@@ -18,14 +30,12 @@ function lagGruppe(){
         gruppelist.setAttribute("id",group[i].name + i);
         gruppelist.setAttribute("numb",i);
         //Lager knappen for å legge til flere tavler.
-        let addButton = document.createElement("button");
+        let addButton = createHtmlElementWithText("button","Legg til tavle");
         addButton.setAttribute("class", "btn btn-primary m-3 btn-sm");
-        addButton.innerHTML = "Legg til tavle";
         gruppelist.innerHTML = "<legend>"+group[i].name+"</legend>";
         groupBody.appendChild(gruppelist);
         gruppelist.appendChild(addButton);
-        addButton.setAttribute("data-toggle","modal");
-        addButton.setAttribute("data-target","#myModal");
+        addModal(addButton,"lag-Tavle-Modal");
         addButton.setAttribute("numb",i);
         addButton.setAttribute("id","button"+i);
         addButton.setAttribute("onclick","sendId(this.id)");
@@ -40,15 +50,13 @@ function lagGruppe(){
         function lagTavle() {
             let arrayOfTavler = group[i].boards;
             for(let k = 0; k < arrayOfTavler.length;k++){
-                let tavle = document.createElement("div");
-                let tavleList = document.getElementById("tr"+i);
-                tavleList.appendChild(tavle);
                 let arrayOfBoards = group[i].boards;
                 let arrayOfTables = arrayOfBoards[k].name;
-                tavle.innerHTML = arrayOfTables;
+                let tavle = createHtmlElementWithText("button", arrayOfTables);
+                let tavleList = document.getElementById("tr"+i);
+                tavleList.appendChild(tavle);
                 tavle.setAttribute("class","btn btn-dark m-3 onboard-text center");
-                tavle.setAttribute("data-toggle","modal");
-                tavle.setAttribute("data-target","#tavle-Info-Modal");
+                addModal(tavle,"tavle-Info-Modal");
                 tavle.setAttribute("id",arrayOfTables + i + k);
                 tavle.setAttribute("onclick","changeTavle(this.id)");
                 tavle.setAttribute("numb", k);
@@ -62,6 +70,53 @@ function lagGruppe(){
 //Kjører hele funksjonen for elementene på siden.
 lagGruppe();
 
+//Funksjonen for å lage nye tavler fra HTML siden.
+function lagExtraTavle(){
+    let hiddenHead = document.getElementById("hiddenModal").innerHTML;
+    let thisValue = document.getElementById(hiddenHead);
+    let groupIndex = thisValue.getAttribute("numb");
+    let sameName = false;
+    let firstNyTavleInput = document.getElementById("bruker-Input");
+    //Input forandres slik at < og > blir skrevet ved hjelp av html entity slik at på siden er det likt,
+    //men siden vil ikke se dem som tags. Dette er for å stoppe HTML injections.
+    let nyTavleInput = firstNyTavleInput.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    //En loop som sjekker om navnet allerede eksisterer.
+    for (let j = 0; j < group[groupIndex].boards.length; j++){
+        if (group[groupIndex].boards[j].name === nyTavleInput){
+            sameName = true;
+        }
+    }
+    //Her sjekker man det er noe i input feltet, og så sjekker den om navnet eksisterte og så stopper funksjonen.
+    if(firstNyTavleInput.value === ""){
+        alert("Vennligst skriv inn et navn");
+    } else if(sameName === true) {
+        alert("Dette navnet blir allerede brukt i denne gruppen. Vennligst skriv inn et annet navn.");
+        firstNyTavleInput.value = "";
+    } else {
+
+        //Ny tavle objectet lages og legges til i riktige arrays.
+        let tavleIndex = group[groupIndex].boards.length;
+        let newtavle =
+            {
+                name:nyTavleInput,
+                lists: [],
+                member: [],
+            };
+        group[groupIndex].boards.push(newtavle);
+        board.push(newtavle);
+        //HTML tavlen får riktige attributter
+        let arrayOfBoards = group[groupIndex].boards;
+        let tavle = createHtmlElementWithText("div", arrayOfBoards[tavleIndex].name);
+        let tavleList = document.getElementById("tr" + groupIndex);
+        addModal(tavle,"tavle-Info-Modal");
+        tavle.setAttribute("class", "btn onboard-text m-3 center btn-dark");
+        tavle.setAttribute("id", nyTavleInput + groupIndex + tavleIndex);
+        tavle.setAttribute("onclick","changeTavle(this.id)");
+        tavleList.appendChild(tavle);
+        firstNyTavleInput.value = "";
+    }
+}
+
 // Fjerner tekst fra input når man lukker modal
 function removeInput(){
     let input = document.getElementById("bruker-Input");
@@ -73,7 +128,8 @@ function renameTavle() {
     let thisTavle = document.getElementById("tavle-Head");
     let hiddenID = thisTavle.innerHTML;
     let firstNewName = document.getElementById("change-Input");
-    //Input forandres slik at HTML injections ikke kan skje.
+    //Input forandres slik at < og > blir skrevet ved hjelp av html entity slik at på siden er det likt,
+    //men siden vil ikke se dem som tags. Dette er for å stoppe HTML injections.
     let newName = firstNewName.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
     let thisTavleOut = document.getElementById(hiddenID);
     let trTag = thisTavleOut.parentElement;
@@ -113,54 +169,6 @@ function renameTavle() {
 function removeChangeInput(){
     let input = document.getElementById("change-Input");
     input.value = "";
-}
-
-//Funksjonen for å lage nye tavler fra HTML siden.
-function lagExtraTavle(){
-    let hiddenHead = document.getElementById("hiddenModal").innerHTML;
-    let thisValue = document.getElementById(hiddenHead);
-    let groupIndex = thisValue.getAttribute("numb");
-    let sameName = false;
-    let firstNyTavleInput = document.getElementById("bruker-Input");
-    //Input forandres slik at HTML injections ikke kan skje.
-    let nyTavleInput = firstNyTavleInput.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    //En loop som sjekker om navnet allerede eksisterer.
-    for (let j = 0; j < group[groupIndex].boards.length; j++){
-        if (group[groupIndex].boards[j].name === firstNyTavleInput){
-            sameName = true;
-        }
-    }
-    //Her sjekker man det er noe i input feltet, og så sjekker den om navnet eksisterte og så stopper funksjonen.
-    if(firstNyTavleInput.value === ""){
-        alert("Vennligst skriv inn et navn");
-    } else if(sameName === true) {
-        alert("Dette navnet blir allerede brukt i denne gruppen. Vennligst skriv inn et annet navn.");
-        firstNyTavleInput.value = "";
-    } else {
-
-    //Ny tavle objectet lages og legges til i riktige arrays.
-    let tavleIndex = group[groupIndex].boards.length;
-    let newtavle =
-    {
-        name:nyTavleInput,
-        lists: [],
-        member: [],
-    };
-    group[groupIndex].boards.push(newtavle);
-    board.push(newtavle);
-    //HTML tavlen får riktige attributter
-    let tavle = document.createElement("div");
-    let tavleList = document.getElementById("tr" + groupIndex);
-    tavle.setAttribute("class", "btn onboard-text m-3 center btn-dark");
-    tavle.setAttribute("data-toggle","modal");
-    tavle.setAttribute("data-target","#tavle-Info-Modal");
-    tavle.setAttribute("id", nyTavleInput.value + groupIndex + tavleIndex);
-    tavle.setAttribute("onclick","changeTavle(this.id)");
-    tavleList.appendChild(tavle);
-    let arrayOfBoards = group[groupIndex].boards;
-    tavle.innerHTML = arrayOfBoards[tavleIndex].name;
-    firstNyTavleInput.value = "";
-    }
 }
 
 //Funksjon for å sende id inn til modal slik at man lett kan finne knappen man trykket på.
@@ -226,3 +234,17 @@ function removeTable(){
     return false;
 }
 
+function resetsModals(){
+    let editModal = document.getElementById("tavle-Info-Modal");
+    let lagTavleModal = document.getElementById("lag-Tavle-Modal");
+    if(editModal.style.display === "none"){
+        resetAskUser();
+        removeChangeInput()
+    }
+    if(lagTavleModal.style.display ==="none"){
+        removeInput();
+    }
+
+}
+resetsModals();
+alert("hei");
