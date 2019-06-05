@@ -104,7 +104,7 @@ function renameTavle() {
         arrayOfBoards[thisIndex].name = newName;
         thisTavleOut.innerHTML = newName;
     }
-    thisTavleOut.setAttribute("id", firstNewName.value + groupIndex +thisIndex);
+    thisTavleOut.setAttribute("id", newName + groupIndex +thisIndex);
     firstNewName.value = "";
 }
 
@@ -157,7 +157,7 @@ function lagExtraTavle(){
     tavleList.appendChild(tavle);
     let arrayOfBoards = group[groupIndex].boards;
     tavle.innerHTML = arrayOfBoards[tavleIndex].name;
-    nyTavleInput.value = "";
+    firstNyTavleInput.value = "";
     }
 }
 
