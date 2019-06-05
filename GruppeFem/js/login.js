@@ -3,6 +3,7 @@
                 localStorage.setItem('currentUserObject', JSON.stringify(users[i]));   
 }*/
 //---------------------------------------->>Login<<---------------------------------------------
+//Sjekker om username er username og passord er i users[].
 function checkLogIn() {
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
@@ -15,18 +16,18 @@ function checkLogIn() {
                 document.getElementById("password").className = "form-control m-1 is-valid";
                 localStorage.setItem('currentUser', users[i].name);
                 window.location.replace("home.html");
-                
                 return;
             }
         }
     }
-    
+
     loginFailedSnack();
     document.getElementById("username").className = "form-control m-1 is-invalid";
     document.getElementById("password").className = "form-control m-1 is-invalid";
     return;
 }
 //--------------------------------->>Enter keyEvent for login<<---------------------------------
+// Gir mulighet å logge inn med enter.
 window.addEventListener("keydown", loginWithEnter, false);
 
 function loginWithEnter(key){
@@ -37,7 +38,7 @@ function loginWithEnter(key){
 //------------------------------------>>USERNAME<<----------------------------------------------
 var validUsername;
 
-
+//ser om brukernavnet er tatt.
 function newUsernameDuplicateCheck() {
     if (document.getElementById("new-username").value === validUsername){
         return false;
@@ -50,7 +51,7 @@ function newUsernameDuplicateCheck() {
     validUsername = document.getElementById("new-username").value;
     return false;
 }
-
+//ser om brukernavnet har tegn.
 function newUsernameHaveChar(){
     if((document.getElementById("new-username").value).length > 0){
         return true;
@@ -60,6 +61,7 @@ function newUsernameHaveChar(){
     }
 }
 
+//feedback på om brukernavnet har tegn.
 function newUsernameHaveCharFeedback(){
     if(newUsernameHaveChar()=== false){
         document.getElementById("new-username").className = "form-control is-invalid";
@@ -69,6 +71,7 @@ function newUsernameHaveCharFeedback(){
     }
 }
 
+//feedback hvis brukernavn er unikt og har tegn.
 function newUsernameFeedback(){
     if(newUsernameDuplicateCheck() === true){
         document.getElementById("new-username").className = "form-control is-invalid";
@@ -84,6 +87,7 @@ function newUsernameFeedback(){
 //----------------------------------------->>EMAIL<<--------------------------------------------
 var validEmail;
 
+//ser om email er brukt av eksisterende bruker.
 function newEmailDuplicate() {
     if (document.getElementById("email").value === validEmail){
         return false;
@@ -97,6 +101,7 @@ function newEmailDuplicate() {
     return false;
 }
 
+//ser om email inneholder "." og "@".
 function registerNewEmailCriteria() {
 
     if ((document.getElementById("email").value).indexOf('@') > -1 && (document.getElementById("email").value).indexOf('.') > -1){
@@ -106,6 +111,7 @@ function registerNewEmailCriteria() {
     }
 }
 
+//ser om email har tegn.
 function newEmailHaveChar() {
     if ((document.getElementById("email").value).length > 0){
         return true;
@@ -115,12 +121,14 @@ function newEmailHaveChar() {
     }
 }
 
+//feedback hvis email ikke har tegn.
 function newEmailHaveCharFeedback(){
     if(newEmailHaveChar() === false){
         document.getElementById("email").className = "form-control is-invalid";
     }
 }
 
+//feedback på om email er godkjent.
 function newEmailFeedback(){
     if (registerNewEmailCriteria() === true){
         document.getElementById("email").className = "form-control is-valid";
@@ -139,6 +147,7 @@ function newEmailFeedback(){
 
 //-------------------------------------->>PASSWORD<<--------------------------------------------
 
+// ser om nye passord er like.
 function newPasswordMatch() {
     let newPassword1 = document.getElementById("new-password").value;
     let newPassword2 = document.getElementById("new-password-check").value;
@@ -150,6 +159,7 @@ function newPasswordMatch() {
     }
 }
 
+//feedback på nye passord.
 function differentPasswordsFeedback(){
 
     if(newPasswordMatch() === false && passwordCriteriaOk() === true){
@@ -169,6 +179,7 @@ function differentPasswordsFeedback(){
 
 }
 
+//ser om passord er innenfor kriteriene som er gitt.
 function passwordCriteriaOk(){
     let newPassword1 = document.getElementById("new-password").value;
 
@@ -195,6 +206,7 @@ function passwordCriteriaOk(){
         return false;
     }
 }
+//feedback på om passord er godkjent eller ikke.
 function passwordCriteriaFeedback(){
     if(passwordCriteriaOk() === true){
         document.getElementById("new-password").className = "form-control is-valid";
@@ -203,6 +215,8 @@ function passwordCriteriaFeedback(){
     }
 }
 //---------------------------------------->>NAME<<----------------------------------------------
+
+//ser om navnet har tegn.
 function newNameHaveChar() {
     if((document.getElementById("full-name").value).length > 0){
         return true;
@@ -212,7 +226,7 @@ function newNameHaveChar() {
         console.log("No name detected");
     }
 }
-
+//feedback på om navnet er godkjent eller ikke.
 function newNameFeedback(){
     if(newNameHaveChar() === true){
         document.getElementById("full-name").className = "form-control is-valid";
@@ -221,12 +235,14 @@ function newNameFeedback(){
     }
 }
 //------------------------------->>Login SNACKBAR<<---------------------------------------------
+//snackbar for mislykket innlogging.
 function loginFailedSnack() {
     var x = document.getElementById("loginFailedSnackbar");
     x.className = "show";
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 //----------------------------->>Registration SNACKBAR<<----------------------------------------
+//snackbar for fullført registrering.
 function registrationCompleteSnack() {
     var x = document.getElementById("registrationSnackbar");
     x.className = "show";
@@ -234,12 +250,14 @@ function registrationCompleteSnack() {
 }
 
 //--------------------------------------->>Create user<<----------------------------------------
-
+//Ser om alle kriteriene for å lage ny bruker er møtt.
 function registerNewUserCriteria() {
     if (newNameHaveChar() && newPasswordMatch() && passwordCriteriaOk() && registerNewEmailCriteria() && !newEmailDuplicate() && !newUsernameDuplicateCheck() && newEmailHaveChar() && newUsernameHaveChar()){
             return true;
         }
 }
+
+//lager ny bruker.
 function registerNewUser() {
     if(registerNewUserCriteria()) {
         users.push({
@@ -262,6 +280,4 @@ function registerNewUser() {
         validEmail = "";
         validUsername = "";
     }
-
-console.log(users);
 }

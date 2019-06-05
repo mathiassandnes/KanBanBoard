@@ -1,6 +1,5 @@
-
-var names = [];
-var members = [];
+let names = [];
+let members = [];
 
 
 // gjør at names blir et array av alle navn i databasen
