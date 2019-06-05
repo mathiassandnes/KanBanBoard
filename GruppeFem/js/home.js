@@ -73,8 +73,8 @@ function renameTavle() {
     let thisTavle = document.getElementById("tavle-Head");
     let hiddenID = thisTavle.innerHTML;
     let firstNewName = document.getElementById("change-Input");
+    //Input forandres slik at HTML injections.
     let newName = firstNewName.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    alert(newName);
     let thisTavleOut = document.getElementById(hiddenID);
     let trTag = thisTavleOut.parentElement;
     let groupIndex = trTag.getAttribute("numb");
@@ -103,7 +103,6 @@ function renameTavle() {
         }
         let arrayOfBoards = group[groupIndex].boards;
         arrayOfBoards[thisIndex].name = firstNewName.value;
-        alert(arrayOfBoards[thisIndex].name);
         thisTavleOut.innerHTML = firstNewName.value;
     }
     thisTavleOut.setAttribute("id", firstNewName.value + groupIndex +thisIndex);
@@ -123,6 +122,7 @@ function lagExtraTavle(){
     let groupIndex = thisValue.getAttribute("numb");
     let sameName = false;
     let firstNyTavleInput = document.getElementById("bruker-Input");
+    //Input forandres slik at HTML injections.
     let nyTavleInput = firstNyTavleInput.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
     //En loop som sjekker om navnet allerede eksisterer.
     for (let j = 0; j < group[groupIndex].boards.length; j++){
@@ -171,7 +171,6 @@ function sendId(id){
 
 //Forandrer modal og spør bruker om de er sikkere på om de vil slette tavlen.
 function askUserRemove() {
-    let hiddenHead = document.getElementById("tavle-Head").innerHTML;
     let godtaButton = document.getElementById("accept-Input");
     let closeButton = document.getElementById("close-Modal-Button");
     let slettButton = document.getElementById("delete-Tavle");
@@ -199,7 +198,6 @@ function resetAskUser() {
     let slettButton = document.getElementById("delete-Tavle");
     let linkButton = document.getElementById("link-Tavle");
     let inputField = document.getElementById("change-Input");
-    let modalBody = document.getElementById("tavle-Info-Modal-Body");
     let textBody = document.getElementById("getThisBody");
     textBody.parentNode.removeChild(textBody);
     closeButton.innerHTML = "Close";
