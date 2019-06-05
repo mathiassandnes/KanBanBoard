@@ -247,4 +247,3 @@ function resetsModals(){
 
 }
 resetsModals();
-alert("hei");
