@@ -59,6 +59,10 @@ function listModal(target, board){
 //all funksjonalitet som ligger i modalen på kort
 function cardModal(e, container, listToDraw) {
 
+    document.getElementById("responsible-user").innerHTML = "";
+
+    let defaultResponsibleUser = createHtmlElementWithText('option', 'Not assigned');
+    defaultResponsibleUser.setAttribute('selected', 'selected');
     for(let i = 0; i < group[0].members.length; i++){
         document.getElementById('responsible-user').appendChild(createHtmlElementWithText('option', group[0].members[i].name));
     }
@@ -99,6 +103,8 @@ function cardModal(e, container, listToDraw) {
                 priority: priorityInModal.options.selectedIndex,
                 responsibleUserInModal: responsibleUserInModal.options.selectedIndex
             };
+
+
             drawCard(currentCard.name, container);
 
             listToDraw.cards.push(currentCard);
@@ -121,7 +127,10 @@ function cardModal(e, container, listToDraw) {
         if (responsibleUserInModal.options.selectedIndex != currentCard.responsibleUser) {
             currentCard.responsibleUser = responsibleUserInModal.options.selectedIndex;
         }
+
     };
+
+
 }
 
 function drawList(listToDraw) {
@@ -151,7 +160,11 @@ function drawList(listToDraw) {
 
     //legger til navnet til listen i en dropdown meny på kort modal
 
-    listElementContainer.onclick = function (e) {cardModal(e, listElementBody, listToDraw)};
+    listElementContainer.onclick = function (e) {
+        cardModal(e, listElementBody, listToDraw);
+
+    };
+
 
     let newCardButton = createHtmlElementWithText('button', '+ new task');
 
@@ -176,7 +189,7 @@ function drawCard(name, container){
     cardElement.className="btn bg-light text-dark mt-1 mb-1 center col-12";
 
     //adds modal
-    addModal(cardElement, 'card-modal')
+    addModal(cardElement, 'card-modal');
 
     //give unique ID
     cardElement.id = name;
