@@ -45,7 +45,7 @@ function listModal(target, board){
                 cards: []
             };
 
-            drawList(currentList)
+            drawList(currentList);
 
             board.lists.push(currentList);
             list.push(currentList);
@@ -67,8 +67,8 @@ function cardModal(e, container, listToDraw) {
     let cardDescriptionInModal = document.getElementById('card-description');
     let priorityInModal = document.getElementById('priority');
     let responsibleUserInModal = document.getElementById('responsible-user');
-    var isNewCard = true;
-    var currentCard;
+    let isNewCard = true;
+    let currentCard;
 
     // finds the correct card in backend and draws the modal with its values
     for (let x = 0; x < card.length; x++) {
@@ -87,6 +87,7 @@ function cardModal(e, container, listToDraw) {
         cardNameInModal.value = "";
         cardDescriptionInModal.value = "";
         document.getElementById('priority').options.selectedIndex = 0;
+        responsibleUserInModal.options.selectedIndex = 0;
     }
 
     document.getElementById('save-card-changes').onclick = function () {
@@ -131,7 +132,7 @@ function drawList(listToDraw) {
 
     listElementContainer.className = "m-3 list-element p-1 col-1";
     listElementBody.className = "rounded-bottom bg-dark";
-    listElementBody.style = "min-height: 52px;";
+    listElementBody.style.minHeight=" 52px";
     listElement.className = "col-12 text-12 rounded-top bg-dark onboard-text text-center m-0 p-2";
 
     listElementContainer.id = listToDraw.name+"container";
@@ -158,6 +159,8 @@ function drawList(listToDraw) {
 
     newCardButton.className = "center m-2 btn btn-primary col-11 new-card-button";
     listElementContainer.appendChild(newCardButton);
+
+    activateDragAndDrop();
 }
 
 //tegner et enkelt kort

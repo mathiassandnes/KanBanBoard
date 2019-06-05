@@ -4,7 +4,7 @@ function changeTavle(id){
     let tavleName = document.getElementById(id);
     let inputFelt = document.getElementById("change-Input");
     inputFelt.setAttribute("placeholder", tavleName.innerHTML);
-    modal.innerHTML = "Gå til " + tavleName.innerHTML;
+    modal.innerHTML = "Go to " + tavleName.innerHTML.toLowerCase();
     modal.setAttribute("onclick","window.location.href='board.html'");
     let hiddenHead = document.getElementById("tavle-Head");
     hiddenHead.innerHTML = id;
@@ -12,16 +12,24 @@ function changeTavle(id){
 
 //Lager Gruppe elementer og gir dem attributter.
 function lagGruppe(){
+    let groupBody = document.getElementById("gruppe-Body");
+    groupBody.innerHTML ="";
+
     for(let i=0; i < group.length; i++){
+
         let gruppelist = document.createElement("table");
-        let groupBody = document.getElementById("gruppe-Body");
+        let groupName = document.createElement("div");
+        groupName.setAttribute("data-toggle","modal");
+        groupName.setAttribute("data-target","#new-group-modal");
+        gruppelist.appendChild(groupName);
         gruppelist.setAttribute("id",group[i].name + i);
         gruppelist.setAttribute("numb",i);
+        groupName.onclick = function(e) {groupModal(e.target)};
         //Lager knappen for å legge til flere tavler.
         let addButton = document.createElement("button");
         addButton.setAttribute("class", "btn btn-primary m-3 btn-sm");
         addButton.innerHTML = "Legg til tavle";
-        gruppelist.innerHTML = "<legend>"+group[i].name+"</legend>";
+        groupName.innerHTML = "<legend>"+group[i].name+"</legend>";
         groupBody.appendChild(gruppelist);
         gruppelist.appendChild(addButton);
         addButton.setAttribute("data-toggle","modal");
@@ -29,7 +37,7 @@ function lagGruppe(){
         addButton.setAttribute("numb",i);
         addButton.setAttribute("id","button"+i);
         addButton.setAttribute("onclick","sendId(this.id)");
-        gruppelist.setAttribute("class","column");
+        gruppelist.className = "column";
         //Lager elementet som holder tavlene i gruppene.
         let tavleList = document.createElement("tr");
         tavleList.setAttribute("id","tr"+i);
