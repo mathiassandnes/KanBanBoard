@@ -218,8 +218,8 @@ function resetAskUser() {
     closeButton.innerHTML = "Close";
     closeButton.setAttribute("class","btn btn-default");
     godtaButton.innerHTML = "Forandre navn";
-    closeButton.setAttribute("onclick","");
-    godtaButton.setAttribute("onclick","");
+    closeButton.setAttribute("onclick","removeChangeInput()");
+    godtaButton.setAttribute("onclick","renameTavle()");
     slettButton.removeAttribute("hidden");
     linkButton.removeAttribute("hidden");
     inputField.removeAttribute("hidden");
