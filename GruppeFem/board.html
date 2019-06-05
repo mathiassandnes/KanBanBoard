@@ -15,8 +15,8 @@
     
     <!-- Current user display -->
     
-    <div style="position: absolute; right: 5%; top: 5px;">
-                <h5 id="currentUser"></h5>
+    <div style="position: absolute; right: 5%; top: 10px;">
+                <h5 style="color:white;" id="currentUser"></h5>
             </div>
     
     <!-- Links -->
@@ -55,7 +55,7 @@
 
                 <div class="modal-header">
                     <div id="cardName" class="form-group">
-                        <input id="card-name-input" type="text" class="form-control" placeholder="New card name">
+                        <input id="card-name-input" maxlength=50 type="text" class="form-control" placeholder="New card name">
                     </div>
 
                     <div class="form-group">
@@ -166,7 +166,6 @@
         revert: true,
         delay: 100,
         dropOnEmpty: true,
-
     });
 
 

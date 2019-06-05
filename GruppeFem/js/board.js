@@ -5,8 +5,8 @@ function drawBoards() {
     for (let i = 0; i < arrayOfBoards.length; i++) {
         let newTabButtonElement = createHtmlElementWithText('button', arrayOfBoards[i].name);
         newTabButtonElement.setAttribute("onclick", "drawTables("+i+")");
-        newTabButtonElement.className="btn rounded m-1"
-        newTabButtonElement.style="background-color: #E72552; color: #FFF1D4;"
+        newTabButtonElement.className="btn rounded m-1";
+        newTabButtonElement.style="background-color: #E72552; color: #FFF1D4;";
         document.getElementById('nav').appendChild(newTabButtonElement);
     }
 }
@@ -198,7 +198,7 @@ function drawTables(board) {
         let arrayOfCards = arrayOfLists[i].cards;
         drawList(arrayOfLists[i]);
 
-        let listElementContainer = document.getElementById(arrayOfLists[i].name+"container")
+        //let listElementContainer = document.getElementById(arrayOfLists[i].name+"container")
         let listElementBody = document.getElementById(arrayOfLists[i].name+"body")
 
         for (let j = 0; j < arrayOfCards.length; j++) {
@@ -211,7 +211,7 @@ function drawTables(board) {
     addModal(newListButton, 'list-modal');
     newListButton.onclick = function(e){listModal(e.target, arrayOfBoards[board]);};
 
-    //document.getElementById('content-area').appendChild(newListButton);
+    document.getElementById('content-area').appendChild(newListButton);
     //removed this for prototype because of bugs
 }
 

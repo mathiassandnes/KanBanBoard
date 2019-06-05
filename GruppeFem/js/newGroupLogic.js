@@ -1,17 +1,12 @@
 
-
-
-
-let names = [];
-let members = [];
+var names = [];
+var members = [];
 
 
 // gjør at names blir et array av alle navn i databasen
 for (let i = 0; i < users.length; i++) {
   names.push(users[i].name);
-
 }
-
 //alfabetisk rekkefølge
 names.sort();
 
@@ -21,12 +16,9 @@ var render_lists = function (lists) {
   var li = "";
   for (index in lists) {
     li += "<li>" + '<button onclick="addClickInput(\'' + lists[index] + '\')" class = btn-primary> ' + lists[index] + "</button>" + "</li>";
-
-
   }
   ul.innerHTML = li;
 }
-
 render_lists(names);
 
 // lets filters it
@@ -44,9 +36,6 @@ var filterUsers = function (event) {
 
 input.addEventListener('keyup', filterUsers);
 
-
-
-
 //trykker man på et navn, legges de til i listen
 
 function addClickInput(name) {
@@ -57,38 +46,37 @@ function addClickInput(name) {
   let membersString = '';
 
   for (let x = 0; x < members.length; x++) {
+    if(members[x] !== null){
+      membersString += '<button class= btn-primary id = btn' + x + ' onclick = removeClickInput(' + x + ') >' + members[x] + '</button>';
+      membersString += '<button class= btn-primary id = xbtn' + x + ' onclick= removeClickInput(' + x + ') >' + "X" + '</button>';
+        }
+    }
+     document.getElementById("members").innerHTML = membersString;
 
-    membersString += '<button class= btn-primary id = x>' + members[x] + '</button>';
-    membersString += '<button class= btn-primary id = x  onclick= removeClickInput(this.id) >' + "X" + '</button>';
-  
-    
-
-
-
-
-
-
-
-  }
-
-  document.getElementById("members").innerHTML = membersString;
-
-
-
-  console.log(members);
-
-
-  //3. Laste inn listene på nytt til siden
-
-}
-
-
-function removeClickInput(id) {
-
-  let removeButton = document.getElementById(id );
+     //3. Laste inn listene på nytt til siden
+    }
+function removeClickInput(id)  {
+  members[id] = null;
+  let removeButton = document.getElementById('btn' + id);
   removeButton.parentNode.removeChild(removeButton);
-  members.splice(id, 1);
-
-
-
+  let removeXButton = document.getElementById('xbtn' + id );
+  removeXButton.parentNode.removeChild(removeXButton);
+}   
+function checkNotNull(name){ 
+  return null != name;
 }
+
+function setMembersNotNull(){
+    members = members.filter(checkNotNull);
+    groupSavedSnack();
+    console.log(members);
+}
+
+
+//----------------------------Group saved snack ------------------------------------------
+function groupSavedSnack() {
+    var x = document.getElementById("group-saved-snackbar");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+

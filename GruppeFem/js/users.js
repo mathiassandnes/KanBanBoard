@@ -41,5 +41,4 @@ var users = [
         username: "Johannes1337",
         password: "Johannes666"
     }
-
 ];
