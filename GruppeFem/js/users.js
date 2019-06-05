@@ -3,7 +3,7 @@ var users = [
         name: "Bengt Østby",
         email: "bengt@capgemini.no",
         username: "Mr.Robot",
-        password: "E-Corp5ucz"
+        password: "E-Corp5ucz",
     },
     {
         name: "Tomas",
