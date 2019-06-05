@@ -1,7 +1,3 @@
-
-
-
-
 let names = [];
 let members = [];
 
@@ -21,7 +17,6 @@ var render_lists = function (lists) {
   var li = "";
   for (index in lists) {
     li += "<li>" + '<button onclick="addClickInput(\'' + lists[index] + '\')" class = btn-primary> ' + lists[index] + "</button>" + "</li>";
-
 
   }
   ul.innerHTML = li;
