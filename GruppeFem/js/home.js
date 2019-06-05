@@ -1,5 +1,8 @@
 //Funksjonen forandrer navnen på knappen som viser hvilken tavle man skal linkes til.
 function changeTavle(id){
+    if(askIsActive === true){
+        resetAskUser()
+    }
     let modal = document.getElementById("link-Tavle");
     let tavleName = document.getElementById(id);
     let inputFelt = document.getElementById("change-Input");
@@ -8,6 +11,7 @@ function changeTavle(id){
     modal.setAttribute("onclick","window.location.href='board.html'");
     let hiddenHead = document.getElementById("tavle-Head");
     hiddenHead.innerHTML = id;
+
 }
 //gjør det enklere å lage et html elemenet med tekst
 function createHtmlElementWithText(tagName, text){
@@ -29,6 +33,7 @@ function lagGruppe(){
         let groupBody = document.getElementById("gruppe-Body");
         gruppelist.setAttribute("id",group[i].name + i);
         gruppelist.setAttribute("numb",i);
+        gruppelist.setAttribute("class","column");
         //Lager knappen for å legge til flere tavler.
         let addButton = createHtmlElementWithText("button","Legg til tavle");
         addButton.setAttribute("class", "btn btn-primary m-3 btn-sm");
@@ -39,7 +44,6 @@ function lagGruppe(){
         addButton.setAttribute("numb",i);
         addButton.setAttribute("id","button"+i);
         addButton.setAttribute("onclick","sendId(this.id)");
-        gruppelist.setAttribute("class","column");
         //Lager elementet som holder tavlene i gruppene.
         let tavleList = document.createElement("tr");
         tavleList.setAttribute("id","tr"+i);
@@ -178,7 +182,9 @@ function sendId(id){
 }
 
 //Forandrer modal og spør bruker om de er sikkere på om de vil slette tavlen.
+var askIsActive = false;
 function askUserRemove() {
+    askIsActive = true;
     let godtaButton = document.getElementById("accept-Input");
     let closeButton = document.getElementById("close-Modal-Button");
     let slettButton = document.getElementById("delete-Tavle");
@@ -187,6 +193,7 @@ function askUserRemove() {
     let modalBody = document.getElementById("tavle-Info-Modal-Body");
     let textBody = document.createElement("div");
     textBody.setAttribute("id","getThisBody");
+    textBody.setAttribute("exists", "true");
     modalBody.appendChild(textBody);
     textBody.innerHTML = "Er du sikker på at du vil slette tavlen?";
     closeButton.innerHTML = "Nei, jeg vil ikke slette.";
@@ -216,6 +223,7 @@ function resetAskUser() {
     slettButton.removeAttribute("hidden");
     linkButton.removeAttribute("hidden");
     inputField.removeAttribute("hidden");
+    askIsActive = false;
 }
 
 //Funksjon for å fjerne en tavle fra arrayet det lå i og fra HTML siden.
