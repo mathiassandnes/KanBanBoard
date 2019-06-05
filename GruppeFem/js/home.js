@@ -9,7 +9,7 @@ function changeTavle(id){
     let hiddenHead = document.getElementById("tavle-Head");
     hiddenHead.innerHTML = id;
 }
-
+//gjør det enklere å lage et html elemenet med tekst
 function createHtmlElementWithText(tagName, text){
     let element = document.createElement(tagName);
     element.innerHTML = text;
