@@ -16,7 +16,7 @@ function filterUsers () {
   renderLists(filtered_users);
 }
 
-//trykker man på et navn, legges de til i listen
+//trykker man på et navn fra søke felte legges det i mebers array  og i member felten 
 function addClickInput(name) {
     members.push(name);
     let membersString = '';
@@ -28,7 +28,7 @@ function addClickInput(name) {
     }
     document.getElementById("members").innerHTML = membersString;
 }
-
+// fjerner elementer fra mebmer listen og fra memeber felten 
 function removeClickInput(id)  {
     console.log(members[id])  
     members[id] = null;
