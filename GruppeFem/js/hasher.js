@@ -1,7 +1,5 @@
-let a = "Jeg skal hashes"
 
-console.log(a);
-
+//brukes til å hashe passord
 String.prototype.hashCode = function() {
     var hash = 0, i, chr;
     if (this.length === 0) return hash;
@@ -12,5 +10,3 @@ String.prototype.hashCode = function() {
     }
     return hash;
 };
-
-console.log(a.hashCode());

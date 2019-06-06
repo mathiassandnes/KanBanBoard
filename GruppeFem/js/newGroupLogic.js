@@ -1,79 +1,48 @@
-
-var names = [];
-var members = [];
-
-
-// gjør at names blir et array av alle navn i databasen
-for (let i = 0; i < users.length; i++) {
-  names.push(users[i].name);
-}
-//alfabetisk rekkefølge
-names.sort();
-
-ul = document.getElementById("search-result");
-
-var render_lists = function (lists) {
-  var li = "";
-  for (index in lists) {
-    li += "<li>" + '<button onclick="addClickInput(\'' + lists[index] + '\')" class = btn-primary> ' + lists[index] + "</button>" + "</li>";
+function renderLists (lists) {
+  let li = "";
+  for (let i = 0; i < lists.length; i++) {
+      li += "<li>" + '<button id='+i+' onclick="addClickInput(\'' + lists[i] + '\')" class = btn-primary> ' + lists[i] + "</button>" + "</li>";
   }
   ul.innerHTML = li;
 }
-render_lists(names);
 
-// lets filters it
-input = document.getElementById('user-search-input');
-
-var filterUsers = function (event) {
-  keyword = input.value.toLowerCase();
-  filtered_users = names.filter(function (user) {
-    user = user.toLowerCase();
-    return user.indexOf(keyword) > -1;
+function filterUsers () {
+    let keyword = input.value.toLowerCase();
+    let filtered_users = names.filter(function (user) {
+        user = user.toLowerCase();
+        return user.indexOf(keyword) > -1;
   });
 
-  render_lists(filtered_users);
+  renderLists(filtered_users);
 }
 
-input.addEventListener('keyup', filterUsers);
-
-// legger navnene man velger inn i mebmer listen og i mebmer felten på siden
+//trykker man på et navn, legges de til i listen
 function addClickInput(name) {
-  // 1. legges til i members liste
+    members.push(name);
+    let membersString = '';
 
-  members.push(name);
-//deklarer en tomt text streng 
-  let membersString = '';
-
-  for (let x = 0; x < members.length; x++) {
-    if(members[x] !== null){
-      membersString += '<button class= btn-primary id = btn' + x + ' onclick = removeClickInput(' + x + ') >' + members[x] + '</button>';
-      membersString += '<button class= btn-primary id = xbtn' + x + ' onclick= removeClickInput(' + x + ') >' + "X" + '</button>';
+    for (let i = 0; i < members.length; i++) {
+        if(members[i] !== null) {
+            membersString += '<button class="btn-primary" id="btn'+i+'" onclick="removeClickInput('+i+')" >'+members[i]+'</button>';
         }
     }
-     document.getElementById("members").innerHTML = membersString;
+    document.getElementById("members").innerHTML = membersString;
+}
 
-     //3. Laste inn listene på nytt til siden
-    }
-
-    // funksjonen fjerner navne fra member liste og fra meber felten på siden
 function removeClickInput(id)  {
-  members[id] = null;
-  let removeButton = document.getElementById('btn' + id);
-  removeButton.parentNode.removeChild(removeButton);
-  let removeXButton = document.getElementById('xbtn' + id );
-  removeXButton.parentNode.removeChild(removeXButton);
-}   
+    console.log(members[id])  
+    members[id] = null;
+    let removeButton = document.getElementById('btn' + id);
+    removeButton.parentNode.removeChild(removeButton);
+}
+
 function checkNotNull(name){ 
   return null != name;
 }
 
 function setMembersNotNull(){
     members = members.filter(checkNotNull);
-    groupSavedSnack();
-    console.log(members);
-
 }
-
 
 //----------------------------Group saved snack ------------------------------------------
 function groupSavedSnack() {
@@ -82,3 +51,96 @@ function groupSavedSnack() {
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
+function groupModal(target){
+
+    let groupNameInModal = document.getElementById('group-name-group-modal');
+    let groupDescriptionInModal = document.getElementById('group-description-group-modal');
+
+    document.getElementById('members').innerHTML = "";
+    members = [];
+
+
+    let isNewGroup = true;
+    let currentGroup;
+    for(let i = 0; i < group.length; i++){
+        if(group[i].name === target.innerHTML){
+            currentGroup = group[i];
+            console.log(currentGroup.members)
+
+            groupNameInModal.value = currentGroup.name;
+            groupDescriptionInModal.value = currentGroup.description;
+
+            console.log(currentGroup.members)
+
+            for(let j = 0; j < currentGroup.members.length; j++){
+                addClickInput(currentGroup.members[j]);
+            }
+
+            isNewGroup = false;
+        }
+    }
+    if(isNewGroup){
+        groupNameInModal.value = "";
+        groupDescriptionInModal.value = "";
+    }
+
+    document.getElementById('create-new-group').onclick = function(){
+        if(isNewGroup){
+            currentGroup = {
+                name: groupNameInModal.value,
+                boards: [],
+                members: members,
+                description: groupDescriptionInModal.value
+            };
+
+            group.push(currentGroup);
+            lagGruppe();
+        }else{
+            currentGroup.name = groupNameInModal.value;
+            currentGroup.members = members;
+            currentGroup.description = groupDescriptionInModal.value;
+            target.innerHTML = groupNameInModal.value;
+        }
+
+
+    }
+}
+
+function createGroup(){
+    groupSavedSnack();
+    setMembersNotNull();
+
+    let newGroup = {
+        name: document.getElementById("group-name-input").value,
+        boards: [],
+        members: members
+    };
+    group.push(newGroup);
+
+    lagGruppe();
+
+
+
+}
+
+
+let names = [];
+let members = [];
+
+
+// gjør at names blir et array av alle navn i databasen
+for (let i = 0; i < users.length; i++) {
+    names.push(users[i].name);
+}
+//alfabetisk rekkefølge
+names.sort();
+
+ul = document.getElementById("search-result");
+
+// lets filters it
+renderLists(names);
+
+let input = document.getElementById('user-search-input');
+input.addEventListener('keyup', function(){filterUsers()});
+
+document.getElementById("new-group-button").onclick = function (e){groupModal(e.target)}

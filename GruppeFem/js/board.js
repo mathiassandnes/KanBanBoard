@@ -1,4 +1,3 @@
-var arrayOfBoards = group[0].boards;
 
 //tegner tabs
 function drawBoards() {
@@ -45,7 +44,7 @@ function listModal(target, board){
                 cards: []
             };
 
-            drawList(currentList)
+            drawList(currentList);
 
             board.lists.push(currentList);
             list.push(currentList);
@@ -59,16 +58,22 @@ function listModal(target, board){
 //all funksjonalitet som ligger i modalen på kort
 function cardModal(e, container, listToDraw) {
 
+    document.getElementById("responsible-user").innerHTML = "";
+
+    let defaultResponsibleUser = createHtmlElementWithText('option', 'Not assigned');
+    defaultResponsibleUser.setAttribute('selected', 'selected');
+    document.getElementById('responsible-user').appendChild(defaultResponsibleUser);
+
     for(let i = 0; i < group[0].members.length; i++){
-        document.getElementById('responsible-user').appendChild(createHtmlElementWithText('option', group[0].members[i].name));
+        document.getElementById('responsible-user').appendChild(createHtmlElementWithText('option', group[0].members[i]));
     }
 
     let cardNameInModal = document.getElementById('card-name-input');
     let cardDescriptionInModal = document.getElementById('card-description');
     let priorityInModal = document.getElementById('priority');
     let responsibleUserInModal = document.getElementById('responsible-user');
-    var isNewCard = true;
-    var currentCard;
+    let isNewCard = true;
+    let currentCard;
 
     // finds the correct card in backend and draws the modal with its values
     for (let x = 0; x < card.length; x++) {
@@ -87,6 +92,7 @@ function cardModal(e, container, listToDraw) {
         cardNameInModal.value = "";
         cardDescriptionInModal.value = "";
         document.getElementById('priority').options.selectedIndex = 0;
+        responsibleUserInModal.options.selectedIndex = 0;
     }
 
     document.getElementById('save-card-changes').onclick = function () {
@@ -98,6 +104,8 @@ function cardModal(e, container, listToDraw) {
                 priority: priorityInModal.options.selectedIndex,
                 responsibleUserInModal: responsibleUserInModal.options.selectedIndex
             };
+
+
             drawCard(currentCard.name, container);
 
             listToDraw.cards.push(currentCard);
@@ -120,7 +128,10 @@ function cardModal(e, container, listToDraw) {
         if (responsibleUserInModal.options.selectedIndex != currentCard.responsibleUser) {
             currentCard.responsibleUser = responsibleUserInModal.options.selectedIndex;
         }
+
     };
+
+
 }
 
 function drawList(listToDraw) {
@@ -131,7 +142,8 @@ function drawList(listToDraw) {
 
     listElementContainer.className = "m-3 list-element p-1 col-1";
     listElementBody.className = "rounded-bottom bg-dark";
-    listElementBody.style = "min-height: 52px;";
+    listElementBody.style.minHeight=" 10px";
+    listElement.style.minHeight=" 52px";
     listElement.className = "col-12 text-12 rounded-top bg-dark onboard-text text-center m-0 p-2";
 
     listElementContainer.id = listToDraw.name+"container";
@@ -150,7 +162,11 @@ function drawList(listToDraw) {
 
     //legger til navnet til listen i en dropdown meny på kort modal
 
-    listElementContainer.onclick = function (e) {cardModal(e, listElementBody, listToDraw)};
+    listElementContainer.onclick = function (e) {
+        cardModal(e, listElementBody, listToDraw);
+
+    };
+
 
     let newCardButton = createHtmlElementWithText('button', '+ new task');
 
@@ -158,6 +174,8 @@ function drawList(listToDraw) {
 
     newCardButton.className = "center m-2 btn btn-primary col-11 new-card-button";
     listElementContainer.appendChild(newCardButton);
+
+    activateDragAndDrop();
 }
 
 //tegner et enkelt kort
@@ -173,7 +191,7 @@ function drawCard(name, container){
     cardElement.className="btn bg-light text-dark mt-1 mb-1 center col-12";
 
     //adds modal
-    addModal(cardElement, 'card-modal')
+    addModal(cardElement, 'card-modal');
 
     //give unique ID
     cardElement.id = name;
@@ -214,6 +232,9 @@ function drawTables(board) {
     document.getElementById('content-area').appendChild(newListButton);
     //removed this for prototype because of bugs
 }
+
+let arrayOfBoards = group[0].boards; // 0 reoresnterer tavlen vi er på, om vi skulle hatt en state ville det bli brukt en variabel der for å velge tavle
+
 
 drawBoards();
 drawTables(0); //input må være det boardet vi trykket på i "home" siden
