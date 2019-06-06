@@ -27,31 +27,44 @@ function addModal(element, modalName){
 
 //Lager Gruppe elementer og gir dem attributter.
 function lagGruppe(){
-    let groupBody = document.getElementById("gruppe-Body");
+    let groupBody = document.getElementById("group-Body");
     groupBody.innerHTML ="";
 
     for(let i=0; i < group.length; i++){
 
         let gruppelist = document.createElement("table");
         let groupName = document.createElement("div");
+        let groupHeader = document.createElement("div");
         addModal(groupName,"new-group-modal");
-        gruppelist.appendChild(groupName);
+        gruppelist.appendChild(groupHeader);
+        groupHeader.appendChild(groupName);
+        groupHeader.setAttribute("class", "row");
         gruppelist.setAttribute("id",group[i].name + i);
         gruppelist.setAttribute("numb",i);
         gruppelist.setAttribute("class","column");
+        gruppelist.style.marginBottom = "45px";
         groupName.onclick = function(e) {groupModal(e.target)};
+        groupName.style.fontSize = "xx-large";
+        gruppelist.style.backgroundColor = "#C92047";
+        gruppelist.style.borderRadius = "25px";
+        groupHeader.style.marginRight = "25px";
+        groupHeader.style.marginLeft= "20px";
+
+
         //Lager knappen for å legge til flere tavler.
-        let addButton = createHtmlElementWithText("button","Add new table");
+        let addButton = createHtmlElementWithText("div","Legg til tavle");
         addButton.setAttribute("class", "btn btn-primary m-3 btn-sm");
-        gruppelist.innerHTML = "<legend>"+group[i].name+"</legend>";
-        addButton.innerHTML = "Add new table";
-        groupName.innerHTML = "<legend>"+group[i].name+"</legend>";
+        addButton.innerHTML = "Add new board";
+        groupName.innerHTML = group[i].name;
         groupBody.appendChild(gruppelist);
         gruppelist.appendChild(addButton);
         addModal(addButton,"create-Table-Modal");
+        groupHeader.appendChild(addButton);
+        addModal(addButton,"lag-Tavle-Modal");
         addButton.setAttribute("numb",i);
         addButton.setAttribute("id","button"+i);
         addButton.setAttribute("onclick","sendId(this.id)");
+
         gruppelist.className = "column";
         //Lager elementet som holder tavlene i gruppene.
         let tableList = document.createElement("div");
