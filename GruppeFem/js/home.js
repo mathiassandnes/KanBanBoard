@@ -60,7 +60,7 @@ function lagGruppe(){
         addButton.setAttribute("onclick","sendId(this.id)");
         gruppelist.className = "column";
         //Lager elementet som holder tavlene i gruppene.
-        let tableList = document.createElement("tr");
+        let tableList = document.createElement("div");
         tableList.setAttribute("id","tr"+i);
         tableList.setAttribute("numb", i);
         let gruppeliste = document.getElementById(group[i].name + i);
@@ -71,7 +71,7 @@ function lagGruppe(){
             for(let k = 0; k < arrayOfTabler.length;k++){
                 let arrayOfBoards = group[i].boards;
                 let arrayOfTables = arrayOfBoards[k].name;
-                let table = createHtmlElementWithText("button", arrayOfTables);
+                let table = createHtmlElementWithText("div", arrayOfTables);
                 let tableList = document.getElementById("tr"+i);
                 tableList.appendChild(table);
                 table.setAttribute("class","btn btn-dark m-3 onboard-text center");
