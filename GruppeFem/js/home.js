@@ -290,7 +290,6 @@ function removeTable(){
     boardIndex.parentNode.removeChild(boardIndex);
     $("#tavle-Info-Modal").modal("toggle");
     resetAskUser();
-    alert("sadsa");
     return false;
 }
 
