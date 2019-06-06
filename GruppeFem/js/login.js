@@ -1,7 +1,3 @@
-//------------------------------->>UserArray to localstorage<<----------------------------------
-/*function saveCurrentUserObject(i){
-                localStorage.setItem('currentUserObject', JSON.stringify(users[i]));   
-}*/
 //---------------------------------------->>Login<<---------------------------------------------
 //Sjekker om username er username og passord er i users[].
 function checkLogIn() {
