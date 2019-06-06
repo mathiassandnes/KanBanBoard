@@ -1,9 +1,10 @@
+
 //Funksjonen forandrer navnen på knappen som viser hvilken tavle man skal linkes til.
 function changeTavle(id){
     let modal = document.getElementById("link-Tavle");
     let tavleName = document.getElementById(id);
     let inputFelt = document.getElementById("change-Input");
-    inputFelt.setAttribute("placeholder", tavleName.innerHTML);
+    inputFelt.value = tavleName.innerHTML;
     modal.innerHTML = "Go to " + tavleName.innerHTML.toLowerCase();
     modal.setAttribute("onclick","window.location.href='board.html'");
     let hiddenHead = document.getElementById("tavle-Head");
