@@ -35,16 +35,10 @@
 <main class="col-12 onboard-text">
     <div id="container" class="container m-5">
         <div id="gruppe-Body" class="table"></div>
-        <div>
-            <div class="modal fade" id="lag-Tavle-Modal" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header" id="hiddenModal" hidden>
-                            <h4 class="modal-title">Legg til ny tavle</h4>
     </div>
 
     <!-- New Board Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal fade" id="lag-Tavle-Modal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" id="hiddenModal" hidden>
@@ -60,23 +54,6 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="tavle-Info-Modal" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="tavle-Head" hidden></h4>
-                        <input maxlength=50 type="text" id="change-Input" placeholder="Name of board">
-                        <button type="button" class="close" data-dismiss="modal" onclick="resetAskUser()">&times;</button>
-                    </div>
-                    <div class="modal-body" id="tavle-Info-Modal-Body">
-                        <button onclick="renameTavle()" id="accept-Input" class="btn btn-primary" data-dismiss="modal">Forandre navn</button>
-                        <button type="button" id="delete-Tavle" class="btn btn-primary" onclick="askUserRemove()">Slett tavle</button>
-
-                    </div>
-                    <div class="modal-footer" id="tavle-Info-Modal-Footer">
-                        <button type="button" onclick="removeChangeInput()" id="close-Modal-Button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" id="link-Tavle" class="btn btn-primary" onclick="" data-dismiss="modal"></button>
-                    </div>
     </div>
 
     <!-- Board Modal -->
@@ -100,8 +77,6 @@
         </div>
     </div>
 
-<main class="col-12 onboard-text">
-
     <!-- New Group Modal -->
     <div class="modal fade" id="new-group-modal" tabindex="-1" role="dialog" aria-labelledby="new-group-modal-label" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -118,9 +93,9 @@
                     <div id="new-group-modal-body" class=" form-group col-12 row" >
                         <label for="group-description-group-modal">Description:</label>
                         <textarea class="rounded col-12" rows="2" id="group-description-group-modal"></textarea>
-                       <label for="members">Members: </label>
-                       <div class=" rounded col-12" rows="1" id="members" ></div>
-                      
+                        <label for="members">Members: </label>
+                        <div class=" rounded col-12" rows="1" id="members" ></div>
+
                         <input id="user-search-input" type="text" class="  form-control col-12" placeholder="Søk på folk du vil ha i gruppen:">
 
                         <ul id="search-result" class="col-6"></ul>
@@ -162,9 +137,9 @@
 <script src="localstorage/userData.js"></script>
 
 <!-- Funksjonalitet -->
-        <script src="js/newGroupLogic.js"></script>
+<script src="js/newGroupLogic.js"></script>
 
-        <script src="js/home.js"></script>
+<script src="js/home.js"></script>
 
 <!-- Bootstrap -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
