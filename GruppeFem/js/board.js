@@ -231,21 +231,16 @@ function drawTables(board) {
     //removed this for prototype because of bugs
 }
 
-function giveOnEnterPress() {
-    let cardInputField = document.getElementById("card-name-input");
+function giveOnEnterPress(input,funcButton) {
+    let cardInputField = document.getElementById(input);
     cardInputField.addEventListener("keyup",function (event) {
         if(event.key === "Enter"){
-            document.getElementById("save-card-changes").click();
+            document.getElementById(funcButton).click();
         }
     });
-    let listInputField = document.getElementById("list-name-list-modal");
-    listInputField.addEventListener("keyup",function (event) {
-        if(event.key === "Enter"){
-            document.getElementById("create-new-list").click();
-        }
-    })
-
 }
-giveOnEnterPress();
+
+giveOnEnterPress("card-name-input","save-card-changes");
+giveOnEnterPress("list-name-list-modal","create-new-list");
 drawBoards();
 drawTables(0); //input må være det boardet vi trykket på i "home" siden

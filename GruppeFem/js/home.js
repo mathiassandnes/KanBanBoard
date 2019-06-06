@@ -11,12 +11,6 @@ function changeTable(id){
     modal.setAttribute("onclick","window.location.href='board.html'");
     let hiddenHead = document.getElementById("table-Head");
     hiddenHead.innerHTML = id;
-    inputField.addEventListener("keyup",function(event){
-        if(event.key === "Enter"){
-            document.getElementById("accept-Input").click();
-        }
-    })
-
 }
 //gjør det enklere å lage et html elemenet med tekst
 function createHtmlElementWithText(tagName, text){
@@ -91,6 +85,7 @@ lagGruppe();
 
 //Funksjonen for å lage nye tavler fra HTML siden.
 function addExtraTable(){
+    alert("funk kjører");
     let hiddenHead = document.getElementById("hiddenModal").innerHTML;
     let thisValue = document.getElementById(hiddenHead);
     let groupIndex = thisValue.getAttribute("numb");
@@ -129,7 +124,7 @@ function addExtraTable(){
         table.setAttribute("id", nyTableInput.value + groupIndex + tableIndex);
         table.setAttribute("onclick","changeTable(this.id)");
         tableList.appendChild(table);
-        nyTableInput.value = "";
+        removeInput()
     }
 }
 
@@ -181,26 +176,24 @@ function removeChangeInput(){
     let input = document.getElementById("change-Input");
     input.value = "";
 }
-
-function giveModalEnterKey() {
-    let inputField = document.getElementById("group-name-group-modal");
-    inputField.addEventListener("keyup",function (event) {
+//Funksjon som finner input felt og gjør at det aksepterer input når man trykker på enter.
+function giveOnEnterPress(input,funcButton) {
+    let cardInputField = document.getElementById(input);
+    cardInputField.addEventListener("keyup",function (event) {
         if(event.key === "Enter"){
-            document.getElementById("create-new-group").click();
+            document.getElementById(funcButton).click();
         }
-    })
+    });
 }
-giveModalEnterKey()
+//Gjør at alle modaler aksepterer input når man trykker enter
+giveOnEnterPress("group-name-group-modal","create-new-group");
+giveOnEnterPress("user-Input","accept-Table-Input");
+giveOnEnterPress("change-Input","accept-Input");
+
 //Funksjon for å sende id inn til modal slik at man lett kan finne knappen man trykket på.
 function sendId(id){
     let hiddenHead = document.getElementById("hiddenModal");
     hiddenHead.innerHTML = id;
-    let inputField = document.getElementById("user-Input");
-    inputField.addEventListener("keyup",function(event){
-        if(event.key === "Enter"){
-            document.getElementById("accept-Table-Input").click();
-        }
-    })
 }
 
 //Forandrer modal og spør bruker om bruker er sikkere på om de vil slette tavlen.
@@ -209,42 +202,43 @@ function askUserRemove() {
     askIsActive = true;
     let godtaButton = document.getElementById("accept-Input");
     let closeButton = document.getElementById("close-Modal-Button");
-    let slettButton = document.getElementById("delete-Table");
-    let linkButton = document.getElementById("link-Table");
-    let inputField = document.getElementById("change-Input");
+
+    document.getElementById("delete-Table").setAttribute("hidden",true);
+    document.getElementById("link-Table").setAttribute("hidden",true);
+    document.getElementById("change-Input").setAttribute("hidden",true);
+
     let modalBody = document.getElementById("table-Info-Modal-Body");
     let textBody = document.createElement("div");
+
     textBody.setAttribute("id","getThisBody");
     textBody.style.color = "black";
     modalBody.appendChild(textBody);
     textBody.innerHTML = "Are you sure you want to delete this table?";
+
     closeButton.innerHTML = "No, i don't want to delete this table.";
     closeButton.setAttribute("class","btn btn-primary");
     closeButton.setAttribute("onclick","resetAskUser()");
     godtaButton.innerHTML = "Yes, delete table";
     godtaButton.setAttribute("onclick","removeTable()");
-    slettButton.setAttribute("hidden",true);
-    linkButton.setAttribute("hidden",true);
-    inputField.setAttribute("hidden",true);
 }
 
 //Reseter det som askUserRemove gjorde med modalen.
 function resetAskUser() {
     let godtaButton = document.getElementById("accept-Input");
     let closeButton = document.getElementById("close-Modal-Button");
-    let slettButton = document.getElementById("delete-Table");
-    let linkButton = document.getElementById("link-Table");
-    let inputField = document.getElementById("change-Input");
+
+    document.getElementById("delete-Table").removeAttribute("hidden");
+    document.getElementById("link-Table").removeAttribute("hidden");
+    document.getElementById("change-Input").removeAttribute("hidden");
+
     let textBody = document.getElementById("getThisBody");
     textBody.parentNode.removeChild(textBody);
+
     closeButton.innerHTML = "Close";
     closeButton.setAttribute("class","btn btn-default");
     godtaButton.innerHTML = "Save changes";
     closeButton.setAttribute("onclick","removeChangeInput()");
     godtaButton.setAttribute("onclick","renameTable()");
-    slettButton.removeAttribute("hidden");
-    linkButton.removeAttribute("hidden");
-    inputField.removeAttribute("hidden");
     askIsActive = false;
 }
 
@@ -264,4 +258,3 @@ function removeTable(){
     resetAskUser();
     return false;
 }
-
