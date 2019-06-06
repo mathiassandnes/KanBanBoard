@@ -37,17 +37,19 @@ function filterUsers () {
 function addClickInput(name) {
   // 1. legges til i members liste
 
-  members.push(name);
 
-  let membersString = '';
+    members.push(name);
 
-  for (let i = 0; i < members.length; i++) {
-      if(members[i] !== null){
-        membersString += '<button class="btn-primary" id="btn'+i+'" onclick="removeClickInput('+i+')" >'+members[i]+'</button>';
-        membersString += '<button class="btn-primary" id="xbtn'+i+'" onclick="removeClickInput('+i+')" >'+"X"+'</button>';
-      }
-  }
-     document.getElementById("members").innerHTML = membersString;
+    let membersString = '';
+
+    for (let i = 0; i < members.length; i++) {
+        if(members[i] !== null) {
+            membersString += '<button class="btn-primary" id="btn'+i+'" onclick="removeClickInput('+i+')" >'+members[i]+'</button>';
+            membersString += '<button class="btn-primary" id="xbtn'+i+'" onclick="removeClickInput('+i+')" >'+"X"+'</button>';
+        }
+    }
+    document.getElementById("members").innerHTML = membersString;
+
 
      //3. Laste inn listene på nytt til siden
 }
@@ -75,9 +77,12 @@ function groupSavedSnack() {
 }
 
 function groupModal(target){
-    console.log(target.innerHTML);
+
     let groupNameInModal = document.getElementById('group-name-group-modal');
     let groupDescriptionInModal = document.getElementById('group-description-group-modal');
+
+    document.getElementById('members').innerHTML = "";
+    members = [];
 
 
     let isNewGroup = true;
@@ -85,16 +90,16 @@ function groupModal(target){
     for(let i = 0; i < group.length; i++){
         if(group[i].name === target.innerHTML){
             currentGroup = group[i];
+            console.log(currentGroup.members)
+
             groupNameInModal.value = currentGroup.name;
             groupDescriptionInModal.value = currentGroup.description;
 
-            // lager et array med navn
+            console.log(currentGroup.members)
+
             for(let j = 0; j < currentGroup.members.length; j++){
-                addClickInput(currentGroup.members[j].name);
+                addClickInput(currentGroup.members[j]);
             }
-
-            //LEGGE TIL DESCRIPTION OG SÅNT
-
 
             isNewGroup = false;
         }
@@ -103,14 +108,13 @@ function groupModal(target){
         groupNameInModal.value = "";
         groupDescriptionInModal.value = "";
     }
-
     document.getElementById('create-new-group').onclick = function(){
         if(isNewGroup){
             currentGroup = {
                 name: groupNameInModal.value,
                 boards: [],
                 members: members,
-                description: groupDescriptionInModal
+                description: groupDescriptionInModal.value
             };
 
             group.push(currentGroup);
@@ -118,9 +122,11 @@ function groupModal(target){
         }else{
             currentGroup.name = groupNameInModal.value;
             currentGroup.members = members;
-            currentGroup.description = groupDescriptionInModal;
+            currentGroup.description = groupDescriptionInModal.value;
             target.innerHTML = groupNameInModal.value;
         }
+
+
     }
 }
 
