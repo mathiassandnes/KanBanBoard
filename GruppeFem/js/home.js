@@ -35,8 +35,7 @@ function lagGruppe(){
 
         let gruppelist = document.createElement("table");
         let groupName = document.createElement("div");
-        groupName.setAttribute("data-toggle","modal");
-        groupName.setAttribute("data-target","#new-group-modal");
+        addModal(groupName,"new-group-modal");
         gruppelist.appendChild(groupName);
         gruppelist.setAttribute("id",group[i].name + i);
         gruppelist.setAttribute("numb",i);
@@ -46,7 +45,7 @@ function lagGruppe(){
         let addButton = createHtmlElementWithText("button","Legg til tavle");
         addButton.setAttribute("class", "btn btn-primary m-3 btn-sm");
         gruppelist.innerHTML = "<legend>"+group[i].name+"</legend>";
-        addButton.innerHTML = "Legg til tavle";
+        addButton.innerHTML = "Add new table";
         groupName.innerHTML = "<legend>"+group[i].name+"</legend>";
         groupBody.appendChild(gruppelist);
         gruppelist.appendChild(addButton);
@@ -249,12 +248,13 @@ function askUserRemove() {
     let modalBody = document.getElementById("tavle-Info-Modal-Body");
     let textBody = document.createElement("div");
     textBody.setAttribute("id","getThisBody");
+    textBody.style.color = "black";
     modalBody.appendChild(textBody);
-    textBody.innerHTML = "Er du sikker på at du vil slette tavlen?";
-    closeButton.innerHTML = "Nei, jeg vil ikke slette.";
+    textBody.innerHTML = "Are you sure you want to delete this table?";
+    closeButton.innerHTML = "No, i don't want to delete this table.";
     closeButton.setAttribute("class","btn btn-primary");
     closeButton.setAttribute("onclick","resetAskUser()");
-    linkButton.innerHTML = "Ja, Slett tavlen";
+    linkButton.innerHTML = "Yes, delete table";
     linkButton.setAttribute("onclick","removeTable()");
     slettButton.setAttribute("hidden",true);
     godtaButton.setAttribute("hidden",true);
@@ -272,7 +272,7 @@ function resetAskUser() {
     textBody.parentNode.removeChild(textBody);
     closeButton.innerHTML = "Close";
     closeButton.setAttribute("class","btn btn-default");
-    linkButton.innerHTML = "Forandre navn";
+    linkButton.innerHTML = "Change name";
     closeButton.setAttribute("onclick","removeChangeInput()");
     linkButton.setAttribute("onclick","renameTavle()");
     slettButton.removeAttribute("hidden");
