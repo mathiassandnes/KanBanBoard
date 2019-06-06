@@ -1,66 +1,41 @@
-let names = [];
-let members = [];
-
-
-// gjør at names blir et array av alle navn i databasen
-for (let i = 0; i < users.length; i++) {
-  names.push(users[i].name);
-}
-//alfabetisk rekkefølge
-names.sort();
-
-ul = document.getElementById("search-result");
-
-function render_lists (lists) {
-  var li = "";
-  for (let index in lists) {
-    li += "<li>" + '<button onclick="addClickInput(\'' + lists[index] + '\')" class = btn-primary> ' + lists[index] + "</button>" + "</li>";
+function renderLists (lists) {
+  let li = "";
+  for (let i = 0; i < lists.length; i++) {
+      li += "<li>" + '<button id='+i+' onclick="addClickInput(\'' + lists[i] + '\')" class = btn-primary> ' + lists[i] + "</button>" + "</li>";
   }
   ul.innerHTML = li;
 }
 
-
-
 function filterUsers () {
-  let keyword = input.value.toLowerCase();
-  let filtered_users = names.filter(function (user) {
-    user = user.toLowerCase();
-    return user.indexOf(keyword) > -1;
+    let keyword = input.value.toLowerCase();
+    let filtered_users = names.filter(function (user) {
+        user = user.toLowerCase();
+        return user.indexOf(keyword) > -1;
   });
 
-  render_lists(filtered_users);
+  renderLists(filtered_users);
 }
 
-
 //trykker man på et navn, legges de til i listen
-
 function addClickInput(name) {
-  // 1. legges til i members liste
-
-
     members.push(name);
-
     let membersString = '';
 
     for (let i = 0; i < members.length; i++) {
         if(members[i] !== null) {
             membersString += '<button class="btn-primary" id="btn'+i+'" onclick="removeClickInput('+i+')" >'+members[i]+'</button>';
-            membersString += '<button class="btn-primary" id="xbtn'+i+'" onclick="removeClickInput('+i+')" >'+"X"+'</button>';
         }
     }
     document.getElementById("members").innerHTML = membersString;
-
-
-     //3. Laste inn listene på nytt til siden
 }
 
 function removeClickInput(id)  {
-  members[id] = null;
-  let removeButton = document.getElementById('btn' + id);
-  removeButton.parentNode.removeChild(removeButton);
-  let removeXButton = document.getElementById('xbtn' + id );
-  removeXButton.parentNode.removeChild(removeXButton);
-}   
+    console.log(members[id])
+    members[id] = null;
+    let removeButton = document.getElementById('btn' + id);
+    removeButton.parentNode.removeChild(removeButton);
+}
+
 function checkNotNull(name){ 
   return null != name;
 }
@@ -108,6 +83,7 @@ function groupModal(target){
         groupNameInModal.value = "";
         groupDescriptionInModal.value = "";
     }
+
     document.getElementById('create-new-group').onclick = function(){
         if(isNewGroup){
             currentGroup = {
@@ -146,8 +122,23 @@ function createGroup(){
 
 
 }
+
+
+let names = [];
+let members = [];
+
+
+// gjør at names blir et array av alle navn i databasen
+for (let i = 0; i < users.length; i++) {
+    names.push(users[i].name);
+}
+//alfabetisk rekkefølge
+names.sort();
+
+ul = document.getElementById("search-result");
+
 // lets filters it
-render_lists(names);
+renderLists(names);
 
 let input = document.getElementById('user-search-input');
 input.addEventListener('keyup', function(){filterUsers()});
