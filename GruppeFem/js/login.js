@@ -52,7 +52,6 @@ function newUsernameHaveChar(){
     if((document.getElementById("new-username").value).length > 0){
         return true;
     }else{
-        console.log("No username detected");
         return false;
     }
 }
@@ -103,7 +102,6 @@ function registerNewEmailCriteria() {
     if ((document.getElementById("email").value).indexOf('@') > -1 && (document.getElementById("email").value).indexOf('.') > -1){
         return true;
     } else{
-        console.log("enter valid email");
     }
 }
 
@@ -112,7 +110,6 @@ function newEmailHaveChar() {
     if ((document.getElementById("email").value).length > 0){
         return true;
     }else{
-        console.log("No email detected");
         return false;
     }
 }
@@ -167,10 +164,8 @@ function differentPasswordsFeedback(){
     if(newPasswordMatch() === true && passwordCriteriaOk() === true){
         document.getElementById("new-password-check").className = "form-control is-valid";
 
-        console.log("passwords match");
     } else {
         document.getElementById("new-password-check").className = "form-control is-invalid";
-        console.log("passwords do not match");
     }
 
 }
@@ -180,25 +175,18 @@ function passwordCriteriaOk(){
     let newPassword1 = document.getElementById("new-password").value;
 
     if((document.getElementById("new-password").value).length > 7) {
-        console.log("Good password length");
 
         if (/\d/.test(newPassword1) === true) {
-            console.log("password have a number");
 
             if (newPassword1 !== newPassword1.toUpperCase() && newPassword1 !== newPassword1.toLowerCase()) {
-                console.log("password have upper and lower case");
                 return true;
             }else{
-                console.log("passwords need upper and lower case");
                 return false;
-
             }
         }else{
-            console.log("password need a number");
             return false;
         }
     }else{
-        console.log("passwords needs to be 8 or more characters");
         return false;
     }
 }
@@ -216,10 +204,8 @@ function passwordCriteriaFeedback(){
 function newNameHaveChar() {
     if((document.getElementById("full-name").value).length > 0){
         return true;
-        console.log("Name is good");
     }else{
         return false;
-        console.log("No name detected");
     }
 }
 //feedback på om navnet er godkjent eller ikke.
@@ -233,14 +219,14 @@ function newNameFeedback(){
 //------------------------------->>Login SNACKBAR<<---------------------------------------------
 //snackbar for mislykket innlogging.
 function loginFailedSnack() {
-    var x = document.getElementById("loginFailedSnackbar");
+    var x = document.getElementById("login-failed-snackbar");
     x.className = "show";
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 //----------------------------->>Registration SNACKBAR<<----------------------------------------
 //snackbar for fullført registrering.
 function registrationCompleteSnack() {
-    var x = document.getElementById("registrationSnackbar");
+    var x = document.getElementById("registration-snackbar");
     x.className = "show";
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
