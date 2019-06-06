@@ -60,7 +60,6 @@ function lagGruppe(){
         gruppelist.appendChild(addButton);
         addModal(addButton,"create-Table-Modal");
         groupHeader.appendChild(addButton);
-        addModal(addButton,"lag-Tavle-Modal");
         addButton.setAttribute("numb",i);
         addButton.setAttribute("id","button"+i);
         addButton.setAttribute("onclick","sendId(this.id)");
@@ -98,7 +97,6 @@ lagGruppe();
 
 //Funksjonen for å lage nye tavler fra HTML siden.
 function addExtraTable(){
-    alert("funk kjører");
     let hiddenHead = document.getElementById("hiddenModal").innerHTML;
     let thisValue = document.getElementById(hiddenHead);
     let groupIndex = thisValue.getAttribute("numb");
