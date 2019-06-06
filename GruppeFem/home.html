@@ -27,7 +27,7 @@
                 </ul>
             </div>
             <div class="col-11">
-                <button id="new-group-button" class="btn btn-primary" data-toggle="modal" data-target="#new-group-modal" >New group</button>
+                <button id="new-group-button" class="btn btn-primary" data-toggle="modal" data-target="#new-group-modal">New group</button>
             </div>
         </div>
     </div>
@@ -38,7 +38,7 @@
     </div>
 
     <!-- New Board Modal -->
-    <div class="modal fade" id="lag-Tavle-Modal" role="dialog">
+    <div class="modal fade" id="create-Table-Modal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" id="hiddenModal" hidden>
@@ -46,32 +46,32 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <input maxlength=50 id="bruker-Input" placeholder="Board name" autofocus>
+                    <input maxlength=50 id="user-Input" placeholder="Board name" autofocus>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" onclick="removeInput()">Close</button>
-                    <button onclick="lagExtraTavle(this.id)" class="btn btn-primary" data-dismiss="modal">Create new table</button>
+                    <button onclick="addExtraTable(this.id)" id="accept-Table-Input" class="btn btn-primary" data-dismiss="modal">Create new table</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Board Modal -->
-    <div class="modal fade" id="tavle-Info-Modal" role="dialog">
+    <div class="modal fade" id="table-Info-Modal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="tavle-Head" hidden></h4>
+                    <h4 class="modal-title" id="table-Head" hidden></h4>
                     <input maxlength=50 type="text" id="change-Input" placeholder="Name of board">
                     <button type="button" class="close" data-dismiss="modal" onclick="resetAskUser()">&times;</button>
                 </div>
-                <div class="modal-body" id="tavle-Info-Modal-Body">
-                    <button onclick="renameTavle()" id="accept-Input" class="btn btn-primary" data-dismiss="modal">Change name</button>
-                    <button type="button" id="delete-Tavle" class="btn btn-primary" onclick="askUserRemove()">Delete table</button>
+                <div class="modal-body" id="table-Info-Modal-Body">
+                    <button type="button" id="link-Table" class="btn btn-primary" onclick=""></button>
+                    <button type="button" id="delete-Table" class="btn btn-primary" onclick="askUserRemove()">Delete table</button>
                 </div>
-                <div class="modal-footer" id="tavle-Info-Modal-Footer">
+                <div class="modal-footer" id="table-Info-Modal-Footer">
                     <button type="button" onclick="removeChangeInput()" id="close-Modal-Button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" id="link-Tavle" class="btn btn-primary" onclick=""></button>
+                    <button onclick="renameTable()" id="accept-Input" class="btn btn-primary" data-dismiss="modal">Save changes</button>
                 </div>
             </div>
         </div>
