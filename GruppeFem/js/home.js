@@ -86,33 +86,32 @@ lagGruppe();
 
 //Funksjonen for å lage nye tavler fra HTML siden.
 function lagExtraTavle(){
+    alert("dsasa");
     let hiddenHead = document.getElementById("hiddenModal").innerHTML;
     let thisValue = document.getElementById(hiddenHead);
     let groupIndex = thisValue.getAttribute("numb");
     let sameName = false;
-    let firstNyTavleInput = document.getElementById("bruker-Input");
-    //Input forandres slik at < og > blir skrevet ved hjelp av html entity slik at på siden er det likt,
-    //men siden vil ikke se dem som tags. Dette er for å stoppe HTML injections.
-    let nyTavleInput = firstNyTavleInput.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    let nyTavleInput = document.getElementById("bruker-Input");
+    alert(nyTavleInput);
     //En loop som sjekker om navnet allerede eksisterer.
     for (let j = 0; j < group[groupIndex].boards.length; j++){
-        if (group[groupIndex].boards[j].name === nyTavleInput){
+        if (group[groupIndex].boards[j].name === nyTavleInput.value){
             sameName = true;
         }
     }
     //Her sjekker man det er noe i input feltet, og så sjekker den om navnet eksisterte og så stopper funksjonen.
-    if(firstNyTavleInput.value === ""){
+    if(nyTavleInput.value === ""){
         alert("Vennligst skriv inn et navn");
     } else if(sameName === true) {
         alert("Dette navnet blir allerede brukt i denne gruppen. Vennligst skriv inn et annet navn.");
-        firstNyTavleInput.value = "";
+        nyTavleInput.value = "";
     } else {
 
         //Ny tavle objectet lages og legges til i riktige arrays.
         let tavleIndex = group[groupIndex].boards.length;
         let newtavle =
             {
-                name:nyTavleInput,
+                name:nyTavleInput.value,
                 lists: [],
                 member: [],
             };
@@ -124,10 +123,10 @@ function lagExtraTavle(){
         let tavleList = document.getElementById("tr" + groupIndex);
         addModal(tavle,"tavle-Info-Modal");
         tavle.setAttribute("class", "btn onboard-text m-3 center btn-dark");
-        tavle.setAttribute("id", nyTavleInput + groupIndex + tavleIndex);
+        tavle.setAttribute("id", nyTavleInput.value + groupIndex + tavleIndex);
         tavle.setAttribute("onclick","changeTavle(this.id)");
         tavleList.appendChild(tavle);
-        firstNyTavleInput.value = "";
+        nyTavleInput.value = "";
     }
 }
 
