@@ -3,42 +3,42 @@ var users = [
         name: "Bengt Østby",
         email: "bengt@capgemini.no",
         username: "Mr.Robot",
-        password: "E-Corp5ucz"
+        password: "-798881111"
     },
     {
         name: "Tomas",
         email: "tomas@hk.no",
         username: "TomasUtenH",
-        password: "K0bl1ng53nt1t3t"
+        password: "646020899"
     },
     {
         name: "Andreas",
         email: "andreas@hk.no",
         username: "test",
-        password: "test"
+        password: "3556498"
     },
     {
         name: "Michael",
         email: "Michael@hk.no",
         username: "mrAlgorithm",
-        password: "M1ch43l1337"
+        password: "815643210"
     },
     {
         name: "Rolando Gonzales",
         email: "rolando@hk.no",
         username: "MiamiViceBoy",
-        password: "Rico1984"
+        password: "-1481521497"
     },
     {
         name: "Sturla",
         email: "sturla@hk.no",
         username: "Sturlinator",
-        password: "Webprosjekt123"
+        password: "1215270388\n"
     },
     {
         name: "Johannes Broadwall",
         epost: "Johannes@soprasteria.no",
         username: "Johannes1337",
-        password: "Johannes666"
+        password: "175749482"
     }
 ];

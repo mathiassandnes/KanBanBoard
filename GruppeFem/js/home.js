@@ -1,3 +1,4 @@
+
 //Funksjonen forandrer navnen på knappen som viser hvilken tavle man skal linkes til.
 function changeBoard(id){
     if(askIsActive === true){
