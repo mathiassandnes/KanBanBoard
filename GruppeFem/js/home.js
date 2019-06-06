@@ -188,27 +188,26 @@ function lagExtraTavle(){
     let thisValue = document.getElementById(hiddenHead);
     let groupIndex = thisValue.getAttribute("numb");
     let sameName = false;
-    let firstNyTavleInput = document.getElementById("bruker-Input");
-    let nyTavleInput = firstNyTavleInput.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    let nyTavleInput = document.getElementById("bruker-Input");
     //En loop som sjekker om navnet allerede eksisterer.
     for (let j = 0; j < group[groupIndex].boards.length; j++){
-        if (group[groupIndex].boards[j].name === firstNyTavleInput){
+        if (group[groupIndex].boards[j].name === nyTavleInput.value){
             sameName = true;
         }
     }
     //Her sjekker man det er noe i input feltet, og så sjekker den om navnet eksisterte og så stopper funksjonen.
-    if(firstNyTavleInput.value === ""){
+    if(nyTavleInput.value === ""){
         alert("Vennligst skriv inn et navn");
     } else if(sameName === true) {
         alert("Dette navnet blir allerede brukt i denne gruppen. Vennligst skriv inn et annet navn.");
-        firstNyTavleInput.value = "";
+        nyTavleInput.value = "";
     } else {
 
     //Ny tavle objectet lages og legges til i riktige arrays.
     let tavleIndex = group[groupIndex].boards.length;
     let newtavle =
     {
-        name:nyTavleInput,
+        name:nyTavleInput.value,
         lists: [],
         member: [],
     };
@@ -225,7 +224,7 @@ function lagExtraTavle(){
     tavleList.appendChild(tavle);
     let arrayOfBoards = group[groupIndex].boards;
     tavle.innerHTML = arrayOfBoards[tavleIndex].name;
-    firstNyTavleInput.value = "";
+    nyTavleInput.value = "";
     }
 }
 
@@ -294,6 +293,7 @@ function removeTable(){
     boardIndex.parentNode.removeChild(boardIndex);
     $("#tavle-Info-Modal").modal("toggle");
     resetAskUser();
+    alert("sadsa");
     return false;
 }
 
