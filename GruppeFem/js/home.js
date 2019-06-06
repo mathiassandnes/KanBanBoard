@@ -236,7 +236,7 @@ function sendId(id){
     hiddenHead.innerHTML = id;
 }
 
-//Forandrer modal og spør bruker om de er sikkere på om de vil slette tavlen.
+//Forandrer modal og spør bruker om bruker er sikkere på om de vil slette tavlen.
 var askIsActive = false;
 function askUserRemove() {
     askIsActive = true;
@@ -293,20 +293,8 @@ function removeTable(){
     group[gIndex].boards.splice(bIndex,1);
     board.splice(bIndex, 1);
     boardIndex.parentNode.removeChild(boardIndex);
+    $("#tavle-Info-Modal").modal("toggle");
     resetAskUser();
     return false;
 }
 
-function resetsModals(){
-    let editModal = document.getElementById("tavle-Info-Modal");
-    let lagTavleModal = document.getElementById("lag-Tavle-Modal");
-    if(editModal.style.display === "none"){
-        resetAskUser();
-        removeChangeInput()
-    }
-    if(lagTavleModal.style.display ==="none"){
-        removeInput();
-    }
-
-}
-resetsModals();
