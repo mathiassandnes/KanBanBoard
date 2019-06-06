@@ -46,6 +46,11 @@ function lagGruppe(){
         gruppelist.style.marginBottom = "45px";
         groupName.onclick = function(e) {groupModal(e.target)};
         groupName.style.fontSize = "xx-large";
+        gruppelist.style.backgroundColor = "#C92047";
+        gruppelist.style.borderRadius = "25px";
+        groupHeader.style.marginRight = "25px";
+        groupHeader.style.marginLeft= "20px";
+
 
         //Lager knappen for å legge til flere tavler.
         let addButton = createHtmlElementWithText("div","Legg til tavle");
