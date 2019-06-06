@@ -24,7 +24,7 @@ ul{
 
 /*------------------------ Register complete snackbar -----------------------------*/
 
-#registrationSnackbar {
+#registration-snackbar {
     visibility: hidden;
     min-width: 250px;
     margin-left: -125px;
@@ -40,7 +40,7 @@ ul{
     font-size: 17px;
 }
 
-#registrationSnackbar.show {
+#registration-snackbar.show {
     visibility: visible;
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
@@ -68,7 +68,7 @@ ul{
 
 /* ---------------------------- Login failed snackbar --------------------------------------*/
 
-#loginFailedSnackbar {
+#login-failed-snackbar {
     visibility: hidden;
     min-width: 250px;
     margin-left: -125px;
@@ -84,7 +84,7 @@ ul{
     font-size: 17px;
 }
 
-#loginFailedSnackbar.show {
+#login-failed-snackbar.show {
     visibility: visible;
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
