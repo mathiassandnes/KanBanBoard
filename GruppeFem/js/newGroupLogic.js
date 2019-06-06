@@ -36,13 +36,12 @@ var filterUsers = function (event) {
 
 input.addEventListener('keyup', filterUsers);
 
-//trykker man på et navn, legges de til i listen
-
+// legger navnene man velger inn i mebmer listen og i mebmer felten på siden
 function addClickInput(name) {
   // 1. legges til i members liste
 
   members.push(name);
-
+//deklarer en tomt text streng 
   let membersString = '';
 
   for (let x = 0; x < members.length; x++) {
@@ -55,6 +54,8 @@ function addClickInput(name) {
 
      //3. Laste inn listene på nytt til siden
     }
+
+    // funksjonen fjerner navne fra member liste og fra meber felten på siden
 function removeClickInput(id)  {
   members[id] = null;
   let removeButton = document.getElementById('btn' + id);
