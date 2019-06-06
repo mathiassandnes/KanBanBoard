@@ -140,10 +140,7 @@ function removeInput(){
 function renameTavle() {
     let thisTavle = document.getElementById("tavle-Head");
     let hiddenID = thisTavle.innerHTML;
-    let firstNewName = document.getElementById("change-Input");
-    //Input forandres slik at < og > blir skrevet ved hjelp av html entity slik at på siden er det likt,
-    //men siden vil ikke se dem som tags. Dette er for å stoppe HTML injections.
-    let newName = firstNewName.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    let newName = document.getElementById("change-Input");
     let thisTavleOut = document.getElementById(hiddenID);
     let trTag = thisTavleOut.parentElement;
     let groupIndex = trTag.getAttribute("numb");
@@ -151,29 +148,29 @@ function renameTavle() {
     let nameExists = false;
     //Her sjekkes det både om navnet allerede eksistere og om det ikke er noe i input feltet.
     for(let l = 0; l <group[groupIndex].boards.length;l++) {
-        if (firstNewName.value === arrayOfGroup.boards[l].name) {
+        if (newName.value === arrayOfGroup.boards[l].name) {
             nameExists = true;
         }
     }
     //Hvis navnet eksisterer stopper funksjonen, hvis ikke så forandres navnet både HTML elementet og objectet i arrayet.
-    if (firstNewName.value === "") {
+    if (newName.value === "") {
         alert("Vennligst oppgi nytt navn.");
-        firstNewName.value = "";
+        newName.value = "";
     }else if(nameExists === true) {
         alert("Det er allerede en tavle med dette navnet. Vennligst velg et annet navn.");
     } else {
         for(let o = 0; o <group[groupIndex].boards.length; o++){
                 var thisIndex = o;
                 let arrayOfBoards = group[groupIndex].boards;
-                arrayOfBoards[thisIndex].name = newName;
-                thisTavleOut.innerHTML = newName;
+                arrayOfBoards[thisIndex].name = newName.value;
+                thisTavleOut.innerHTML = newName.value;
         }
         let arrayOfBoards = group[groupIndex].boards;
-        arrayOfBoards[thisIndex].name = newName;
-        thisTavleOut.innerHTML = newName;
+        arrayOfBoards[thisIndex].name = newName.value;
+        thisTavleOut.innerHTML = newName.value;
     }
-    thisTavleOut.setAttribute("id", newName + groupIndex +thisIndex);
-    firstNewName.value = "";
+    thisTavleOut.setAttribute("id", newName.value + groupIndex +thisIndex);
+    newName.value = "";
 }
 
 // Fjerner tekst fra input når man lukker modal
