@@ -10,24 +10,14 @@ function drawBoards() {
     }
 }
 
-//gjør det enklere å lage et html elemenet med tekst
-function createHtmlElementWithText(tagName, text){
-    let element = document.createElement(tagName);
-    element.innerHTML = text;
-    return element;
-}
-
-//kobler til en modal med setAttribute
-function addModal(element, modalName){
-    element.setAttribute('data-toggle', 'modal');
-    element.setAttribute('data-target', '#'+modalName);
-}
 
 //all funksjonalitet som ligger i modalen på lister
 function listModal(target, board){
     let listNameInModal = document.getElementById('list-name-list-modal');
     let isNewList = true;
     let currentList;
+
+    //ser om listen eksisterer
     for(let i = 0; i < list.length; i++){
         if(list[i].name === target.innerHTML){
             currentList = list[i];
@@ -35,20 +25,27 @@ function listModal(target, board){
             isNewList = false;
         }
     }
+
+    //om det ikke eksisterer må vi resette modalen
     if(isNewList){listNameInModal.value = "";}
 
+    //onclick på save button i modal
     document.getElementById('create-new-list').onclick = function(){
+
+        // om listen er ny må vi lage et nytt objekt som vi legger inn i databasen
         if(isNewList){
             currentList = {
                 name: listNameInModal.value,
                 cards: []
             };
 
+            //listen må tegnes
             drawList(currentList);
 
             board.lists.push(currentList);
             list.push(currentList);
         }else{
+            // hvis vi har gjort endringer må de oppdateres
             currentList.name = listNameInModal.value;
             target.innerHTML = listNameInModal.value;
         }
@@ -58,12 +55,13 @@ function listModal(target, board){
 //all funksjonalitet som ligger i modalen på kort
 function cardModal(e, container, listToDraw) {
 
+    //dette må resettes hver gang for å unngå duplikat
     document.getElementById("responsible-user").innerHTML = "";
 
+    //denne koden laster inn brukere i gruppa, og setter default responsible user til "not assigned"
     let defaultResponsibleUser = createHtmlElementWithText('option', 'Not assigned');
     defaultResponsibleUser.setAttribute('selected', 'selected');
     document.getElementById('responsible-user').appendChild(defaultResponsibleUser);
-
     for(let i = 0; i < group[0].members.length; i++){
         document.getElementById('responsible-user').appendChild(createHtmlElementWithText('option', group[0].members[i]));
     }
@@ -72,10 +70,10 @@ function cardModal(e, container, listToDraw) {
     let cardDescriptionInModal = document.getElementById('card-description');
     let priorityInModal = document.getElementById('priority');
     let responsibleUserInModal = document.getElementById('responsible-user');
-    let isNewCard = true;
+    let isNewCard = true; // tar utgangspunkt i at det er et nytt kort
     let currentCard;
 
-    // finds the correct card in backend and draws the modal with its values
+    // finner riktig kort i backend og tegner modalen med dets verider
     for (let x = 0; x < card.length; x++) {
         if (e.target.innerHTML === card[x].name) {
 
@@ -85,9 +83,13 @@ function cardModal(e, container, listToDraw) {
             cardDescriptionInModal.value = currentCard.description;
             priorityInModal.options.selectedIndex = currentCard.priority;
             responsibleUserInModal.options.selectedIndex = currentCard.responsibleUser;
+
+            //om vi har funnet kortet, er det ikke nytt
             isNewCard = false;
         }
     }
+
+    //resetter modalen hvis kortet er nytt
     if (isNewCard) {
         cardNameInModal.value = "";
         cardDescriptionInModal.value = "";
@@ -97,6 +99,7 @@ function cardModal(e, container, listToDraw) {
 
     document.getElementById('save-card-changes').onclick = function () {
 
+        //om kortet er nytt må det lages ett nytt objekt som lagres i databasen
         if (isNewCard) {
             currentCard = {
                 name: cardNameInModal.value,
@@ -105,7 +108,7 @@ function cardModal(e, container, listToDraw) {
                 responsibleUserInModal: responsibleUserInModal.options.selectedIndex
             };
 
-
+            //det nye kortet må tegnes
             drawCard(currentCard.name, container);
 
             listToDraw.cards.push(currentCard);
@@ -134,11 +137,11 @@ function cardModal(e, container, listToDraw) {
 
 }
 
+// Brukes til å tegne én liste og gi den alle properties
 function drawList(listToDraw) {
     let listElementContainer = document.createElement('li');
     let listElementBody = document.createElement('ul');
     let listElement = createHtmlElementWithText('div', listToDraw.name);
-
 
     listElementContainer.className = "m-3 list-element p-1 col-1";
     listElementBody.className = "rounded-bottom bg-dark";
@@ -162,6 +165,7 @@ function drawList(listToDraw) {
 
     //legger til navnet til listen i en dropdown meny på kort modal
 
+    //hvis du trykker på et element, skal vi åpne kort modalen
     listElementContainer.onclick = function (e) {
         cardModal(e, listElementBody, listToDraw);
 
@@ -197,6 +201,7 @@ function drawCard(name, container){
     cardElement.id = name;
 }
 
+//tegner hele siden
 function drawTables(board) {
 
     let arrayOfLists = arrayOfBoards[board].lists;
@@ -211,7 +216,7 @@ function drawTables(board) {
     listsArea.id = 'lists-area';
     listsArea.className = 'row col-12 m-1 container onboard-background';
 
-    //looper igjennom listen med lister
+    //looper igjennom listen med lister og tegner de
     for (let i = 0; i < arrayOfLists.length; i++) {
         let arrayOfCards = arrayOfLists[i].cards;
         drawList(arrayOfLists[i]);
@@ -219,10 +224,13 @@ function drawTables(board) {
         //let listElementContainer = document.getElementById(arrayOfLists[i].name+"container")
         let listElementBody = document.getElementById(arrayOfLists[i].name+"body")
 
+        //looper igjennom listen med kort og tenger de
         for (let j = 0; j < arrayOfCards.length; j++) {
             drawCard(arrayOfCards[j].name, listElementBody)
         }
     }
+
+    //knapp for å lage en ny liste
     let newListButton = createHtmlElementWithText('button', '+ new list');
     newListButton.id = "new-list";
     newListButton.className = "col-1 btn bg-light m-5";
@@ -231,15 +239,6 @@ function drawTables(board) {
 
     document.getElementById('content-area').appendChild(newListButton);
     //removed this for prototype because of bugs
-}
-
-function giveOnEnterPress(input,funcButton) {
-    let cardInputField = document.getElementById(input);
-    cardInputField.addEventListener("keyup",function (event) {
-        if(event.key === "Enter"){
-            document.getElementById(funcButton).click();
-        }
-    });
 }
 
 giveOnEnterPress("card-name-input","save-card-changes");

@@ -1,11 +1,13 @@
+//tegner listen med medlemmer i en gruppe på modal
 function renderLists (lists) {
   let li = "";
   for (let i = 0; i < lists.length; i++) {
-      li += "<li>" + '<button id='+i+' onclick="addClickInput(\'' + lists[i] + '\')" class = btn-primary> ' + lists[i] + "</button>" + "</li>";
+      li += "<li>" + '<button id='+i+' onclick="addClickInput(\'' + lists[i] + '\')" class = btn-primary>' + lists[i] + "</button>" + "</li>";
   }
   ul.innerHTML = li;
 }
 
+//gir funksjonalitet når man søker etter brukere
 function filterUsers () {
     let keyword = input.value.toLowerCase();
     let filtered_users = names.filter(function (user) {
@@ -28,18 +30,21 @@ function addClickInput(name) {
     }
     document.getElementById("members").innerHTML = membersString;
 }
-// fjerner elementer fra mebmer listen og fra memeber felten 
+
+//fjerner brukeren fra listen med medlemmer om du trykke på de.
 function removeClickInput(id)  {
-    console.log(members[id])  
+
     members[id] = null;
     let removeButton = document.getElementById('btn' + id);
     removeButton.parentNode.removeChild(removeButton);
 }
 
+
 function checkNotNull(name){ 
   return null != name;
 }
 
+//filtrerer ut null veried i member array
 function setMembersNotNull(){
     members = members.filter(checkNotNull);
 }
@@ -51,6 +56,7 @@ function groupSavedSnack() {
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
+//samme som list modal og card modal
 function groupModal(target){
 
     let groupNameInModal = document.getElementById('group-name-group-modal');
@@ -65,12 +71,10 @@ function groupModal(target){
     for(let i = 0; i < group.length; i++){
         if(group[i].name === target.innerHTML){
             currentGroup = group[i];
-            console.log(currentGroup.members)
 
             groupNameInModal.value = currentGroup.name;
             groupDescriptionInModal.value = currentGroup.description;
 
-            console.log(currentGroup.members)
 
             for(let j = 0; j < currentGroup.members.length; j++){
                 addClickInput(currentGroup.members[j]);
