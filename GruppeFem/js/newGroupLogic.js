@@ -1,7 +1,7 @@
 function renderLists (lists) {
   let li = "";
   for (let i = 0; i < lists.length; i++) {
-      li += "<li>" + '<button id='+i+' onclick="addClickInput(\'' + lists[i] + '\')" class = btn-primary> ' + lists[i] + "</button>" + "</li>";
+      li += "<li>" + '<button id='+i+' onclick="addClickInput(\'' + lists[i] + '\')" class = btn-primary>' + lists[i] + "</button>" + "</li>";
   }
   ul.innerHTML = li;
 }
