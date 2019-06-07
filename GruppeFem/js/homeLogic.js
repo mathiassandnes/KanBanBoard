@@ -13,18 +13,6 @@ function changeBoard(id){
     let hiddenHead = document.getElementById("board-head");
     hiddenHead.innerHTML = id;
 }
-//gjør det enklere å lage et html elemenet med tekst
-function createHtmlElementWithText(tagName, text){
-    let element = document.createElement(tagName);
-    element.innerHTML = text;
-    return element;
-}
-
-//kobler til en modal med setAttribute
-function addModal(element, modalName){
-    element.setAttribute('data-toggle', 'modal');
-    element.setAttribute('data-target', '#'+modalName);
-}
 
 //Lager Gruppe elementer og gir dem attributter.
 function lagGruppe(){
@@ -192,15 +180,6 @@ function removeInput(){
     input.value = "";
 }
 
-//Funksjon som finner input felt og gjør at det aksepterer input når man trykker på enter.
-function giveOnEnterPress(input,funcButton) {
-    let cardInputField = document.getElementById(input);
-    cardInputField.addEventListener("keyup",function (event) {
-        if(event.key === "Enter"){
-            document.getElementById(funcButton).click();
-        }
-    });
-}
 //Gjør at alle modaler aksepterer input når man trykker enter
 giveOnEnterPress("group-name-group-modal","create-new-group");
 giveOnEnterPress("user-input","accept-board-input");
