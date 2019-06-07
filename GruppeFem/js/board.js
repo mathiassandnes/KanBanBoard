@@ -233,8 +233,19 @@ function drawTables(board) {
     //removed this for prototype because of bugs
 }
 
-let arrayOfBoards = group[0].boards; // 0 reoresnterer tavlen vi er på, om vi skulle hatt en state ville det bli brukt en variabel der for å velge tavle
+function giveOnEnterPress(input,funcButton) {
+    let cardInputField = document.getElementById(input);
+    cardInputField.addEventListener("keyup",function (event) {
+        if(event.key === "Enter"){
+            document.getElementById(funcButton).click();
+        }
+    });
+}
 
+giveOnEnterPress("card-name-input","save-card-changes");
+giveOnEnterPress("list-name-list-modal","create-new-list");
+
+let arrayOfBoards = group[0].boards; // 0 reoresnterer tavlen vi er på, om vi skulle hatt en state ville det bli brukt en variabel der for å velge tavle
 
 drawBoards();
 drawTables(0); //input må være det boardet vi trykket på i "home" siden
