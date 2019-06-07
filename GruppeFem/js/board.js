@@ -58,6 +58,7 @@ function listModal(target, board){
 //all funksjonalitet som ligger i modalen på kort
 function cardModal(e, container, listToDraw) {
 
+    //dette må resettes hver gang for å  unngå duplikat
     document.getElementById("responsible-user").innerHTML = "";
 
     let defaultResponsibleUser = createHtmlElementWithText('option', 'Not assigned');
@@ -162,6 +163,7 @@ function drawList(listToDraw) {
 
     //legger til navnet til listen i en dropdown meny på kort modal
 
+    //hvis du trykker på et element, skal vi åpne kort modalen
     listElementContainer.onclick = function (e) {
         cardModal(e, listElementBody, listToDraw);
 
