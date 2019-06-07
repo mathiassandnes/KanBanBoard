@@ -41,6 +41,7 @@ function lagGruppe(){
         groupHeader.appendChild(groupName);
         groupHeader.setAttribute("class", "row");
         groupList.setAttribute("id",group[i].name + i);
+        //Numb attributten blir brukt for å finne hvilken index elementet er i.
         groupList.setAttribute("numb",i);
         groupList.setAttribute("class","column");
         groupList.style.marginBottom = "45px";
@@ -202,7 +203,7 @@ giveOnEnterPress("group-name-group-modal","create-new-group");
 giveOnEnterPress("user-input","accept-board-input");
 giveOnEnterPress("change-input","accept-input");
 
-//Funksjon for å sende id inn til modal slik at man lett kan finne knappen man trykket på.
+//Funksjon for å sende id inn til modalen for å lage nye tavler, slik at funksjonen inni vet hvilken group index den skal legge tavler til.
 function sendId(id){
     let hiddenHead = document.getElementById("hidden-modal");
     hiddenHead.innerHTML = id;
