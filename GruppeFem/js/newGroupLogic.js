@@ -30,7 +30,6 @@ function addClickInput(name) {
 }
 
 function removeClickInput(id)  {
-    console.log(members[id])
     members[id] = null;
     let removeButton = document.getElementById('btn' + id);
     removeButton.parentNode.removeChild(removeButton);
@@ -65,12 +64,10 @@ function groupModal(target){
     for(let i = 0; i < group.length; i++){
         if(group[i].name === target.innerHTML){
             currentGroup = group[i];
-            console.log(currentGroup.members)
 
             groupNameInModal.value = currentGroup.name;
             groupDescriptionInModal.value = currentGroup.description;
 
-            console.log(currentGroup.members)
 
             for(let j = 0; j < currentGroup.members.length; j++){
                 addClickInput(currentGroup.members[j]);
