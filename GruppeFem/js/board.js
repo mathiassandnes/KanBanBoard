@@ -58,6 +58,7 @@ function listModal(target, board){
 //all funksjonalitet som ligger i modalen på kort
 function cardModal(e, container, listToDraw) {
 
+    //dette må resettes hver gang for å  unngå duplikat
     document.getElementById("responsible-user").innerHTML = "";
 
     let defaultResponsibleUser = createHtmlElementWithText('option', 'Not assigned');
@@ -162,6 +163,7 @@ function drawList(listToDraw) {
 
     //legger til navnet til listen i en dropdown meny på kort modal
 
+    //hvis du trykker på et element, skal vi åpne kort modalen
     listElementContainer.onclick = function (e) {
         cardModal(e, listElementBody, listToDraw);
 
@@ -233,8 +235,19 @@ function drawTables(board) {
     //removed this for prototype because of bugs
 }
 
-let arrayOfBoards = group[0].boards; // 0 reoresnterer tavlen vi er på, om vi skulle hatt en state ville det bli brukt en variabel der for å velge tavle
+function giveOnEnterPress(input,funcButton) {
+    let cardInputField = document.getElementById(input);
+    cardInputField.addEventListener("keyup",function (event) {
+        if(event.key === "Enter"){
+            document.getElementById(funcButton).click();
+        }
+    });
+}
 
+giveOnEnterPress("card-name-input","save-card-changes");
+giveOnEnterPress("list-name-list-modal","create-new-list");
+
+let arrayOfBoards = group[0].boards; // 0 reoresnterer tavlen vi er på, om vi skulle hatt en state ville det bli brukt en variabel der for å velge tavle
 
 drawBoards();
 drawTables(0); //input må være det boardet vi trykket på i "home" siden
