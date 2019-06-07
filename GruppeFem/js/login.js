@@ -25,7 +25,7 @@ function checkLogIn() {
     return;
 }
 //--------------------------------->>Enter keyEvent for login<<---------------------------------
-// Gir mulighet å logge inn med enter.
+// Gir mulighet til å logge inn med enter.
 window.addEventListener("keydown", loginWithEnter, false);
 
 function loginWithEnter(key){
