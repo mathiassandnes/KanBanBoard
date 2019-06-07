@@ -7,7 +7,9 @@ function checkLogIn() {
     for(let i = 0; i < users.length; i++) {
 
         if(username == users[i].username){
-            if(password == users[i].password){
+            if(password.hashCode() == users[i].password){
+                console.log(users[i].password)
+                console.log(password.hashCode())
                 document.getElementById("username").className = "form-control m-1 is-valid";
                 document.getElementById("password").className = "form-control m-1 is-valid";
                 localStorage.setItem('currentUser', users[i].name);
@@ -142,8 +144,8 @@ function newEmailFeedback(){
 
 // ser om nye passord er like.
 function newPasswordMatch() {
-    let newPassword1 = document.getElementById("new-password").value;
-    let newPassword2 = document.getElementById("new-password-check").value;
+    let newPassword1 = document.getElementById("new-password").value.hashCode();
+    let newPassword2 = document.getElementById("new-password-check").value.hashCode();
 
     if (newPassword1 === newPassword2) {
         return true;
@@ -246,7 +248,7 @@ function registerNewUser() {
             name: document.getElementById("full-name").value,
             email: document.getElementById("email").value,
             username: document.getElementById("new-username").value,
-            password: document.getElementById("new-password").value
+            password: document.getElementById("new-password").value.hashCode()
         });
         registrationCompleteSnack();
     }

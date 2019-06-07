@@ -1,4 +1,3 @@
-var arrayOfBoards = group[0].boards;
 
 //tegner tabs
 function drawBoards() {
@@ -63,8 +62,10 @@ function cardModal(e, container, listToDraw) {
 
     let defaultResponsibleUser = createHtmlElementWithText('option', 'Not assigned');
     defaultResponsibleUser.setAttribute('selected', 'selected');
+    document.getElementById('responsible-user').appendChild(defaultResponsibleUser);
+
     for(let i = 0; i < group[0].members.length; i++){
-        document.getElementById('responsible-user').appendChild(createHtmlElementWithText('option', group[0].members[i].name));
+        document.getElementById('responsible-user').appendChild(createHtmlElementWithText('option', group[0].members[i]));
     }
 
     let cardNameInModal = document.getElementById('card-name-input');
@@ -141,7 +142,8 @@ function drawList(listToDraw) {
 
     listElementContainer.className = "m-3 list-element p-1 col-1";
     listElementBody.className = "rounded-bottom bg-dark";
-    listElementBody.style.minHeight=" 52px";
+    listElementBody.style.minHeight=" 10px";
+    listElement.style.minHeight=" 52px";
     listElement.className = "col-12 text-12 rounded-top bg-dark onboard-text text-center m-0 p-2";
 
     listElementContainer.id = listToDraw.name+"container";
@@ -230,6 +232,9 @@ function drawTables(board) {
     document.getElementById('content-area').appendChild(newListButton);
     //removed this for prototype because of bugs
 }
+
+let arrayOfBoards = group[0].boards; // 0 reoresnterer tavlen vi er på, om vi skulle hatt en state ville det bli brukt en variabel der for å velge tavle
+
 
 drawBoards();
 drawTables(0); //input må være det boardet vi trykket på i "home" siden
