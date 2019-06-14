@@ -12,7 +12,7 @@ var users = [
         password: "646020899"
     },
     {
-        name: "Andreas",
+        name: "test",
         email: "andreas@hk.no",
         username: "test",
         password: "3556498"

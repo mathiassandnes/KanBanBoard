@@ -1,24 +1,34 @@
 var board = [
     {
-        name: "My first board",
-        lists: [list[0], list[1], list[2]]
+        name: "Sosialt",
+        lists: [list[0], list[1]]
 
     },
     {
-        name: "Prosjekt",
-        lists: [list[1], list[2], list[3]],
+        name: "Koding",
+        lists: [list[2], list[3], list[4], list[5]],
 
     },
     {
-        name: "Jobb",
-        lists: [list[2], list[3], list[4]],
+        name: "Design",
+        lists: [list[6], list[7]],
 
     },
     {
-        name: "Privat",
-        lists: [list[3], list[4], list[5]],
+        name: "Hjemmearbeid",
+        lists: [list[8], list[9], list[10], list[11], list[12], list[13]],
 
+    },
+    {
+        name: "Tur til Lagos med Andersren familien",
+        lists: []
+
+    },
+    {
+        name: "Server service",
+        lists: []
     }
+
 ];
 
 
